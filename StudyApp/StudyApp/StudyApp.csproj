@@ -54,6 +54,12 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Controllers\CalendarController.cs" />
+    <Compile Include="Assets\Controllers\FileController.cs" />
+    <Compile Include="Assets\Controllers\GoalController.cs" />
+    <Compile Include="Assets\Controllers\NoteController.cs" />
+    <Compile Include="Assets\Controllers\ServerIOController.cs" />
+    <Compile Include="Assets\Controllers\UserController.cs" />
     <Compile Include="Assets\Models\Day.cs" />
     <Compile Include="Assets\Models\File.cs" />
     <Compile Include="Assets\Models\FileMini.cs" />
