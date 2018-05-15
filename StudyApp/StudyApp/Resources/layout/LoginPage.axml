@@ -3,5 +3,29 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+  <ImageView
+    android:src="@android:drawable/ic_menu_gallery"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/LogoImg" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/UsernameField" />
+    <EditText
+        android:inputType="Enter password here"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/PasswordField" />
+    <Button
+        android:text="Login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/LoginButton" />
+    <Button
+        android:text="Create Account "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/CreateAccountButton" />
 
 </LinearLayout>
