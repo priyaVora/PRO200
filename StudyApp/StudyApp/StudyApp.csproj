@@ -81,12 +81,6 @@
     <AndroidResource Include="Resources\layout\NotesPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\DailyGoalsPage.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\SharingFilePage.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\EditNotesPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
