@@ -14,5 +14,15 @@ namespace StudyApp.Assets.Controllers
 {
     class ServerIOController
     {
+        public static readonly string IP = "";
+        public bool AuthenticateUser(string username, string hashedPassword)
+        {
+
+
+
+
+
+            return false;
+        }
     }
 }
