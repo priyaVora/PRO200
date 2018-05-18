@@ -25,7 +25,7 @@ namespace StudyApp.Assets.Controllers
             throw new NotImplementedException();
         }
 
-        public void ShareFile(Dictionary<UserAccount, Permission>)
+        public void ShareFile(Dictionary<UserAccount, Permission> users)
         {
             throw new NotImplementedException();
         }
