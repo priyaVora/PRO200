@@ -15,6 +15,13 @@ namespace StudyApp.Assets.Views {
     public class LoginActivity : Activity {
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.LoginPage);
+
+            Button createAccountBtn = FindViewById<Button>(Resource.Id.CreateAccountButton);
+            Button LoginBtn = FindViewById<Button>(Resource.Id.LoginButton);
+
+            createAccountBtn.Click += CreateAccountClick;
+            LoginBtn.Click += LoginClick;
 
             // Create your application here
         }
