@@ -37,7 +37,6 @@
     <ScrollView
         android:minWidth="25px"
         android:minHeight="25px"
-        android:defaultMinSizeSet="true"
         android:layout_width="match_parent"
         android:layout_height="428.5dp"
         android:id="@+id/scrollView1">
