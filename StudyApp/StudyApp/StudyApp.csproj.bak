@@ -17,7 +17,7 @@
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
@@ -48,18 +48,54 @@
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Controllers\CalendarController.cs" />
+    <Compile Include="Assets\Controllers\FileController.cs" />
+    <Compile Include="Assets\Controllers\GoalController.cs" />
+    <Compile Include="Assets\Controllers\NoteController.cs" />
+    <Compile Include="Assets\Controllers\ServerIOController.cs" />
+    <Compile Include="Assets\Controllers\UserController.cs" />
+    <Compile Include="Assets\Models\Day.cs" />
+    <Compile Include="Assets\Models\File.cs" />
+    <Compile Include="Assets\Models\FileMini.cs" />
+    <Compile Include="Assets\Models\Goal.cs" />
+    <Compile Include="Assets\Models\Month.cs" />
+    <Compile Include="Assets\Models\NonRecurringGoal.cs" />
+    <Compile Include="Assets\Models\Note.cs" />
+    <Compile Include="Assets\Models\NoteMini.cs" />
+    <Compile Include="Assets\Models\Permission.cs" />
+    <Compile Include="Assets\Models\RecurringGoal.cs" />
+    <Compile Include="Assets\Models\UserAccount.cs" />
+    <Compile Include="Assets\Models\Year.cs" />
+    <Compile Include="Assets\Views\CalendarActivity.cs" />
+    <Compile Include="Assets\Views\CreateAccountActivity.cs" />
+    <Compile Include="Assets\Views\DailyGoalActivity.cs" />
+    <Compile Include="Assets\Views\FileViewActivity.cs" />
+    <Compile Include="Assets\Views\GoalCreationActivity.cs" />
+    <Compile Include="Assets\Views\HomeActivity.cs" />
+    <Compile Include="Assets\Views\LoginActivity.cs" />
+    <Compile Include="Assets\Views\NonRecurringGoalCreationActivity.cs" />
+    <Compile Include="Assets\Views\NoteActivity.cs" />
+    <Compile Include="Assets\Views\NoteEditActivity.cs" />
+    <Compile Include="Assets\Views\RecurringGoalCreationActivity.cs" />
+    <Compile Include="Assets\Views\ShareFileActivity.cs" />
+    <Compile Include="Assets\Views\SubGoalCreationActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />
+    <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
@@ -91,9 +127,6 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\NotesEditPage.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\GoalCreationPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

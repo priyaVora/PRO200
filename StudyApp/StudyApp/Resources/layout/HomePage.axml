@@ -9,12 +9,12 @@
         android:layout_height="82.0dp"
         android:id="@+id/linearLayout1">
         <Button
-            android:text="Button"
+            android:text="Current Points"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/button1" />
         <Button
-            android:text="Button"
+            android:text="Username"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/button2" />
