@@ -23,32 +23,4 @@
             android:layout_marginLeft="300dp"
             android:layout_marginTop="10dp" />
     </LinearLayout>
-    <ScrollView
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="337.5dp"
-        android:id="@+id/scrollView1">
-        <GridLayout
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/gridLayout" />
-    </ScrollView>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="70.0dp"
-        android:id="@+id/ThirdLayout">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/AddButton"
-            android:text="+"
-            android:layout_marginLeft="300dp"
-            android:layout_marginRight="10dp" />
-    </LinearLayout>
 </LinearLayout>

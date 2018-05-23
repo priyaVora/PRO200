@@ -15,17 +15,21 @@ namespace StudyApp.Assets.Views {
     public class CalendarActivity : Activity {
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.CalendarPage);
+            
+            Button createGoalButton = FindViewById<Button>(Resource.Id.AddGoalButton);
+            createGoalButton.Click += Add;
 
             // Create your application here
         }
 
-        public void RightClick(object sender, EventArgs args) {
+        //public void RightClick(object sender, EventArgs args) {
 
-        }
+        //}
 
-        public void LeftClick(object sender, EventArgs args) {
+        //public void LeftClick(object sender, EventArgs args) {
 
-        }
+        //}
 
         public void Add(object sender, EventArgs args) {
 

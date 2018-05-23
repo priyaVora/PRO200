@@ -15,6 +15,11 @@ namespace StudyApp.Assets.Views {
     public class CreateAccountActivity : Activity {
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.CreateAccount);
+
+            Button createButton = FindViewById<Button>(Resource.Id.CreateButton);
+
+            createButton.Click += CreateClick;
 
             // Create your application here
         }
