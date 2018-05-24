@@ -31,7 +31,7 @@ namespace StudyApp.Assets.Controllers
 
         public UserAccount CreateAccount(string username, string password, string email, string phoneNum = null)
         {
-            throw new NotImplementedException();
+            UserAccount account = new UserAccount(userName: username );
         }
 
         public bool DoesUserExist(string username)
