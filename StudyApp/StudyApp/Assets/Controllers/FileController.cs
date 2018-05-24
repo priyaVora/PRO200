@@ -13,26 +13,30 @@ using StudyApp.Assets.Models;
 
 namespace StudyApp.Assets.Controllers
 {
-    class FileController
+    public class FileController
     {
         public void UploadFile(File upload)
         {
-            throw new NotImplementedException();
+            ServerIOController serverIo = new ServerIOController();
+            serverIo.UploadFile(upload);
         }
 
         public File DownloadFile(string guid)
         {
-            throw new NotImplementedException();
+            ServerIOController serverIo = new ServerIOController();
+            return serverIo.DownloadFile(guid);
         }
 
-        public void ShareFile(Dictionary<UserAccount, Permission> users)
+        public void ShareFile(string guid, Dictionary<string, Permission> users)
         {
-            throw new NotImplementedException();
+            ServerIOController serverIo = new ServerIOController();
+            serverIo.ShareFile(guid, users);
         }
 
         public void DeleteFile(string guid)
         {
-            throw new NotImplementedException();
+            ServerIOController serverIo = new ServerIOController();
+            serverIo.DeleteFile(guid);
         }
     }
 }
