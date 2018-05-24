@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 
 using Android.App;
@@ -12,10 +14,11 @@ using Android.Widget;
 
 using StudyApp.Assets.Controllers;
 using StudyApp.Assets.Models;
+using StudyApp.Assets.Views.PopUps;
 
 namespace StudyApp.Assets.Views {
 
-    [Activity(Label = "LoginActivity")]
+    [Activity(MainLauncher = true)]
     public class LoginActivity : Activity {
 
         private UserController userController = new UserController();
@@ -32,18 +35,20 @@ namespace StudyApp.Assets.Views {
         }
 
         public void LoginClick(object sender, EventArgs args) {
-            string username = FindViewById<EditText>(Resource.Id.UserNameField).Text;
-            string password = FindViewById<EditText>(Resource.Id.PasswordField).Text;
-            UserAccount user = userController.LogIn(username, password);
+            EditText usernameField = FindViewById<EditText>(Resource.Id.UserNameField);
+            EditText passwordField = FindViewById<EditText>(Resource.Id.PasswordField);
+
+            UserAccount user = userController.LogIn(usernameField.Text, passwordField.Text);
             if (user == null) {
-
+                LoginFailedDialogFragment dialog = new LoginFailedDialogFragment();
+                dialog.Show(FragmentManager, "Login Failed");
             } else {
-
+                StartActivity(typeof(HomeActivity));
             }
         }
 
         public void CreateAccountClick(object sender, EventArgs args) {
-
+            StartActivity(typeof(CreateAccountActivity));
         }
     }
 }

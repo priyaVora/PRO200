@@ -20,8 +20,6 @@ namespace StudyApp.Assets.Views {
             Button createButton = FindViewById<Button>(Resource.Id.CreateButton);
 
             createButton.Click += CreateClick;
-
-            // Create your application here
         }
 
         public void CreateClick(object sender, EventArgs args) {
