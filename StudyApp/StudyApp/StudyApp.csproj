@@ -86,7 +86,6 @@
     <Compile Include="Assets\Views\LoginActivity.cs" />
     <Compile Include="Assets\Views\NoteActivity.cs" />
     <Compile Include="Assets\Views\NoteEditActivity.cs" />
-    <Compile Include="Assets\Views\RecurringGoalCreationActivity.cs" />
     <Compile Include="Assets\Views\ShareFileActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -116,13 +115,7 @@
     <AndroidResource Include="Resources\layout\NotesPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\EditNotesPage.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\RecurringGoalsPage.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\NonRecurringGoalsPage.axml">
+    <AndroidResource Include="Resources\layout\GoalCreationPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\NotesEditPage.axml">
@@ -130,9 +123,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Main.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>

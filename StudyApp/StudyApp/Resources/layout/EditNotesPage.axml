@@ -21,7 +21,11 @@
             android:id="@+id/SaveNotesButton"
             android:layout_marginLeft="15dp" />
     </LinearLayout>
-    <LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="300.0dp"
+        android:layout_margin="20.0dp">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,6 +34,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:id="@+id/NoteContent" />
     </LinearLayout>
 </LinearLayout>
