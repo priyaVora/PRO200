@@ -37,21 +37,39 @@ namespace StudyApp.Assets.Controllers
 
         #region Send
 
+        #region User
+        
         public void CreateUser(UserAccount user, string password)
         {
 
-            string json = "";
-            JsonSerializer serializer = JsonSerializer.Create();
-            serializer.Serialize(new StringWriter(new StringBuilder(json)), user);
-
+            string json = JsonConvert.SerializeObject(user);
             PassToServer("user", "CreateAccount", $"password={password}", json);
         }
+        public void AddPoints(string username, int pointsToAdd)
+        {
+            PassToServer("user", "AddPoints", $"username={username}&pointsToAdd={pointsToAdd}");
+        }
+        #endregion
 
+        #region File
         public void DeleteFile(string guid)
         {
             PassToServer("file", "DeleteFile", $"guid={guid}");
-
         }
+        public void UploadFile(File file)
+        {
+            string json = JsonConvert.SerializeObject(file);
+            PassToServer("file", "UploadFile", json: json);
+        }
+        public void ShareFile(string guid, Dictionary<string, Permission> shareWith)
+        {
+            string json = JsonConvert.SerializeObject(shareWith);
+            PassToServer("file", "ShareFile", $"guid={guid}", json);
+        }
+
+        #endregion
+
+        #region Note
         public void DeleteNote(string guid)
         {
             PassToServer("note", "DeleteNote", $"guid={guid}");
@@ -59,9 +77,7 @@ namespace StudyApp.Assets.Controllers
 
         public void CreateNote(Note note, string username)
         {
-            string json = "";
-            JsonSerializer serializer = JsonSerializer.Create();
-            serializer.Serialize(new StringWriter(new StringBuilder(json)),note);
+            string json = JsonConvert.SerializeObject(note);
 
             PassToServer("note", "CreateNote", $"username={username}", json);
         }
@@ -75,21 +91,12 @@ namespace StudyApp.Assets.Controllers
             PassToServer("note", "UpdateNote", json: json);
         }
 
-        public void UploadFile(File file)
-        {
-            string json = "";
-            JsonSerializer serializer = JsonSerializer.Create();
-            serializer.Serialize(new StringWriter(new StringBuilder(json)), file);
+        #endregion
 
-            PassToServer("file", "UploadFile", json: json);
-        }
-
+        #region Goal
         public void CreateGoal(Goal goal, string username)
         {
-            string json = "";
-            JsonSerializer serializer = JsonSerializer.Create();
-            serializer.Serialize(new StringWriter(new StringBuilder(json)), goal);
-
+            string json = JsonConvert.SerializeObject(goal);
             PassToServer("goal", "CreateGoal", $"username={username}", json);
         }
 
@@ -97,19 +104,7 @@ namespace StudyApp.Assets.Controllers
         {
             PassToServer("goal", "CompleteGoal", $"username={username}&goalGuid={guid}");
         }
-        public void AddPoints(string username, int pointsToAdd)
-        {
-            PassToServer("goal", "CompleteGoal", $"username={username}&pointsToAdd={pointsToAdd}");
-        }
-        public void ShareFile(string guid, Dictionary<string, Permission> shareWith)
-        {
-            string json = "";
-            JsonSerializer serializer = JsonSerializer.Create();
-            serializer.Serialize(new StringWriter(new StringBuilder(json)), shareWith);
-
-            PassToServer("file", "ShareFile", $"guid={guid}", json);
-        }
-
+        #endregion
 
         private static void PassToServer(string modelType, string controller, string urlContent="", string json="")
         {
@@ -140,14 +135,14 @@ namespace StudyApp.Assets.Controllers
 
         #region Receive
 
+        #region User
         public bool AuthenticateUser(string username, string password)
         {
             string url = $"https://{IP}/user/AuthenticateUser?username={username}&password={password}";
             HttpClient client = new HttpClient();
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
-            Newtonsoft.Json.JsonReader reader = new JsonTextReader(new StringReader(result.Result));
-            return reader.ReadAsBoolean() ?? false;
+            return JsonConvert.DeserializeObject<bool>(result.Result);
         }
         public bool DoesUserExist(string username)
         {
@@ -155,8 +150,7 @@ namespace StudyApp.Assets.Controllers
             HttpClient client = new HttpClient();
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
-            Newtonsoft.Json.JsonReader reader = new JsonTextReader(new StringReader(result.Result));
-            return reader.ReadAsBoolean() ?? false;
+            return JsonConvert.DeserializeObject<bool>(result.Result);
         }
 
         public UserAccount GetUser(string username)
@@ -165,78 +159,79 @@ namespace StudyApp.Assets.Controllers
             HttpClient client = new HttpClient();
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
-            Newtonsoft.Json.JsonReader reader = new JsonTextReader(new StringReader(result.Result));
+            return JsonConvert.DeserializeObject<UserAccount>(result.Result);
 
-            JsonSerializer serializer = JsonSerializer.Create();
-            return serializer.Deserialize<UserAccount>(reader);
         }
+        #endregion
+
+        #region Goal
         public Goal GetGoal(string guid, string username)
         {
             string url = $"https://{IP}/user/GetUser?guid={guid}&username={username}";
             HttpClient client = new HttpClient();
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
-            Newtonsoft.Json.JsonReader reader = new JsonTextReader(new StringReader(result.Result));
+            return JsonConvert.DeserializeObject<Goal>(result.Result);
 
-            JsonSerializer serializer = JsonSerializer.Create();
-            return serializer.Deserialize<Goal>(reader);
         }
-        public Note GetNote(string guid, string username)
-        {
-            string url = $"https://{IP}/user/GetUser?guid={guid}&username={username}";
-            HttpClient client = new HttpClient();
-            HttpResponseMessage response = client.GetAsync(url).Result;
-            Task<string> result = response.Content.ReadAsStringAsync();
-            Newtonsoft.Json.JsonReader reader = new JsonTextReader(new StringReader(result.Result));
 
-            JsonSerializer serializer = JsonSerializer.Create();
-            return serializer.Deserialize<Note>(reader);
-        }
-        
         public List<Goal> GetUpcomingGoals(string username)
         {
 
-            string url = $"https://{IP}/goal/GetUpcomingRecurringGoals?username={username}&curDate={DateTime.Now}";
+            string url = $"https://{IP}/goal/GetUpcomingRecurringGoals?username={username}&dateString={DateTime.Now.ToShortDateString()}";
             HttpClient client = new HttpClient();
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
-            Newtonsoft.Json.JsonReader reader = new JsonTextReader(new StringReader(result.Result));
-
-
-            JsonSerializer serializer = JsonSerializer.Create();
-            List<Goal> goals = serializer.Deserialize<List<Goal>>(reader);
+            List<Goal> goals = JsonConvert.DeserializeObject<List<Goal>>(result.Result);
             
-            url = $"https://{IP}/goal/GetUpcomingNonRecurringGoals?username={username}&curDate={DateTime.Now}";
+            url = $"https://{IP}/goal/GetUpcomingNonRecurringGoals?username={username}&dateString={DateTime.Now.ToShortDateString()}";
             response = client.GetAsync(url).Result;
             result = response.Content.ReadAsStringAsync();
-            reader = new JsonTextReader(new StringReader(result.Result));
-
-            goals.AddRange(serializer.Deserialize<List<Goal>>(reader));
+            goals.AddRange(JsonConvert.DeserializeObject<List<Goal>>(result.Result));
             
             return goals;
         }
         public List<Goal> GetOverdueGoals(string username)
         {
-            string url = $"https://{IP}/goal/GetOverdieGoals?username={username}&curDate={DateTime.Now}";
+            string url = $"https://{IP}/goal/GetOverdieGoals?username={username}&dateString={DateTime.Now.ToShortDateString()}";
             HttpClient client = new HttpClient();
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
-            Newtonsoft.Json.JsonReader reader = new JsonTextReader(new StringReader(result.Result));
+            return JsonConvert.DeserializeObject<List<Goal>>(result.Result);
 
-            JsonSerializer serializer = JsonSerializer.Create();
-            return serializer.Deserialize<List<Goal>>(reader);
         }
+        #endregion
 
+        #region File
         public List<FileMini> GetFilePreviews(string username)
         {
             string url = $"https://{IP}/file/GetFilePreviews?username={username}";
             HttpClient client = new HttpClient();
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
-            Newtonsoft.Json.JsonReader reader = new JsonTextReader(new StringReader(result.Result));
+            return JsonConvert.DeserializeObject<List<FileMini>>(result.Result);
 
-            JsonSerializer serializer = JsonSerializer.Create();
-            return serializer.Deserialize<List<FileMini>>(reader);
+        }
+        public File DownloadFile(string guid)
+        {
+            string url = $"https://{IP}/file/DownloadFile?guid={guid}";
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            Task<string> result = response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<File>(result.Result);
+
+        }
+        #endregion
+
+        #region Note
+        public Note GetNote(string guid, string username)
+        {
+            string url = $"https://{IP}/user/GetUser?guid={guid}&username={username}";
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            Task<string> result = response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<Note>(result.Result);
+
         }
         public List<NoteMini> GetNotePreviews(string username)
         {
@@ -244,25 +239,24 @@ namespace StudyApp.Assets.Controllers
             HttpClient client = new HttpClient();
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
-            Newtonsoft.Json.JsonReader reader = new JsonTextReader(new StringReader(result.Result));
+            return JsonConvert.DeserializeObject<List<NoteMini>>(result.Result);
 
-            JsonSerializer serializer = JsonSerializer.Create();
-            return serializer.Deserialize<List<NoteMini>>(reader);
         }
+        #endregion
 
-        public File DownloadFile(string guid)
+        #region Caldendar
+        public Month GetMonth(string username, int monthOfYear)
         {
-            string url = $"https://{IP}/file/DownloadFile?guid={guid}";
+            string url = $"https://{IP}/file/DownloadFile?username={username}&monthOfYear={monthOfYear}";
             HttpClient client = new HttpClient();
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
-            Newtonsoft.Json.JsonReader reader = new JsonTextReader(new StringReader(result.Result));
+            return JsonConvert.DeserializeObject<Month>(result.Result);
 
-            JsonSerializer serializer = JsonSerializer.Create();
-            return serializer.Deserialize<File>(reader);
         }
+        #endregion
 
         #endregion
-        
+
     }
 }
