@@ -15,7 +15,7 @@ using StudyApp.Assets.Models;
 
 namespace StudyApp.Assets.Controllers
 {
-    class UserController
+    public class UserController
     {
         public UserAccount CurrentUser { get; set; }
 
@@ -31,27 +31,28 @@ namespace StudyApp.Assets.Controllers
 
         public UserAccount CreateAccount(string username, string password, string email, string phoneNum = null)
         {
-            UserAccount account = new UserAccount(userName: username );
+            UserAccount account = new UserAccount(userName: username, email: email, phoneNumber: phoneNum);
+            ServerIOController serverIo = new ServerIOController();
+            serverIo.CreateUser(account, password);
+            return account;
         }
 
         public bool DoesUserExist(string username)
-        {
-            throw new NotImplementedException();
+        {   
+            ServerIOController serverIo = new ServerIOController();
+            return serverIo.DoesUserExist(username);
         }
 
         public UserAccount GetUser(string username)
         {
-            throw new NotImplementedException();
+            ServerIOController serverIo = new ServerIOController();
+            return serverIo.GetUser(username);
         }
 
         public void AddPoints(string username, int pointsToAdd)
         {
-            throw new NotImplementedException();
-        }
-
-        private string EncryptPassword(string password)
-        {
-            throw new NotImplementedException();
+            ServerIOController serverIo = new ServerIOController();
+            serverIo.AddPoints(username,pointsToAdd);
         }
     }
 }

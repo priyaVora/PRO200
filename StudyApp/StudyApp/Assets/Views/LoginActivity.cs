@@ -12,6 +12,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
+using Newtonsoft.Json;
+
 using StudyApp.Assets.Controllers;
 using StudyApp.Assets.Models;
 using StudyApp.Assets.Views.PopUps;
@@ -27,7 +29,7 @@ namespace StudyApp.Assets.Views {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.LoginPage);
 
-            Button createAccountBtn = FindViewById<Button>(Resource.Id.CreateAccountButton);
+            Button createAccountBtn = FindViewById<Button>(Resource.Id.Login_CreateAccountButton);
             Button LoginBtn = FindViewById<Button>(Resource.Id.LoginButton);
 
             createAccountBtn.Click += CreateAccountClick;
@@ -35,20 +37,24 @@ namespace StudyApp.Assets.Views {
         }
 
         public void LoginClick(object sender, EventArgs args) {
-            EditText usernameField = FindViewById<EditText>(Resource.Id.UserNameField);
-            EditText passwordField = FindViewById<EditText>(Resource.Id.PasswordField);
+            //EditText usernameField = FindViewById<EditText>(Resource.Id.Login_UsernameField);
+            //EditText passwordField = FindViewById<EditText>(Resource.Id.Login_PasswordField);
 
-            UserAccount user = userController.LogIn(usernameField.Text, passwordField.Text);
-            if (user == null) {
-                LoginFailedDialogFragment dialog = new LoginFailedDialogFragment();
+            //UserAccount user = userController.LogIn(usernameField.Text, passwordField.Text);
+            //if (user == null) {
+                StringMessageDialogFragment dialog = StringMessageDialogFragment.CreateInstance("Invalid username or password.");
                 dialog.Show(FragmentManager, "Login Failed");
-            } else {
-                StartActivity(typeof(HomeActivity));
-            }
+            //} else {
+            //    StartActivity(typeof(HomeActivity));
+            //    Finish();
+            //}
         }
 
         public void CreateAccountClick(object sender, EventArgs args) {
-            StartActivity(typeof(CreateAccountActivity));
+            Intent intent = new Intent(this, typeof(CreateAccountActivity));
+            intent.PutExtra("UserController", JsonConvert.SerializeObject(userController));
+            StartActivity(intent);
+            Finish();
         }
     }
 }

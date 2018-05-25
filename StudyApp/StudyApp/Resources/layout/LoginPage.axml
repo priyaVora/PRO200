@@ -25,13 +25,13 @@
             android:text="Enter username here"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/UsernameField"
+            android:id="@+id/Login_UsernameField"
             android:layout_marginTop="15.0dp" />
         <EditText
             android:text="Enter password here"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/PasswordField"
+            android:id="@+id/Login_PasswordField"
             android:layout_marginTop="15.0dp" />
         <Button
             android:text="Login"
@@ -51,6 +51,6 @@
             android:text="Create Account "
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/CreateAccountButton" />
+            android:id="@+id/Login_CreateAccountButton" />
     </LinearLayout>
 </LinearLayout>

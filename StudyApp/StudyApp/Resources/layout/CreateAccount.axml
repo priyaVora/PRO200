@@ -11,24 +11,24 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/UserNameField"
+            android:id="@+id/CreateAccount_UsernameField"
             android:layout_marginBottom="20.0dp" />
         <EditText
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/PasswordField"
+            android:id="@+id/CreateAccount_PasswordField"
             android:layout_marginBottom="20.0dp" />
         <EditText
             android:inputType="textEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/EmailField"
+            android:id="@+id/CreateAccount_EmailField"
             android:layout_marginBottom="20.0dp" />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/PhoneNumberField"
+            android:id="@+id/CreateAccount_PhoneNumberField"
             android:layout_marginBottom="20.0dp" />
         <TextView
             android:text="Required Fields"

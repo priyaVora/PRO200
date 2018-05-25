@@ -79,7 +79,7 @@
     <Compile Include="Assets\Views\CalendarActivity.cs" />
     <Compile Include="Assets\Views\CreateAccountActivity.cs" />
     <Compile Include="Assets\Views\DailyGoalActivity.cs" />
-    <Compile Include="Assets\Views\PopUps\LoginFailedDialogFragment.cs" />
+    <Compile Include="Assets\Views\PopUps\StringMessageDialogFragment.cs" />
     <Compile Include="Assets\Views\FileViewActivity.cs" />
     <Compile Include="Assets\Views\GoalCreationActivity.cs" />
     <Compile Include="Assets\Views\HomeActivity.cs" />
