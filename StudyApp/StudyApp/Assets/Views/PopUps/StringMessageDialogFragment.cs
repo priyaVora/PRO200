@@ -14,11 +14,19 @@ using DialogBuilder = Android.App.AlertDialog.Builder;
 
 namespace StudyApp.Assets.Views.PopUps {
 
-    public class LoginFailedDialogFragment : DialogFragment {
+    public class StringMessageDialogFragment : DialogFragment {
+
+        public static StringMessageDialogFragment CreateInstance(string message) {
+            StringMessageDialogFragment frag = new StringMessageDialogFragment();
+            Bundle args = new Bundle();
+            args.PutString("message", message);
+            frag.Arguments = args;
+            return frag;
+        }
 
         public override Dialog OnCreateDialog(Bundle savedInstanceState) {
             DialogBuilder builder = new DialogBuilder(Activity);
-            builder = builder.SetMessage("Invalid username or password.");
+            builder = builder.SetMessage(savedInstanceState.GetString("message"));
             return builder.Create();
         }
     }
