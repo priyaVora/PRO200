@@ -37,17 +37,17 @@ namespace StudyApp.Assets.Views {
         }
 
         public void LoginClick(object sender, EventArgs args) {
-            //EditText usernameField = FindViewById<EditText>(Resource.Id.Login_UsernameField);
-            //EditText passwordField = FindViewById<EditText>(Resource.Id.Login_PasswordField);
+            EditText usernameField = FindViewById<EditText>(Resource.Id.Login_UsernameField);
+            EditText passwordField = FindViewById<EditText>(Resource.Id.Login_PasswordField);
 
-            //UserAccount user = userController.LogIn(usernameField.Text, passwordField.Text);
-            //if (user == null) {
+            UserAccount user = userController.LogIn(usernameField.Text, passwordField.Text);
+            if (user == null) {
                 StringMessageDialogFragment dialog = StringMessageDialogFragment.CreateInstance("Invalid username or password.");
                 dialog.Show(FragmentManager, "Login Failed");
-            //} else {
-            //    StartActivity(typeof(HomeActivity));
-            //    Finish();
-            //}
+            } else {
+                StartActivity(typeof(HomeActivity));
+                Finish();
+            }
         }
 
         public void CreateAccountClick(object sender, EventArgs args) {
