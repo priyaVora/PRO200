@@ -8,7 +8,7 @@ namespace StudyApp.Assets.Models
         public string GUID { get; set; }
         public string Extension { get; set; }
         public string Name { get; set; }
-        public Dictionary<UserAccount, Permission> Users { get; set; }
+        public Dictionary<string, Permission> Users { get; set; }
         public byte[] Content { get; set; }
     }
 }
