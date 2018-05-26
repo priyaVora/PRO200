@@ -22,17 +22,27 @@
         android:layout_marginLeft="50.0dp"
         android:layout_marginRight="50.0dp">
         <EditText
-            android:text="Enter username here"
+            android:hint="Enter username here"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:textColor="@android:color/darker_gray"
             android:id="@+id/Login_UsernameField"
-            android:layout_marginTop="15.0dp" />
+            android:textColorHint="@android:color/darker_gray"
+            android:background="@drawable/EditTextStyle"
+            android:layout_marginTop="15.0dp"
+            android:padding="10dp"
+            android:textSize="16dp" />
         <EditText
-            android:text="Enter password here"
+            android:hint="Enter password here"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:id="@+id/Login_PasswordField"
-            android:layout_marginTop="15.0dp" />
+            android:textColorHint="@android:color/darker_gray"
+            android:textColor="@android:color/darker_gray"
+            android:background="@drawable/EditTextStyle"
+            android:layout_marginTop="15.0dp"
+            android:padding="10dp"
+            android:textSize="16dp" />
         <Button
             android:text="Login"
             android:layout_width="match_parent"
