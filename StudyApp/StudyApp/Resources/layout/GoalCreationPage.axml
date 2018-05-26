@@ -36,17 +36,21 @@
         <TextView
             android:text="Task Name"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:id="@+id/NonRecurring_TaskNameLabel"
-            android:layout_marginBottom="0.0dp"
-            android:layout_marginRight="6.5dp"
-            android:layout_marginTop="0.0dp"
+            android:layout_marginRight="30.0dp"
             android:gravity="center"
-            android:layout_marginLeft="0.0dp" />
+            android:textSize="16dp" />
         <EditText
             android:layout_width="195.0dp"
-            android:layout_height="30dp"
-            android:id="@+id/NonRecurring_TaskNameField" />
+            android:layout_height="35dp"
+            android:textColor="@android:color/darker_gray"
+            android:textColorHint="@android:color/darker_gray"
+            android:background="@drawable/EditTextStyle"
+            android:id="@+id/NonRecurring_TaskNameField"
+            android:padding="8dp"
+            android:hint="Text Here"
+            android:textSize="16dp" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -56,18 +60,26 @@
         android:layout_height="45.0dp"
         android:gravity="center"
         android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp">
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp">
         <TextView
             android:text="Description"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:id="@+id/NonRecurring_DescriptionLabel"
             android:gravity="center"
-            android:layout_marginRight="8.5dp" />
+            android:layout_marginRight="30dp"
+            android:textSize="16dp" />
         <EditText
             android:layout_width="195dp"
-            android:layout_height="30dp"
-            android:id="@+id/NonRecurring_DescriptionField" />
+            android:layout_height="35dp"
+            android:textColor="@android:color/darker_gray"
+            android:textColorHint="@android:color/darker_gray"
+            android:background="@drawable/EditTextStyle"
+            android:id="@+id/NonRecurring_DescriptionField"
+            android:padding="8dp"
+            android:hint="Text Here"
+            android:textSize="16dp" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -82,14 +94,26 @@
         <TextView
             android:text="Deadline"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:id="@+id/NonRecurring_DeadlineLabel"
             android:gravity="center"
-            android:layout_marginRight="100dp" />
+            android:layout_marginRight="8.5dp"
+            android:textSize="16dp" />
         <Button
-            android:layout_width="120.0dp"
+            android:layout_width="100.0dp"
             android:layout_height="40dp"
-            android:id="@+id/button1" />
+            android:id="@+id/button1"
+            android:layout_marginRight="15dp"
+            android:textSize="16dp"
+            android:hint="Date"
+            android:layout_marginLeft="20dp" />
+        <Button
+            android:layout_width="100.0dp"
+            android:layout_height="40dp"
+            android:id="@+id/button1"
+            android:layout_marginRight="0.0dp"
+            android:textSize="16dp"
+            android:hint="Time" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -105,21 +129,23 @@
         <TextView
             android:text="Points"
             android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:id="@+id/NonRecurring_PointsLabel"
-            android:gravity="center" />
+            android:gravity="center"
+            android:textSize="16dp" />
         <SeekBar
             android:layout_width="150dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="22dp"
-            android:layout_marginRight="22dp" />
+            android:layout_marginLeft="31dp"
+            android:layout_marginRight="31dp" />
         <TextView
             android:text="15"
             android:layout_width="40dp"
-            android:layout_height="20dp"
+            android:layout_height="40dp"
             android:id="@+id/NonRecurring_PointsAmount"
             android:layout_marginRight="0.0dp"
-            android:gravity="center" />
+            android:gravity="center"
+            android:textSize="16dp" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -133,22 +159,24 @@
         <TextView
             android:text="Recurring"
             android:layout_width="80dp"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:id="@+id/descriptionLabel"
             android:gravity="center"
-            android:layout_marginRight="38dp" />
+            android:layout_marginRight="39dp"
+            android:textSize="16dp" />
         <Switch
             android:layout_width="40dp"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:checked="true"
             android:id="@+id/goalSwitch"
-            android:layout_marginRight="18.0dp" />
+            android:layout_marginRight="33.0dp" />
         <TextView
             android:text="One Time Label"
             android:layout_width="120dp"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:id="@+id/scoreLabel"
-            android:gravity="center" />
+            android:gravity="center"
+            android:textSize="16dp" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -160,17 +188,21 @@
         android:gravity="center"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:visibility="visible">
         <TextView
-            android:text="Frequency"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:id="@+id/descriptionLabel"
             android:gravity="center"
             android:layout_width="wrap_content"
-            android:layout_marginRight="130dp" />
+            android:layout_marginRight="80.0dp"
+            android:textSize="16dp"
+            android:text="@string/frequency_prompt" />
         <Spinner
             android:layout_width="80dp"
-            android:layout_height="25dp"
-            android:id="@+id/spinner1" />
+            android:layout_height="30dp"
+            android:id="@+id/spinner1"
+            android:layout_marginRight="65dp"
+            android:prompt="@string/frequency_prompt" />
     </LinearLayout>
 </LinearLayout>

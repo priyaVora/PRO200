@@ -39,36 +39,48 @@
                 android:layout_height="30dp"
                 android:id="@+id/overdueGoalLabel"
                 android:gravity="center"
-                android:layout_margin="10dp" />
+                android:textSize="16dp" />
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="82.0dp"
-                android:id="@+id/overdueGoalContainer" />
+                android:id="@+id/overdueGoalContainer"
+                android:background="@drawable/EditTextStyle"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp" />
             <TextView
                 android:text="Recurring Goals"
                 android:layout_width="150dp"
                 android:layout_height="30dp"
                 android:id="@+id/recurringGoalLabel"
                 android:gravity="center"
-                android:layout_margin="10dp" />
+                android:textSize="16dp" />
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="82.0dp"
-                android:id="@+id/recurringGoalContainer" />
+                android:id="@+id/recurringGoalContainer"
+                android:background="@drawable/EditTextStyle"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp" />
             <TextView
                 android:text="One-Time Goals"
                 android:layout_width="150dp"
                 android:layout_height="30dp"
                 android:id="@+id/nonRecurringGoalLabel"
                 android:gravity="center"
-                android:layout_margin="10dp" />
+                android:textSize="16dp" />
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="82.0dp"
-                android:id="@+id/nonRecurringGoalContainer" />
+                android:id="@+id/nonRecurringGoalContainer"
+                android:background="@drawable/EditTextStyle"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
