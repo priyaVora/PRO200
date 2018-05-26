@@ -30,10 +30,5 @@ namespace StudyApp.Assets.Views.PopUps {
             builder = builder.SetMessage(savedInstanceState.GetString("message"));
             return builder.Create();
         }
-
-        //public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //    View v = inflater.Inflate(Resource.Layout.LoginPage, container, false);
-        //    return v;
-        //}
     }
 }
