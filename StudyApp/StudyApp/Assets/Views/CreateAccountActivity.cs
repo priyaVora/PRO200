@@ -14,6 +14,8 @@ using Android.Widget;
 using Newtonsoft.Json;
 
 using StudyApp.Assets.Controllers;
+using StudyApp.Assets.Views.PopUps;
+using StudyApp.Assets.Models;
 
 namespace StudyApp.Assets.Views {
 
@@ -21,6 +23,10 @@ namespace StudyApp.Assets.Views {
     public class CreateAccountActivity : Activity {
 
         private UserController userController;
+        private EditText userNameField;
+        private EditText passwordField;
+        private EditText emailField;
+        private EditText phoneNumberField;
 
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
@@ -29,20 +35,51 @@ namespace StudyApp.Assets.Views {
 
             Button createButton = FindViewById<Button>(Resource.Id.CreateButton);
 
+            userNameField = FindViewById<EditText>(Resource.Id.CreateAccount_UsernameField);
+            passwordField = FindViewById<EditText>(Resource.Id.CreateAccount_PasswordField);
+            emailField = FindViewById<EditText>(Resource.Id.CreateAccount_EmailField);
+            phoneNumberField = FindViewById<EditText>(Resource.Id.CreateAccount_PhoneNumberField);
+
             createButton.Click += CreateClick;
         }
 
         public void CreateClick(object sender, EventArgs args) {
-            EditText userNameField = FindViewById<EditText>(Resource.Id.CreateAccount_UsernameField);
-            EditText passwordField = FindViewById<EditText>(Resource.Id.CreateAccount_PasswordField);
-            EditText emailField = FindViewById<EditText>(Resource.Id.CreateAccount_EmailField);
-            EditText phoneNumberField = FindViewById<EditText>(Resource.Id.CreateAccount_PhoneNumberField);
-
             Dictionary<string, IEnumerable<string>> errors = new Dictionary<string, IEnumerable<string>> {
-                { "Username", UsernameChecks(userNameField.Text) },
-                { "Password", PasswordChecks(passwordField.Text) },
-                { "Email", EmailChecks(emailField.Text) }
+                { "Username errors:", UsernameChecks(userNameField.Text) },
+                { "Password errors:", PasswordChecks(passwordField.Text) },
+                { "Email errors:", EmailChecks(emailField.Text) },
+                { "Phone number errors:", PhoneNumberChecks(phoneNumberField.Text) }
             };
+
+            Dictionary<string, IEnumerable<string>> errorsCaught =
+                errors.Where(p => p.Value.Any()).ToDictionary(p => p.Key, p => p.Value);
+
+            if (errorsCaught.Count > 0) {
+                string errorMessage = String.Empty;
+                foreach (KeyValuePair<string, IEnumerable<string>> errorPair in errorsCaught) {
+                    errorMessage += errorPair.Key;
+                    foreach (string message in errorPair.Value) {
+                        errorMessage += $"\n\t\t{message}";
+                    }
+
+                    errorMessage += "\n\n";
+                }
+
+                StringMessageDialogFragment dialog = StringMessageDialogFragment.CreateInstance(errorMessage);
+                dialog.Show(FragmentManager, "Invalid information");
+
+                userNameField.Text = String.Empty;
+                passwordField.Text = String.Empty;
+                emailField.Text = String.Empty;
+                phoneNumberField.Text = String.Empty;
+            } else {
+                UserAccount user = userController.CreateAccount(userNameField.Text, passwordField.Text, emailField.Text, phoneNumberField.Text);
+                
+                Intent intent = new Intent(this, typeof(HomeActivity));
+                intent.PutExtra("UserController", JsonConvert.SerializeObject(userController));
+                StartActivity(intent);
+                Finish();
+            }
         }
 
         #region Field error checking helpers
@@ -90,6 +127,15 @@ namespace StudyApp.Assets.Views {
             Regex regex = new Regex(@".+?[@].+?\..+");
             if (!regex.IsMatch(email)) {
                 errors.Add("Must be in the correct format (ex. test@provider.com)");
+            }
+
+            return errors;
+        }
+
+        private IEnumerable<string> PhoneNumberChecks(string phoneNum) {
+            List<string> errors = new List<string>();
+            if (!String.IsNullOrWhiteSpace(phoneNum)) {
+
             }
 
             return errors;

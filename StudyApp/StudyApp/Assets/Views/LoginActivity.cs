@@ -54,7 +54,6 @@ namespace StudyApp.Assets.Views {
             Intent intent = new Intent(this, typeof(CreateAccountActivity));
             intent.PutExtra("UserController", JsonConvert.SerializeObject(userController));
             StartActivity(intent);
-            Finish();
         }
     }
 }
