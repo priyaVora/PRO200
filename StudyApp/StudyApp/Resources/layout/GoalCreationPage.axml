@@ -50,7 +50,8 @@
             android:id="@+id/NonRecurring_TaskNameField"
             android:padding="8dp"
             android:hint="Text Here"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:singleLine="true" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -79,7 +80,8 @@
             android:id="@+id/NonRecurring_DescriptionField"
             android:padding="8dp"
             android:hint="Text Here"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:singleLine="true" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"

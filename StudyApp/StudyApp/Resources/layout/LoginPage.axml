@@ -17,7 +17,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="200.0dp"
+        android:layout_height="220.0dp"
         android:gravity="center"
         android:layout_marginLeft="50.0dp"
         android:layout_marginRight="50.0dp">
@@ -31,7 +31,8 @@
             android:background="@drawable/EditTextStyle"
             android:layout_marginTop="15.0dp"
             android:padding="10dp"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:singleLine="true" />
         <EditText
             android:hint="Enter password here"
             android:layout_width="match_parent"
@@ -42,7 +43,8 @@
             android:background="@drawable/EditTextStyle"
             android:layout_marginTop="15.0dp"
             android:padding="10dp"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:singleLine="true" />
         <Button
             android:text="Login"
             android:layout_width="match_parent"
@@ -50,6 +52,13 @@
             android:id="@+id/LoginButton"
             android:layout_marginTop="15.0dp" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:gravity="center"
+        android:background="@android:color/darker_gray"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp" />
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"

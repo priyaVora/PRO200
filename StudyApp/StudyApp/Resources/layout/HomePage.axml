@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="82.0dp"
                 android:id="@+id/overdueGoalContainer"
-                android:background="@drawable/EditTextStyle"
+                android:background="@drawable/customborder"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp" />
@@ -61,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="82.0dp"
                 android:id="@+id/recurringGoalContainer"
-                android:background="@drawable/EditTextStyle"
+                android:background="@drawable/customborder"
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp" />
@@ -77,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="82.0dp"
                 android:id="@+id/nonRecurringGoalContainer"
-                android:background="@drawable/EditTextStyle"
+                android:background="@drawable/customborder"
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp" />

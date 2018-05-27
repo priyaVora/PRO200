@@ -20,7 +20,8 @@
             android:id="@+id/CreateAccount_UsernameField"
             android:layout_marginBottom="30.0dp"
             android:padding="10dp"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:singleLine="true" />
         <EditText
             android:hint="Password"
             android:inputType="textPassword"
@@ -32,7 +33,8 @@
             android:id="@+id/CreateAccount_PasswordField"
             android:layout_marginBottom="30.0dp"
             android:padding="10dp"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:singleLine="true" />
         <EditText
             android:hint="Email"
             android:inputType="textEmailAddress"
@@ -44,7 +46,8 @@
             android:id="@+id/CreateAccount_EmailField"
             android:layout_marginBottom="30.0dp"
             android:padding="10dp"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:singleLine="true" />
         <EditText
             android:hint="Phone Number"
             android:layout_width="match_parent"
@@ -55,7 +58,8 @@
             android:id="@+id/CreateAccount_PhoneNumberField"
             android:layout_marginBottom="30.0dp"
             android:padding="10dp"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:singleLine="true" />
         <TextView
             android:text="Required Fields"
             android:layout_width="match_parent"
