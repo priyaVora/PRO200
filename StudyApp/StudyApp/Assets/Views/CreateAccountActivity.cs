@@ -126,7 +126,7 @@ namespace StudyApp.Assets.Views {
 
             Regex regex = new Regex(@".+?[@].+?\..+");
             if (!regex.IsMatch(email)) {
-                errors.Add("Must be in the correct format (ex. test@provider.com)");
+                errors.Add("Invalid email format.");
             }
 
             return errors;
@@ -135,7 +135,10 @@ namespace StudyApp.Assets.Views {
         private IEnumerable<string> PhoneNumberChecks(string phoneNum) {
             List<string> errors = new List<string>();
             if (!String.IsNullOrWhiteSpace(phoneNum)) {
-
+                Regex phoneRegex = new Regex(@"(?:\d{3}-{0,1}){2}\d{4}");
+                if (phoneRegex.IsMatch(phoneNum)) {
+                    errors.Add("Invalid phone number format.");
+                }
             }
 
             return errors;
