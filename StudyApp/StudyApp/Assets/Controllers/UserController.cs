@@ -21,7 +21,15 @@ namespace StudyApp.Assets.Controllers
 
         public UserAccount LogIn(string username, string password)
         {
-            throw new NotImplementedException();
+            ServerIOController serverIo = new ServerIOController();
+            if (serverIo.AuthenticateUser(username, password))
+            {
+                return CurrentUser = GetUser(username);
+            }
+            
+
+
+            return null;
         }
 
         public void LogOut()
