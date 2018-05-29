@@ -20,7 +20,7 @@ using StudyApp.Assets.Views.PopUps;
 
 namespace StudyApp.Assets.Views {
 
-    [Activity(MainLauncher = true)]
+    [Activity]
     public class LoginActivity : Activity {
 
         private UserController userController = new UserController();

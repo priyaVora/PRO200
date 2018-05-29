@@ -25,6 +25,7 @@ namespace StudyApp.Assets.Views {
 
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.HomePage);
 
             /*
              * The UserController shouldn't have to be instantiated here, since that would mean that we would lose
@@ -37,6 +38,16 @@ namespace StudyApp.Assets.Views {
             } catch (ArgumentNullException) {
                 goalController = new GoalController();
             }
+
+            Button homeButton = FindViewById<Button>(Resource.Id.NavBar_HomeButton);
+            Button calendarButton = FindViewById<Button>(Resource.Id.NavBar_CalendarButton);
+            Button filesButton = FindViewById<Button>(Resource.Id.NavBar_FilesButton);
+            Button notesButton = FindViewById<Button>(Resource.Id.NavBar_NotesButton);
+
+            homeButton.Click += (sender, args) => GoToActivity(typeof(HomeActivity), true);
+            calendarButton.Click += (sender, args) => GoToActivity(typeof(CalendarActivity), false);
+            filesButton.Click += (sender, args) => GoToActivity(typeof(FileViewActivity), false);
+            notesButton.Click += (sender, args) => GoToActivity(typeof(NoteActivity), false);
 
             //List<Goal> overdue = goalController.GetOverdueGoals(userController.CurrentUser.UserName);
             //List<NonRecurringGoal> upcomingNonRecurring = goalController.GetUpcomingNonRecurringGoals(userController.CurrentUser.UserName);
@@ -51,12 +62,24 @@ namespace StudyApp.Assets.Views {
             Finish();
         }
 
+        #region Unimplemented events
         public void UsernameClick(object sender, EventArgs args) {
 
         }
 
         public void LongPressOverDueGoals(object sender, EventArgs args) {
 
+        }
+        #endregion
+
+        private void GoToActivity(Type activityType, bool finish) {
+            Intent intent = new Intent(this, activityType);
+            intent.PutExtra("UserController", JsonConvert.SerializeObject(userController));
+            intent.PutExtra("GoalController", JsonConvert.SerializeObject(goalController));
+            StartActivity(intent);
+            if (finish) {
+                Finish();
+            }
         }
     }
 }
