@@ -11,11 +11,13 @@ using Android.Views;
 using Android.Widget;
 
 namespace StudyApp.Assets.Views {
+
     [Activity(Label = "NoteActivity")]
     public class NoteActivity : Activity {
+
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
-
+            SetContentView(Resource.Layout.NotesPage);
             // Create your application here
         }
 

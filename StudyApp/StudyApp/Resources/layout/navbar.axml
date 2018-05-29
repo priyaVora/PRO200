@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+    <Button
+        android:text="Home"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/NavBar_HomeButton" />
+    <Button
+        android:text="Calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/NavBar_CalendarButton" />
+    <Button
+        android:text="Files"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/NavBar_FilesButton" />
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/button4" />
+</LinearLayout>

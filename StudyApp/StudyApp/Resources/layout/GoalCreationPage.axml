@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:minWidth="25px"
+    android:minWidth="0px"
     android:minHeight="25px">
     <LinearLayout
         android:orientation="horizontal"
@@ -15,12 +15,12 @@
             android:text="Cancel"
             android:layout_width="170.0dp"
             android:layout_height="60dp"
-            android:id="@+id/button1" />
+            android:id="@+id/GoalCreation_CancelButton" />
         <Button
             android:text="Save"
             android:layout_width="170.0dp"
             android:layout_height="60dp"
-            android:id="@+id/button2"
+            android:id="@+id/GoalCreation_SaveButton"
             android:layout_marginLeft="15dp" />
     </LinearLayout>
     <LinearLayout
