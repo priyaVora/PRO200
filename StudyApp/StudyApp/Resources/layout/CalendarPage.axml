@@ -6,64 +6,27 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="60.0dp"
-        android:id="@+id/linearLayout1">
-        <Button
-            android:text="Left Arrow"
-            android:layout_width="wrap_content"
+        android:layout_height="337.0dp"
+        android:id="@+id/navigationLayout">
+        <CalendarView
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/LeftButton"
-            android:layout_marginLeft="10dp" />
-        <TextView
-            android:text="Month"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/MonthLabel"
-            android:layout_marginLeft="25dp" />
-        <TextView
-            android:text="Year"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/YearLabel"
-            android:layout_marginLeft="25dp" />
-        <Button
-            android:text="Right Arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/RightButton"
-            android:layout_marginLeft="25dp" />
+            android:id="@+id/calendarView1" />
     </LinearLayout>
-    <GridLayout
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="322.5dp"
-        android:id="@+id/calendarGrid"
-        android:layout_marginBottom="40.5dp" />
     <LinearLayout
         android:orientation="vertical"
-        android:minWidth="25px"
-        android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="66.0dp"
+        android:layout_height="60.0dp"
         android:id="@+id/linearLayout2"
-        android:layout_marginTop="0.0dp">
+        android:layout_marginTop="0.0dp"
+        android:layout_margin="20.0dp">
         <Button
             android:text="+"
-            android:layout_width="wrap_content"
+            android:layout_width="60.0dp"
             android:layout_height="match_parent"
-            android:id="@+id/AddButton"
+            android:id="@+id/AddGoalButton"
             android:gravity="center"
             android:textAlignment="gravity"
-            android:layout_marginLeft="285dp"
-            android:layout_marginTop="0.0dp"
-            android:layout_marginBottom="0.0dp" />
+            android:layout_gravity="right" />
     </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/navigationLayout" />
 </LinearLayout>

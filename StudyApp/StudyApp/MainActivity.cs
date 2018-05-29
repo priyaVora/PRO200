@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Widget;
 using Android.OS;
+using StudyApp.Assets.Views;
 
 namespace StudyApp
 {
@@ -12,7 +13,9 @@ namespace StudyApp
             base.OnCreate(savedInstanceState);
 
             // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.Main);
+            //SetContentView(Resource.Layout.Main);
+            StartActivity(typeof(LoginActivity));
+            Finish();
         }
     }
 }

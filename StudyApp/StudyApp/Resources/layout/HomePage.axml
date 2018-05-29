@@ -1,34 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="82.0dp"
-        android:id="@+id/linearLayout1">
+        android:layout_height="75.0dp"
+        android:id="@+id/linearLayout1"
+        android:gravity="center">
         <Button
-            android:text="Button"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:text="Current Points"
+            android:layout_width="160.0dp"
+            android:layout_height="50dp"
             android:id="@+id/button1" />
         <Button
-            android:text="Button"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/button2" />
+            android:text="Username"
+            android:layout_width="160.0dp"
+            android:layout_height="50dp"
+            android:id="@+id/button2"
+            android:layout_marginLeft="15dp" />
     </LinearLayout>
     <ScrollView
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="397.0dp"
-        android:id="@+id/scrollView1">
-        <TextView
-            android:text="Text"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:id="@+id/textView1" />
+        android:id="@+id/goalScrollView">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="82.0dp"
+            android:id="@+id/goalListContainer"
+            android:gravity="center">
+            <TextView
+                android:text="Overdue Goals"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:id="@+id/overdueGoalLabel"
+                android:gravity="center"
+                android:textSize="16dp" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="82.0dp"
+                android:id="@+id/overdueGoalContainer"
+                android:background="@drawable/customborder"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp" />
+            <TextView
+                android:text="Recurring Goals"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:id="@+id/recurringGoalLabel"
+                android:gravity="center"
+                android:textSize="16dp" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="82.0dp"
+                android:id="@+id/recurringGoalContainer"
+                android:background="@drawable/customborder"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp" />
+            <TextView
+                android:text="One-Time Goals"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:id="@+id/nonRecurringGoalLabel"
+                android:gravity="center"
+                android:textSize="16dp" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="82.0dp"
+                android:id="@+id/nonRecurringGoalContainer"
+                android:background="@drawable/customborder"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp" />
+        </LinearLayout>
     </ScrollView>
+<!--<studyapp.assets.views.compoundviews.CompoundNavBarView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:minHeight="100" />-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+        <Button
+            android:text="Home"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/NavBar_HomeButton" />
+        <Button
+            android:text="Calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/NavBar_CalendarButton" />
+        <Button
+            android:text="Files"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/NavBar_FilesButton" />
+        <Button
+            android:text="Notes"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/NavBar_NotesButton" />
+    </LinearLayout>
 </LinearLayout>
