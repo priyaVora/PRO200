@@ -50,8 +50,7 @@ namespace StudyApp.Assets.Views {
             }
             try {
                 noteController = JsonConvert.DeserializeObject<NoteController>(Intent.GetStringExtra("NoteController"));
-            } catch (ArgumentNullException) {
-                noteController = new NoteController();
+            } catch (ArgumentNullException) {noteController = new NoteController();
             }
             try {
                 fileController = JsonConvert.DeserializeObject<FileController>(Intent.GetStringExtra("FileController"));
