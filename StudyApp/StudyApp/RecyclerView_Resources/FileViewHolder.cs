@@ -15,11 +15,13 @@ namespace StudyApp.RecyclerView_Resources
 {
     public class FileViewHolder : RecyclerView.ViewHolder
     {
-        public TextView Caption { get; private set; }
+        public ImageView Image { get; private set; }
+        public TextView FileName { get; private set; }
 
         public FileViewHolder(View itemView) : base(itemView)
         {
-            Caption = itemView.FindViewById<TextView>(Resource.Id.textView);
+            Image = itemView.FindViewById<ImageView>(Resource.Id.imageView);
+            FileName = itemView.FindViewById<TextView>(Resource.Id.textView);
         }
     }
 }
