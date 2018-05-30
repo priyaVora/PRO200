@@ -87,6 +87,10 @@ namespace StudyApp.Assets.Views {
         private void DismissPopUp() {
             PageSetup();
         }
+
+        private void ShowGoals(object sender, EventArgs args) {
+            SetContentView(Resource.Layout.DailyGoals);
+        }
         #endregion
     }
 }

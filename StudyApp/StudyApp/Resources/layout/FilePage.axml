@@ -3,32 +3,32 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="60.0dp"
-        android:id="@+id/SecondLayout"
-        android:gravity="center">
-        <TextView
-            android:text="Name"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:id="@+id/NameLabel"
-            android:layout_marginLeft="10dp"
-            android:gravity="center"
-            android:layout_marginRight="100dp" />
-        <TextView
-            android:text="Size"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:id="@+id/SizeLabel"
-            android:gravity="center"
-            android:layout_marginLeft="100dp"
-            android:layout_marginRight="10dp" />
-    </LinearLayout>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:scrollbars="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+  <LinearLayout
+      android:orientation="horizontal"
+      android:layout_width="match_parent"
+      android:layout_height="60.0dp"
+      android:id="@+id/SecondLayout"
+      android:gravity="center">
+    <TextView
+        android:text="Name"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:id="@+id/NameLabel"
+        android:layout_marginLeft="10dp"
+        android:gravity="center"
+        android:layout_marginRight="100dp" />
+    <TextView
+        android:text="Size"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:id="@+id/SizeLabel"
+        android:gravity="center"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="10dp" />
+  </LinearLayout>
+  <android.support.v7.widget.RecyclerView
+          android:id="@+id/recyclerView"
+          android:scrollbars="vertical"
+          android:layout_width="fill_parent"
+          android:layout_height="fill_parent" />
 </LinearLayout>
