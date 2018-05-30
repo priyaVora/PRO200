@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using StudyApp.RecyclerView_Resources;
 
 namespace StudyApp.Assets.Views {
 
@@ -17,11 +18,16 @@ namespace StudyApp.Assets.Views {
     public class FileViewActivity : CommonActivity {
         RecyclerView mRecyclerView;
         RecyclerView.LayoutManager mLayoutManager;
+        FileAdapter mAdapter;
+        FileAlbum mFileAlbum;
+
+        CommonAlbum mCommonAlbum;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
+             // mFileAlbum = new FileAlbum();
+            mCommonAlbum = new CommonAlbum();
             /*
              * This code is how to replace the placeholder layout that's part of the CommonLayout.
              */
@@ -35,11 +41,15 @@ namespace StudyApp.Assets.Views {
              */
 
             mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recyclerView);
+           
+            // Plug in the linear layout manager:
             mLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.SetLayoutManager(mLayoutManager);
 
 
-
+            // Plug in my adapter:
+            mAdapter = new FileAdapter(mCommonAlbum);
+            mRecyclerView.SetAdapter(mAdapter);
 
             SetUpNavBar();
 
@@ -51,7 +61,7 @@ namespace StudyApp.Assets.Views {
         }
 
         public void LongPress(object sender, EventArgs args) {
-
+            Console.WriteLine("File was long pressed");
         }
     }
 }
