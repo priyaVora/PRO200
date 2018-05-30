@@ -133,6 +133,8 @@
     <Compile Include="Assets\Views\ShareFileActivity.cs" />
     <Compile Include="RecyclerView_Resources\FileAdapter.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="RecyclerView_Resources\FileAlbum.cs" />
+    <Compile Include="RecyclerView_Resources\FileViewHolder.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

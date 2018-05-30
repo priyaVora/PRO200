@@ -32,4 +32,14 @@
         android:scrollbars="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
+    <LinearLayout>
+        <Button
+            android:text="+"
+            android:layout_width="60.0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/FilePage_AddFileButton"
+            android:gravity="center"
+            android:textAlignment="gravity"
+            android:layout_gravity="right" />
+    </LinearLayout>
 </LinearLayout>
