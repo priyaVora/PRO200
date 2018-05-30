@@ -17,8 +17,9 @@ namespace StudyApp
 {
     public class FileAdapter : RecyclerView.Adapter
     {
-        public FileAlbum mFileAlbum;
-        public FileAdapter(FileAlbum file)
+        //public FileAlbum mFileAlbum;
+        public CommonAlbum mFileAlbum;
+        public FileAdapter(CommonAlbum file)
         {
             mFileAlbum = file;
         }
@@ -35,13 +36,14 @@ namespace StudyApp
             OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             RecyclerView_Resources.FileViewHolder vh = holder as RecyclerView_Resources.FileViewHolder;
-            vh.FileName.Text = mFileAlbum[position].Name;
+            vh.Image.SetImageResource(mFileAlbum[position].PhotoID);
+            vh.FileName.Text = mFileAlbum[position].Caption;
         }
 
 
         public override int ItemCount
         {
-            get { return mFileAlbum.NumFiles; }
+            get { return mFileAlbum.NumPhotos; }
         }
 
     }

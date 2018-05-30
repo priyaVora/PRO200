@@ -21,10 +21,13 @@ namespace StudyApp.Assets.Views {
         FileAdapter mAdapter;
         FileAlbum mFileAlbum;
 
+        CommonAlbum mCommonAlbum;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            mFileAlbum = new FileAlbum();
+             // mFileAlbum = new FileAlbum();
+            mCommonAlbum = new CommonAlbum();
             /*
              * This code is how to replace the placeholder layout that's part of the CommonLayout.
              */
@@ -44,7 +47,8 @@ namespace StudyApp.Assets.Views {
             mRecyclerView.SetLayoutManager(mLayoutManager);
 
 
-            mAdapter = new FileAdapter(mFileAlbum);
+            // Plug in my adapter:
+            mAdapter = new FileAdapter(mCommonAlbum);
             mRecyclerView.SetAdapter(mAdapter);
 
             SetUpNavBar();
@@ -57,7 +61,7 @@ namespace StudyApp.Assets.Views {
         }
 
         public void LongPress(object sender, EventArgs args) {
-
+            Console.WriteLine("File was long pressed");
         }
     }
 }
