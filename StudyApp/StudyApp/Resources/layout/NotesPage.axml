@@ -5,9 +5,24 @@
     android:layout_height="match_parent"
     android:minWidth="25px"
     android:minHeight="25px">
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:scrollbars="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+  <android.support.v7.widget.RecyclerView
+      android:id="@+id/recyclerView"
+      android:scrollbars="vertical"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent" />
+  <LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="60.0dp"
+    android:layout_marginTop="0.0dp"
+    android:layout_margin="20.0dp">
+    <Button
+        android:text="+"
+        android:layout_width="60.0dp"
+        android:layout_height="match_parent"
+        android:id="@+id/GoalPage_AddGoalButton"
+        android:gravity="center"
+        android:textAlignment="gravity"
+        android:layout_gravity="right" />
+  </LinearLayout>
 </LinearLayout>
