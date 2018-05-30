@@ -11,15 +11,16 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using StudyApp.Assets.Models;
+using StudyApp.RecyclerView_Resources;
 
 namespace StudyApp
 {
     public class FileAdapter : RecyclerView.Adapter
     {
-        public FileMini mFile;
-        public FileAdapter(FileMini file)
+        public FileAlbum mFileAlbum;
+        public FileAdapter(FileAlbum file)
         {
-            mFile = file;
+            mFileAlbum = file;
         }
 
         public override RecyclerView.ViewHolder
@@ -30,16 +31,18 @@ namespace StudyApp
             return vh;
         }
 
-
         public override void
             OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             RecyclerView_Resources.FileViewHolder vh = holder as RecyclerView_Resources.FileViewHolder;
-            //vh.Caption.Text = mPhotoAlbum[position].Caption;
+            vh.FileName.Text = mFileAlbum[position].Name;
         }
 
 
-        public override int ItemCount => throw new NotImplementedException();
+        public override int ItemCount
+        {
+            get { return mFileAlbum.NumFiles; }
+        }
 
     }
 }
