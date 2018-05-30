@@ -10,44 +10,29 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-using Newtonsoft.Json;
-
-using StudyApp.Assets.Controllers;
-using StudyApp.Assets.Models;
-
 namespace StudyApp.Assets.Views {
 
+    /// <summary>
+    /// Instead of inheriting from Activity, this activity inherits from CommonActivity, which is a special activity that has the navbar incorporated into it
+    /// </summary>
     [Activity(Label = "HomeActivity")]
-    public class HomeActivity : Activity {
-
-        private UserController userController;
-        private GoalController goalController;
+    public class HomeActivity : CommonActivity {
 
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.HomePage);
 
             /*
-             * The UserController shouldn't have to be instantiated here, since that would mean that we would lose
-             * the currently logged in user. Thus, it should always be in the intent coming into this activity.
+             * This code is how to replace the placeholder layout that's part of the CommonLayout.
              */
-            userController = JsonConvert.DeserializeObject<UserController>(Intent.GetStringExtra("UserController"));
+            FrameLayout frame = FindViewById<FrameLayout>(Resource.Id.Common_FrameLayout);
+            View home = LayoutInflater.Inflate(Resource.Layout.HomePage, null); // Replace the inside of this method call with your desired layout
+            frame.AddView(home.FindViewById<LinearLayout>(Resource.Id.Home_Layout));
 
-            try {
-                goalController = JsonConvert.DeserializeObject<GoalController>(Intent.GetStringExtra("GoalController"));
-            } catch (ArgumentNullException) {
-                goalController = new GoalController();
-            }
-
-            Button homeButton = FindViewById<Button>(Resource.Id.NavBar_HomeButton);
-            Button calendarButton = FindViewById<Button>(Resource.Id.NavBar_CalendarButton);
-            Button filesButton = FindViewById<Button>(Resource.Id.NavBar_FilesButton);
-            Button notesButton = FindViewById<Button>(Resource.Id.NavBar_NotesButton);
-
-            homeButton.Click += (sender, args) => GoToActivity(typeof(HomeActivity), true);
-            calendarButton.Click += (sender, args) => GoToActivity(typeof(CalendarActivity), false);
-            filesButton.Click += (sender, args) => GoToActivity(typeof(FileViewActivity), false);
-            notesButton.Click += (sender, args) => GoToActivity(typeof(NoteActivity), false);
+            /*
+             * This method needs to be called on the OnCreate method for any activities inheriting from CommonActivity,
+             * since this is what initializes the navbar
+             */
+            SetUpNavBar();
 
             //List<Goal> overdue = goalController.GetOverdueGoals(userController.CurrentUser.UserName);
             //List<NonRecurringGoal> upcomingNonRecurring = goalController.GetUpcomingNonRecurringGoals(userController.CurrentUser.UserName);
@@ -71,15 +56,5 @@ namespace StudyApp.Assets.Views {
 
         }
         #endregion
-
-        private void GoToActivity(Type activityType, bool finish) {
-            Intent intent = new Intent(this, activityType);
-            intent.PutExtra("UserController", JsonConvert.SerializeObject(userController));
-            intent.PutExtra("GoalController", JsonConvert.SerializeObject(goalController));
-            StartActivity(intent);
-            if (finish) {
-                Finish();
-            }
-        }
     }
 }

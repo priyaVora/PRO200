@@ -170,7 +170,7 @@
             android:layout_width="50dp"
             android:layout_height="40dp"
             android:checked="true"
-            android:id="@+id/goalSwitch"
+            android:id="@+id/GoalCreation_GoalSwitch"
             android:layout_marginRight="33.0dp" />
         <TextView
             android:text="One Time Label"

@@ -13,7 +13,7 @@ using StudyApp.Assets.Models;
 
 namespace StudyApp.Assets.Controllers
 {
-    class NoteController
+    public class NoteController
     {
         public Note GetNote(string guid, string username)
         {
