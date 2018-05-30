@@ -67,5 +67,9 @@ namespace StudyApp.Assets.Views {
             SetContentView(Resource.Layout.CalendarPage);
             PageSetup();
         }
+
+        private void ShowGoals(object sender, EventArgs args) {
+            SetContentView(Resource.Layout.DailyGoals);
+        }
     }
 }
