@@ -88,9 +88,10 @@ namespace StudyApp.Assets.Views {
             PageSetup();
         }
 
+        #endregion
+
         private void ShowGoals(object sender, EventArgs args) {
             SetContentView(Resource.Layout.DailyGoals);
         }
-        #endregion
     }
 }
