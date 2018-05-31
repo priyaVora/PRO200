@@ -17,9 +17,8 @@ namespace StudyApp
 {
     public class FileAdapter : RecyclerView.Adapter
     {
-        //public FileAlbum mFileAlbum;
-        public CommonAlbum mFileAlbum;
-        public FileAdapter(CommonAlbum file)
+        public FileAlbum mFileAlbum;
+        public FileAdapter(FileAlbum file)
         {
             mFileAlbum = file;
         }
@@ -27,7 +26,7 @@ namespace StudyApp
         public override RecyclerView.ViewHolder
             OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-            View itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.CardView, parent, false);
+            View itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.File_CardView, parent, false);
             RecyclerView_Resources.FileViewHolder vh = new RecyclerView_Resources.FileViewHolder(itemView);
             return vh;
         }
@@ -36,14 +35,15 @@ namespace StudyApp
             OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             RecyclerView_Resources.FileViewHolder vh = holder as RecyclerView_Resources.FileViewHolder;
-            vh.Image.SetImageResource(mFileAlbum[position].PhotoID);
-            vh.FileName.Text = mFileAlbum[position].Caption;
+            //vh.Image.SetImageResource(mFileAlbum[position].PhotoID);
+            vh.FileName.Text = mFileAlbum[position].Name;
+            vh.FileSize.Text = "81mb";
         }
 
 
         public override int ItemCount
         {
-            get { return mFileAlbum.NumPhotos; }
+            get { return mFileAlbum.NumFiles; }
         }
 
     }
