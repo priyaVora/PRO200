@@ -13,7 +13,7 @@ using Android.Widget;
 namespace StudyApp.Assets.Views {
 
     [Activity(Label = "GoalCreationActivity")]
-    public class GoalCreationActivity : CommonActivity {
+    public class GoalCreationActivity : CommonActivity, SeekBar.IOnSeekBarChangeListener {
 
         private EditText taskNameField;
         private EditText taskDescriptionField;
@@ -46,6 +46,9 @@ namespace StudyApp.Assets.Views {
             cancelButton.Click += Cancel_Click;
             saveButton.Click += Save_Click;
             // TODO: register events to previous views
+            datePickButton.Click += delegate (object sender, EventArgs args) { };
+            timePickButton.Click += delegate (object sender, EventArgs args) { };
+            pointsSlider.SetOnSeekBarChangeListener(this);
         }
 
         private void Cancel_Click(object sender, EventArgs args) {
@@ -65,8 +68,18 @@ namespace StudyApp.Assets.Views {
         private void ParseInput() {
         }
 
-        public void SliderListen(object sender, EventArgs args) {
+        #region Seekbar change listener implementation
+        public void OnProgressChanged(SeekBar seekBar, int progress, bool fromUser) {
 
         }
+
+        public void OnStartTrackingTouch(SeekBar seekBar) {
+            throw new NotImplementedException();
+        }
+
+        public void OnStopTrackingTouch(SeekBar seekBar) {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 }
