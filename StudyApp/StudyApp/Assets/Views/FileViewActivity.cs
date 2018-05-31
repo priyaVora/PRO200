@@ -30,7 +30,7 @@ namespace StudyApp.Assets.Views {
             mCommonAlbum = new CommonAlbum();
             /*
              * This code is how to replace the placeholder layout that's part of the CommonLayout.
-             */
+             */ 
             FrameLayout frame = FindViewById<FrameLayout>(Resource.Id.Common_FrameLayout);
             View file = LayoutInflater.Inflate(Resource.Layout.FilePage, null); // Replace the inside of this method call with your desired layout
             frame.AddView(file.FindViewById<LinearLayout>(Resource.Id.File_Layout));

@@ -36,7 +36,7 @@ namespace StudyApp
             OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             RecyclerView_Resources.FileViewHolder vh = holder as RecyclerView_Resources.FileViewHolder;
-            vh.Image.SetImageResource(mFileAlbum[position].PhotoID);
+            //vh.Image.SetImageResource(mFileAlbum[position].PhotoID);
             vh.FileName.Text = mFileAlbum[position].Caption;
         }
 
