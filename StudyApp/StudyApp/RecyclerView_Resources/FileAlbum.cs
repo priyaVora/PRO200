@@ -62,67 +62,29 @@ namespace StudyApp.RecyclerView_Resources
 
         };
 
-        // Array of photos that make up the album:
+        // Array of files that make up the album:
         private FileMini[] mFiles;
 
-        // Random number generator for shuffling the photos:
-        Random mRandom;
+   
 
-        // Create an instance copy of the built-in photo list and
-        // create the random number generator:
+        // Create an instance copy of the built-in files list, later will grab the user's list of files
+     
         public FileAlbum()
         {
             mFiles = mBuiltInFiles;
-            mRandom = new Random();
+    
         }
 
-        // Return the number of photos in the photo album:
+        // Return the number of file in the file collection:
         public int NumFiles
         {
             get { return mFiles.Length; }
         }
 
-        // Indexer (read only) for accessing a photo:
+        
         public FileMini this[int i]
         {
             get { return mFiles[i]; }
-        }
-
-        // Pick a random photo and swap it with the top:
-        public int RandomSwap()
-        {
-            // Save the photo at the top:
-            FileMini tmpPhoto = mFiles[0];
-
-            // Generate a next random index between 1 and 
-            // Length (noninclusive):
-            int rnd = mRandom.Next(1, mFiles.Length);
-
-            // Exchange top photo with randomly-chosen photo:
-            mFiles[0] = mFiles[rnd];
-            mFiles[rnd] = tmpPhoto;
-
-            // Return the index of which photo was swapped with the top:
-            return rnd;
-        }
-
-        // Shuffle the order of the photos:
-        public void Shuffle()
-        {
-            // Use the Fisher-Yates shuffle algorithm:
-            for (int idx = 0; idx < mFiles.Length; ++idx)
-            {
-                // Save the photo at idx:
-                FileMini tmpPhoto = mFiles[idx];
-
-                // Generate a next random index between idx (inclusive) and 
-                // Length (noninclusive):
-                int rnd = mRandom.Next(idx, mFiles.Length);
-
-                // Exchange photo at idx with randomly-chosen (later) photo:
-                mFiles[idx] = mFiles[rnd];
-                mFiles[rnd] = tmpPhoto;
-            }
         }
     }
 }

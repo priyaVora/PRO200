@@ -3,6 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/Note_Layout"
     android:minWidth="25px"
     android:minHeight="25px">
     <android.support.v7.widget.RecyclerView
@@ -23,7 +24,7 @@
             android:text="+"
             android:layout_width="60.0dp"
             android:layout_height="match_parent"
-            android:id="@+id/GoalPage_AddGoalButton"
+            android:id="@+id/NotePage_AddNoteButton"
             android:gravity="center"
             android:textAlignment="gravity"
             android:layout_gravity="right" />

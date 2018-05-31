@@ -40,6 +40,16 @@ namespace StudyApp.RecyclerView_Resources
         // Built-in photo collection - this could be replaced with
         // a photo database:
 
+        /*
+        * Get Number of Files in User's List of Files
+        */
+        int fileCount = 9;
+
+        /*
+        * This code is how to replace the placeholder layout that's part of the CommonLayout.
+        */
+
+
         static CommonItem[] mBuiltInPhotos = {
             new CommonItem { mCommonId = Resource.Drawable.buckingham_guards,
                         mCaption = "Buckingham Palace" },

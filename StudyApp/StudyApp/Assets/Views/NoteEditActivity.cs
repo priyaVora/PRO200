@@ -15,10 +15,8 @@ using StudyApp.Assets.Models;
 
 namespace StudyApp.Assets.Views {
     [Activity(Label = "NoteEditActivity")]
-    public class NoteEditActivity : Activity
+    public class NoteEditActivity : CommonActivity
     {
-        private NoteController noteController;
-        private UserController userContoller;
         private Note note;
         private EditText titleText;
         private EditText contentText;
@@ -35,12 +33,10 @@ namespace StudyApp.Assets.Views {
             saveButton.Click += SaveClick;
 
             note = JsonConvert.DeserializeObject<Note>(Intent.GetStringExtra("SelectedNote"));
-            noteController = JsonConvert.DeserializeObject<NoteController>(Intent.GetStringExtra("NoteController"));
-            userContoller = JsonConvert.DeserializeObject<UserController>(Intent.GetStringExtra("UserController"));
         }
 
         public void CancelClick(object sender, EventArgs args) {
-            GoBackToNotes();
+            GoToActivity(typeof(NoteActivity), true);
         }
 
         public void SaveClick(object sender, EventArgs args)
@@ -48,16 +44,7 @@ namespace StudyApp.Assets.Views {
             note.Title = titleText.Text;
             note.Content = contentText.Text;
             noteController.UpdateNote(note);
-            GoBackToNotes();
-        }
-
-        private void GoBackToNotes()
-        {
-            Intent intent = new Intent(this, typeof(NoteActivity));
-            intent.PutExtra("NoteController", JsonConvert.SerializeObject(noteController));
-            intent.PutExtra("UserController", JsonConvert.SerializeObject(userContoller));
-            StartActivity(intent);
-            Finish();
+            GoToActivity(typeof(NoteActivity), true);
         }
     }
 }
