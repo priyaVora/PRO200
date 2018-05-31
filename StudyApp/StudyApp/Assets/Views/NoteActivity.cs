@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Newtonsoft.Json;
 using StudyApp.Assets.Models;
 using StudyApp.RecyclerView_Resources;
 
@@ -47,6 +48,11 @@ namespace StudyApp.Assets.Views
             mAdapter = new NoteAdapter(mNoteAlbum);
             mRecyclerView.SetAdapter(mAdapter);
 
+            Button addNoteButton = FindViewById<Button>(Resource.Id.NotePage_AddNoteButton);
+            addNoteButton.Click += AddNoteClick;
+
+
+
         }
         //Todo: send "SelectedNote" to NoteEditActivity.cs --Empty note if new note.
         //Note note = new Note("owner");
@@ -54,6 +60,12 @@ namespace StudyApp.Assets.Views
         public void LongPress(object sender, EventArgs args)
         {
 
+        }
+
+        public void AddNoteClick(object sender, EventArgs args)
+        {
+            Note note = new Note(userController.CurrentUser.UserName, "", "");
+            GoToActivity(typeof(NoteEditActivity), true, new KeyValuePair<string, string>("SelectedNote", JsonConvert.SerializeObject(note)));
         }
     }
 }
