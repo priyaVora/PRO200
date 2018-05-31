@@ -131,11 +131,13 @@
     <Compile Include="Assets\Views\NoteActivity.cs" />
     <Compile Include="Assets\Views\NoteEditActivity.cs" />
     <Compile Include="Assets\Views\ShareFileActivity.cs" />
-    <Compile Include="RecyclerView_Resources\CommonAlbum.cs" />
     <Compile Include="RecyclerView_Resources\FileAdapter.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="RecyclerView_Resources\FileAlbum.cs" />
     <Compile Include="RecyclerView_Resources\FileViewHolder.cs" />
+    <Compile Include="RecyclerView_Resources\NoteAdapter.cs" />
+    <Compile Include="RecyclerView_Resources\NoteAlbum.cs" />
+    <Compile Include="RecyclerView_Resources\NoteViewHolder.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -173,6 +175,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\EditNotesPage.axml" />
+    <AndroidResource Include="Resources\layout\Note_CardView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -214,7 +219,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\CardView.axml">
+    <AndroidResource Include="Resources\layout\File_CardView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -16,8 +16,9 @@ namespace StudyApp.RecyclerView_Resources
 {
     public class FileViewHolder : RecyclerView.ViewHolder
     {
-        public ImageView Image { get; private set; }
+        //public ImageView Image { get; private set; }
         public TextView FileName { get; private set; }
+        public TextView FileSize { get; private set; }
 
         public FileViewHolder(View itemView) : base(itemView)
         {
@@ -25,7 +26,10 @@ namespace StudyApp.RecyclerView_Resources
            // Image = itemView.FindViewById<ImageView>(Resource.Id.imageView);
             FileName = itemView.FindViewById<TextView>(Resource.Id.textView);
             FileName.SetTextColor(textColor);
-         
+
+            FileSize = itemView.FindViewById<TextView>(Resource.Id.fileSize);
+            FileSize.SetTextColor(textColor);
+
         }
     }
 }
