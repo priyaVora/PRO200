@@ -12,15 +12,23 @@ using Android.Widget;
 
 namespace StudyApp.Assets.Views {
     [Activity(Label = "ShareFileActivity")]
-    public class ShareFileActivity : Activity {
+    public class ShareFileActivity : CommonActivity {
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
+
+            FrameLayout frame = FindViewById<FrameLayout>(Resource.Id.Common_FrameLayout);
+            View calendarPage = LayoutInflater.Inflate(Resource.Layout.ShareFilePage, null);
+            frame.AddView(calendarPage.FindViewById<LinearLayout>(Resource.Id.ShareFile_Layout));
+            SetUpNavBar();
+
+
+
 
             // Create your application here
         }
 
         public void AddClick(object sender, EventArgs args) {
-
+            
         }
 
         public void CancelClickLongPressOverDueGoal(object sender, EventArgs args) {

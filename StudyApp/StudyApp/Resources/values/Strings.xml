@@ -8,4 +8,11 @@
     <item>Monthy</item>
     <item>Year</item>
   </string-array>
+
+  <string name="permissions_prompt">Frequency</string>
+  <string-array name="permissions_array">
+    <item>Owner</item>
+    <item>Read</item>
+    <item>Edit</item>
+  </string-array>
 </resources>
