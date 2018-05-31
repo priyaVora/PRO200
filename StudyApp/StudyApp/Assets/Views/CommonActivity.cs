@@ -33,6 +33,10 @@ namespace StudyApp.Assets.Views {
             SetUpPage();
         }
 
+        /// <summary>
+        /// Sets up the page for the common layout. You do not need to call this, since it is called by OnCreate() method (unless you need to setup
+        /// the page manually)
+        /// </summary>
         protected void SetUpPage() {
             SetContentView(Resource.Layout.CommonLayout);
 
@@ -64,7 +68,17 @@ namespace StudyApp.Assets.Views {
                 calendarController = new CalendarController();
             }
             #endregion
+        }
 
+        /// <summary>
+        /// Sets up the actual layout for the page that should be displayed
+        /// </summary>
+        /// <param name="pageId">The page's ID to display</param>
+        /// <param name="layoutId">The topmost layout's ID of the page that includes every other element inside</param>
+        protected void SetUpLayout(int pageId, int layoutId) {
+            FrameLayout frame = FindViewById<FrameLayout>(Resource.Id.Common_FrameLayout);
+            View calendarPage = LayoutInflater.Inflate(pageId, null);
+            frame.AddView(calendarPage.FindViewById<LinearLayout>(layoutId));
         }
 
         protected void SetUpNavBar() {
@@ -79,13 +93,31 @@ namespace StudyApp.Assets.Views {
             notesButton.Click += (sender, args) => GoToActivity(typeof(NoteActivity), false);
         }
 
-        protected void GoToActivity(Type activityType, bool finish) {
-            Intent intent = new Intent(this, activityType);
+        /// <summary>
+        /// Hides the navbar from showing up on the page as well from being pressed
+        /// </summary>
+        protected void HideNavBar() {
+            FindViewById<LinearLayout>(Resource.Id.Common_NavLayout).Visibility = ViewStates.Gone;
+        }
+
+        /// <summary>
+        /// Goes to the specified activity
+        /// </summary>
+        /// <param name="activityType">The activity that you wish to go to (ex. typeof(HomeActivity) to go to HomeActivity)</param>
+        /// <param name="finish">Whether or not to finish the current activity to prevent backtracking to the current activity</param>
+        /// <param name="extras">Any extra parameters to inclulde in the intent, in the form of the key to the JSON serialized object</param>
+        protected void GoToActivity(Type activityType, bool finish, params KeyValuePair<string, string>[] extras) {
+            Intent intent = new Intent();
             intent.PutExtra("UserController", JsonConvert.SerializeObject(userController));
             intent.PutExtra("GoalController", JsonConvert.SerializeObject(goalController));
             intent.PutExtra("NoteController", JsonConvert.SerializeObject(noteController));
             intent.PutExtra("FileController", JsonConvert.SerializeObject(fileController));
             intent.PutExtra("CalendarController", JsonConvert.SerializeObject(calendarController));
+
+            foreach (KeyValuePair<string, string> extraValue in extras) {
+                intent.PutExtra(extraValue.Key, extraValue.Value);
+            }
+
             StartActivity(intent);
             if (finish) {
                 Finish();
