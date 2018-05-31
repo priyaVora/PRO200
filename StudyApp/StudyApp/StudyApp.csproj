@@ -119,7 +119,6 @@
     <Compile Include="Assets\Models\Year.cs" />
     <Compile Include="Assets\Views\CalendarActivity.cs" />
     <Compile Include="Assets\Views\CommonActivity.cs" />
-    <Compile Include="Assets\Views\CompoundViews\CompoundNavBarView.cs" />
     <Compile Include="Assets\Views\CreateAccountActivity.cs" />
     <Compile Include="Assets\Views\DailyGoalActivity.cs" />
     <Compile Include="Assets\Views\PopUps\LayoutDialogFragment.cs" />
@@ -199,11 +198,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\style.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\navbar.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Envision.PNG" />
