@@ -28,6 +28,7 @@ namespace StudyApp.Assets.Views {
 
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
+            ActionBar.Hide();
 
             SetUpPage();
         }
