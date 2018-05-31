@@ -28,6 +28,7 @@ namespace StudyApp.Assets.Views {
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.LoginPage);
+            ActionBar.Hide();
 
             Button createAccountBtn = FindViewById<Button>(Resource.Id.Login_CreateAccountButton);
             Button LoginBtn = FindViewById<Button>(Resource.Id.LoginButton);
