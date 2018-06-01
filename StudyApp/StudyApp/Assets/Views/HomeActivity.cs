@@ -72,8 +72,7 @@ namespace StudyApp.Assets.Views {
         public void SetGoalData()
         {
             mGoalOverdueAlbum = new GoalAlbum(goalController.GetOverdueGoals(userController.CurrentUser.UserName));
-            mGoalAlbumRecurringGoal = new GoalAlbum(goalController
-                .GetUpcomingRecurringGoals(userController.CurrentUser.UserName));
+            mGoalAlbumRecurringGoal = new GoalAlbum(goalController.GetUpcomingRecurringGoals(userController.CurrentUser.UserName));
             mGoalAlbumOneTimeGoal = new GoalAlbum(goalController.GetUpcomingNonRecurringGoals(userController.CurrentUser.UserName));
         }
 
