@@ -21,6 +21,7 @@
                 android:textColor="#333333"
                 android:text="Caption"
                 android:id="@+id/textView"
+                android:textSize="12dp"
                 android:gravity="center_horizontal"
                 android:layout_marginLeft="4dp" />
         </LinearLayout>
