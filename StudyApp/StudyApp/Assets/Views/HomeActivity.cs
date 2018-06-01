@@ -20,20 +20,28 @@ namespace StudyApp.Assets.Views {
     [Activity(Label = "HomeActivity")]
     public class HomeActivity : CommonActivity {
 
-        RecyclerView mRecyclerView;
+        RecyclerView mRecyclerViewOverDueGoals;
         RecyclerView.LayoutManager mLayoutManager;
-        GoalAdapter mAdapter;
+        GoalAdapter mAdapterOverDueGoals;
         GoalAlbum mGoalAlbum;
 
 
+        RecyclerView mRecyclerViewRecurringGoals;
+        RecyclerView.LayoutManager mLayoutManagerRecurringGoal;
+        GoalAdapter mAdapterRecurringGoal;
+        GoalAlbum mGoalAlbumRecurringGoal;
 
 
+        RecyclerView mRecyclerViewOneTimeGoals;
+        RecyclerView.LayoutManager mLayoutManagerTimeGoal;
+        GoalAdapter mAdapterOneTimeGoal;
+        GoalAlbum mGoalAlbumOneTimeGoal;
 
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
             ActionBar.Hide();
-            mGoalAlbum = new GoalAlbum();
 
+            SetGoalData();
             /*
              * This code is how to replace the placeholder layout that's part of the CommonLayout.
              */
@@ -46,21 +54,61 @@ namespace StudyApp.Assets.Views {
              * since this is what initializes the navbar
              */
             SetUpNavBar();
-
-            mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recyclerViewOverDueGoals);
-
-            // Plug in the linear layout manager:
-            mLayoutManager = new LinearLayoutManager(this);
-            mRecyclerView.SetLayoutManager(mLayoutManager);
-
-            // Plug in my adapter:
-            mAdapter = new GoalAdapter(mGoalAlbum);
-            mRecyclerView.SetAdapter(mAdapter);
-
+            BindRecyclerViews();
+            BindActivityWithLayoutManager();
+            SetLayoutOnRecyclerViews();
+            SetAdaptersForRecyclerViews();
+            BindAdapterToRecyclerView();
             //List<Goal> overdue = goalController.GetOverdueGoals(userController.CurrentUser.UserName);
             //List<NonRecurringGoal> upcomingNonRecurring = goalController.GetUpcomingNonRecurringGoals(userController.CurrentUser.UserName);
             //List<RecurringGoal> upcomingRecurring = goalController.GetUpcomingRecurringGoals(userController.CurrentUser.UserName);
             // TODO: populate view with the previous lists of goals
+        }
+
+
+
+
+        public void SetGoalData()
+        {
+            mGoalAlbum = new GoalAlbum();
+            mGoalAlbumRecurringGoal = new GoalAlbum();
+            mGoalAlbumOneTimeGoal = new GoalAlbum();
+        }
+
+        public void BindRecyclerViews()
+        {
+            mRecyclerViewOverDueGoals = FindViewById<RecyclerView>(Resource.Id.recyclerViewOverDueGoals);
+            mRecyclerViewRecurringGoals = FindViewById<RecyclerView>(Resource.Id.recyclerViewRecurringGoals);
+            mRecyclerViewOneTimeGoals = FindViewById<RecyclerView>(Resource.Id.recyclerViewOneTimeGoal);
+        }
+
+
+
+        public void BindActivityWithLayoutManager()
+        {
+            mLayoutManager = new LinearLayoutManager(this);
+            mLayoutManagerRecurringGoal = new LinearLayoutManager(this);
+            mLayoutManagerTimeGoal = new LinearLayoutManager(this);
+        }
+
+        public void SetLayoutOnRecyclerViews()
+        {
+            mRecyclerViewOverDueGoals.SetLayoutManager(mLayoutManager);
+            mRecyclerViewRecurringGoals.SetLayoutManager(mLayoutManagerRecurringGoal);
+            mRecyclerViewOneTimeGoals.SetLayoutManager(mLayoutManagerTimeGoal);
+        }
+        public void SetAdaptersForRecyclerViews()
+        {
+            mAdapterOverDueGoals = new GoalAdapter(mGoalAlbum);
+            mAdapterRecurringGoal = new GoalAdapter(mGoalAlbumRecurringGoal);
+            mAdapterOneTimeGoal = new GoalAdapter(mGoalAlbumOneTimeGoal);
+        }
+
+        public void BindAdapterToRecyclerView()
+        {
+            mRecyclerViewOverDueGoals.SetAdapter(mAdapterOverDueGoals);
+            mRecyclerViewRecurringGoals.SetAdapter(mAdapterRecurringGoal);
+            mRecyclerViewOneTimeGoals.SetAdapter(mAdapterOneTimeGoal);
         }
 
         public void LogOut() {
