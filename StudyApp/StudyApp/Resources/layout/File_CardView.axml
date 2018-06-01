@@ -21,6 +21,7 @@
                 android:textColor="#333333"
                 android:text="Caption"
                 android:id="@+id/textView"
+                android:textSize="12dp"
                 android:layout_gravity="left"
                 android:layout_marginLeft="4dp"
                 android:gravity="left" />
@@ -34,6 +35,7 @@
                 android:textColor="#333333"
                 android:text="0MB"
                 android:id="@+id/fileSize"
+                android:textSize="12dp"
                 android:layout_gravity="right"
                 android:gravity="right" />
         </LinearLayout>

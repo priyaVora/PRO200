@@ -11,16 +11,20 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using StudyApp.Assets.Models;
+using StudyApp.Interface;
 using StudyApp.RecyclerView_Resources;
 
 namespace StudyApp
 {
-    public class FileAdapter : RecyclerView.Adapter
+    public class FileAdapter : RecyclerView.Adapter, IItemClickListener
     {
+        private Context context;
+
         public FileAlbum mFileAlbum;
-        public FileAdapter(FileAlbum file)
+        public FileAdapter(FileAlbum file, Context contxt)
         {
             mFileAlbum = file;
+            context = contxt;
         }
 
         public override RecyclerView.ViewHolder
@@ -35,11 +39,31 @@ namespace StudyApp
             OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             RecyclerView_Resources.FileViewHolder vh = holder as RecyclerView_Resources.FileViewHolder;
-            //vh.Image.SetImageResource(mFileAlbum[position].PhotoID);
             vh.FileName.Text = mFileAlbum[position].Name;
             vh.FileSize.Text = "81mb";
+            vh.SetItemClickListener(this);
         }
 
+        public void OnClick(View itemView, int position, bool isLongClick)
+        {
+            try
+            {
+                if (isLongClick)
+                {
+                    Toast.MakeText(context, "Long Click: ", ToastLength.Short).Show();
+                }
+                else
+                {
+                    Toast.MakeText(context, "Downloaded File ", ToastLength.Short).Show();
+                }
+            }
+            catch (Exception e)
+            {
+                Toast.MakeText(context, e.ToString() , ToastLength.Short).Show();
+
+            }
+
+        }
 
         public override int ItemCount
         {
