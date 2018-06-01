@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using StudyApp.Assets.Models;
 using StudyApp.RecyclerView_Resources;
 
 namespace StudyApp.Assets.Views {
@@ -23,7 +24,7 @@ namespace StudyApp.Assets.Views {
         RecyclerView mRecyclerViewOverDueGoals;
         RecyclerView.LayoutManager mLayoutManager;
         GoalAdapter mAdapterOverDueGoals;
-        GoalAlbum mGoalAlbum;
+        GoalAlbum mGoalOverdueAlbum;
 
 
         RecyclerView mRecyclerViewRecurringGoals;
@@ -70,9 +71,10 @@ namespace StudyApp.Assets.Views {
 
         public void SetGoalData()
         {
-            mGoalAlbum = new GoalAlbum();
-            mGoalAlbumRecurringGoal = new GoalAlbum();
-            mGoalAlbumOneTimeGoal = new GoalAlbum();
+            mGoalOverdueAlbum = new GoalAlbum(goalController.GetOverdueGoals(userController.CurrentUser.UserName));
+            mGoalAlbumRecurringGoal = new GoalAlbum(goalController
+                .GetUpcomingRecurringGoals(userController.CurrentUser.UserName));
+            mGoalAlbumOneTimeGoal = new GoalAlbum(goalController.GetUpcomingNonRecurringGoals(userController.CurrentUser.UserName));
         }
 
         public void BindRecyclerViews()
@@ -99,7 +101,7 @@ namespace StudyApp.Assets.Views {
         }
         public void SetAdaptersForRecyclerViews()
         {
-            mAdapterOverDueGoals = new GoalAdapter(mGoalAlbum);
+            mAdapterOverDueGoals = new GoalAdapter(mGoalOverdueAlbum);
             mAdapterRecurringGoal = new GoalAdapter(mGoalAlbumRecurringGoal);
             mAdapterOneTimeGoal = new GoalAdapter(mGoalAlbumOneTimeGoal);
         }
