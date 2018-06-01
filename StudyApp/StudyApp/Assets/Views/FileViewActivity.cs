@@ -49,7 +49,7 @@ namespace StudyApp.Assets.Views {
 
 
             // Plug in my adapter:
-            mAdapter = new FileAdapter(mFileAlbum);
+            mAdapter = new FileAdapter(mFileAlbum, this);
             mRecyclerView.SetAdapter(mAdapter);
 
 

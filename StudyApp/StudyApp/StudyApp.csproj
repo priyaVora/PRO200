@@ -130,10 +130,14 @@
     <Compile Include="Assets\Views\NoteActivity.cs" />
     <Compile Include="Assets\Views\NoteEditActivity.cs" />
     <Compile Include="Assets\Views\ShareFileActivity.cs" />
+    <Compile Include="Interface\IItemClickListener.cs" />
     <Compile Include="RecyclerView_Resources\FileAdapter.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="RecyclerView_Resources\FileAlbum.cs" />
     <Compile Include="RecyclerView_Resources\FileViewHolder.cs" />
+    <Compile Include="RecyclerView_Resources\GoalAdapter.cs" />
+    <Compile Include="RecyclerView_Resources\GoalAlbum.cs" />
+    <Compile Include="RecyclerView_Resources\GoalViewHolder.cs" />
     <Compile Include="RecyclerView_Resources\NoteAdapter.cs" />
     <Compile Include="RecyclerView_Resources\NoteAlbum.cs" />
     <Compile Include="RecyclerView_Resources\NoteViewHolder.cs" />
@@ -177,11 +181,13 @@
     <AndroidResource Include="Resources\layout\Note_CardView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\Goal_CardView.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Assets\Views\CompoundViews\" />
     <Folder Include="Resources\mipmap-hdpi\" />
     <Folder Include="Resources\mipmap-mdpi\" />
     <Folder Include="Resources\mipmap-xhdpi\" />
