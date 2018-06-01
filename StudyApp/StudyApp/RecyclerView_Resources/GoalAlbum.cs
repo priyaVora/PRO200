@@ -40,9 +40,9 @@ namespace StudyApp.RecyclerView_Resources
 
         // Create an instance copy of the built-in Goals list, later will grab the user's list of Goals
 
-        public GoalAlbum()
+        public GoalAlbum(List<Goal> goalList)
         {
-            Goals = mBuiltInGoals;
+            Goals = goalList.ToArray();
         }
 
         // Return the number of Goal in the Goal collection:
