@@ -7,8 +7,10 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using StudyApp.RecyclerView_Resources;
 
 namespace StudyApp.Assets.Views {
 
@@ -18,8 +20,19 @@ namespace StudyApp.Assets.Views {
     [Activity(Label = "HomeActivity")]
     public class HomeActivity : CommonActivity {
 
+        RecyclerView mRecyclerView;
+        RecyclerView.LayoutManager mLayoutManager;
+        GoalAdapter mAdapter;
+        GoalAlbum mGoalAlbum;
+
+
+
+
+
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
+            ActionBar.Hide();
+            mGoalAlbum = new GoalAlbum();
 
             /*
              * This code is how to replace the placeholder layout that's part of the CommonLayout.
@@ -33,6 +46,16 @@ namespace StudyApp.Assets.Views {
              * since this is what initializes the navbar
              */
             SetUpNavBar();
+
+            mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recyclerViewOverDueGoals);
+
+            // Plug in the linear layout manager:
+            mLayoutManager = new LinearLayoutManager(this);
+            mRecyclerView.SetLayoutManager(mLayoutManager);
+
+            // Plug in my adapter:
+            mAdapter = new GoalAdapter(mGoalAlbum);
+            mRecyclerView.SetAdapter(mAdapter);
 
             //List<Goal> overdue = goalController.GetOverdueGoals(userController.CurrentUser.UserName);
             //List<NonRecurringGoal> upcomingNonRecurring = goalController.GetUpcomingNonRecurringGoals(userController.CurrentUser.UserName);

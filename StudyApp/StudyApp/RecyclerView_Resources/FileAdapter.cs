@@ -18,8 +18,6 @@ namespace StudyApp
 {
     public class FileAdapter : RecyclerView.Adapter, IItemClickListener
     {
-
-        private List<string> listData = new List<string>();
         private Context context;
 
         public FileAlbum mFileAlbum;

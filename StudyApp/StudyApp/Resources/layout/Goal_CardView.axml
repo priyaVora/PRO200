@@ -20,8 +20,9 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#333333"
                 android:text="Caption"
+                android:textSize="10dp"
                 android:id="@+id/TaskName"
-                android:gravity="center_horizontal"
+                android:gravity="left"
                 android:layout_marginLeft="4dp" />
             <TextView
                 android:layout_width="match_parent"
@@ -29,8 +30,9 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#333333"
                 android:text="Caption"
+                android:textSize="10dp"
                 android:id="@+id/Points"
-                android:gravity="center_horizontal"
+                android:gravity="left"
                 android:layout_marginLeft="4dp" />
           <TextView
                 android:layout_width="match_parent"
@@ -38,8 +40,9 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#333333"
                 android:text="Caption"
+                android:textSize="10dp"
                 android:id="@+id/Description"
-                android:gravity="center_horizontal"
+                android:gravity="left"
                 android:layout_marginLeft="4dp" />
         </LinearLayout>
     </android.support.v7.widget.CardView>

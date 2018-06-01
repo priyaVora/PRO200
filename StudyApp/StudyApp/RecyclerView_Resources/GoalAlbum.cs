@@ -42,12 +42,7 @@ namespace StudyApp.RecyclerView_Resources
 
         public GoalAlbum()
         {
-            Goals = null;
-        }
-
-        public GoalAlbum(Goal[] goals)
-        {
-            Goals = goals;
+            Goals = mBuiltInGoals;
         }
 
         // Return the number of Goal in the Goal collection:
