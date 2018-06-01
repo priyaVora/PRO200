@@ -16,19 +16,22 @@ namespace StudyApp.RecyclerView_Resources
 {
     public class GoalViewHolder : RecyclerView.ViewHolder
     {
-        //public ImageView Image { get; private set; }
-        public TextView GoalName { get; private set; }
-        public TextView GoalSize { get; private set; }
+        public TextView GoalTaskName { get; private set; }
+        public TextView GoalDescription { get; private set; }
+
+        public TextView GoalPoints { get; private set; }
 
         public GoalViewHolder(View itemView) : base(itemView)
         {
             Color textColor = Color.White;
-            // Image = itemView.FindViewById<ImageView>(Resource.Id.imageView);
-            GoalName = itemView.FindViewById<TextView>(Resource.Id.textView);
-            GoalName.SetTextColor(textColor);
+            GoalTaskName = itemView.FindViewById<TextView>(Resource.Id.TaskName);
+            GoalTaskName.SetTextColor(textColor);
 
-            GoalSize = itemView.FindViewById<TextView>(Resource.Id.GoalSize);
-            GoalSize.SetTextColor(textColor);
+            GoalDescription = itemView.FindViewById<TextView>(Resource.Id.Description);
+            GoalDescription.SetTextColor(textColor);
+
+            GoalPoints = itemView.FindViewById<TextView>(Resource.Id.Points);
+            GoalPoints.SetTextColor(textColor);
 
         }
     }

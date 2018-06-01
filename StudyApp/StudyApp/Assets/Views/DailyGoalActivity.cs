@@ -24,9 +24,6 @@ namespace StudyApp.Assets.Views {
                 .ToList();
             List<NonRecurringGoal> nonRecurringGoals = goalController.GetUpcomingNonRecurringGoals(userController.CurrentUser.UserName).Where(g => g.Deadline == DateTime.Today)
                 .ToList();
-            RecurringGoal goal = new RecurringGoal();
-            goal.
-
         }
 
         public void OnTouchEvent(object sender, EventArgs args) {

@@ -181,6 +181,7 @@
     <AndroidResource Include="Resources\layout\Note_CardView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\Goal_CardView.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

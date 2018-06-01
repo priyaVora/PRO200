@@ -35,9 +35,9 @@ namespace StudyApp
             OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             RecyclerView_Resources.GoalViewHolder vh = holder as RecyclerView_Resources.GoalViewHolder;
-            //vh.Image.SetImageResource(mGoalAlbum[position].PhotoID);
-            vh.GoalName.Text = mGoalAlbum[position].TaskName;
-            vh.GoalSize.Text = "81mb";
+            vh.GoalTaskName.Text = mGoalAlbum[position].TaskName;
+            vh.GoalDescription.Text = "This is a placeholder for the description.";
+            vh.GoalPoints.Text = "100";
         }
 
 
