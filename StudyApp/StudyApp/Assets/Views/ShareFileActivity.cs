@@ -16,27 +16,36 @@ namespace StudyApp.Assets.Views {
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
 
-            FrameLayout frame = FindViewById<FrameLayout>(Resource.Id.Common_FrameLayout);
-            View calendarPage = LayoutInflater.Inflate(Resource.Layout.ShareFilePage, null);
-            frame.AddView(calendarPage.FindViewById<LinearLayout>(Resource.Id.ShareFile_Layout));
+            SetUpLayout(Resource.Layout.ShareFilePage, Resource.Id.ShareFile_Layout);
             SetUpNavBar();
 
+            Button addButton = FindViewById<Button>(Resource.Id.ShareFile_AddButton);
+            Button confirmButton = FindViewById<Button>(Resource.Id.ShareFile_ConfirmButton);
+            Button cancelButton = FindViewById<Button>(Resource.Id.ShareFile_CancelButton);
 
-
+            addButton.Click += AddClick;
+            confirmButton.Click += ConfirmClick;
+            cancelButton.Click += CancelClick;
 
             // Create your application here
         }
 
         public void AddClick(object sender, EventArgs args) {
-            
+            String username = FindViewById<EditText>(Resource.Id.ShareFile_UsernameInput).Text;
         }
 
-        public void CancelClickLongPressOverDueGoal(object sender, EventArgs args) {
-
+        public void CancelClick(object sender, EventArgs args) {
+            OnBackPressed();
+            Finish();
         }
 
         public void ConfirmClick(object sender, EventArgs args) {
+            SubmitSharedList();
+            OnBackPressed();
+            Finish();
+        }
 
+        public void SubmitSharedList() {
         }
     }
 }
