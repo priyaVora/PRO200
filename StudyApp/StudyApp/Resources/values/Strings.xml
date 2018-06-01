@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="app_name">StudyApp</string>
+  <string name="frequency_prompt">Frequency</string>
+  <string-array name="frequency_array">
+    <item>Daily</item>
+    <item>Weekly</item>
+    <item>Monthy</item>
+    <item>Year</item>
+  </string-array>
 </resources>
