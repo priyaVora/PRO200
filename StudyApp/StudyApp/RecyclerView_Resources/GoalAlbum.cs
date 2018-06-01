@@ -45,6 +45,11 @@ namespace StudyApp.RecyclerView_Resources
             Goals = goalList.ToArray();
         }
 
+        public GoalAlbum()
+        {
+            Goals = mBuiltInGoals;
+        }
+
         // Return the number of Goal in the Goal collection:
         public int NumGoals
         {
