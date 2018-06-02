@@ -11,6 +11,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using StudyApp.Assets.Models;
+using StudyApp.Assets.Views.PopUps;
 using StudyApp.Interface;
 using StudyApp.RecyclerView_Resources;
 
@@ -50,7 +51,10 @@ namespace StudyApp
             {
                 if (isLongClick)
                 {
-                    Toast.MakeText(context, "Long Click: ", ToastLength.Short).Show();
+                    Toast.MakeText(context, "Share Options", ToastLength.Short).Show();
+                    FragmentTransaction transaction = ((Activity)context).FragmentManager.BeginTransaction();
+                    ShareFileDialog currentDialog = new ShareFileDialog();
+                    currentDialog.Show(transaction,"dialog fragment");
                 }
                 else
                 {
