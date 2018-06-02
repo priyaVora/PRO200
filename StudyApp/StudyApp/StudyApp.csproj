@@ -121,6 +121,7 @@
     <Compile Include="Assets\Views\CommonActivity.cs" />
     <Compile Include="Assets\Views\CreateAccountActivity.cs" />
     <Compile Include="Assets\Views\DailyGoalActivity.cs" />
+    <Compile Include="Assets\Views\PopUps\ShareFileDialog.cs" />
     <Compile Include="Assets\Views\PopUps\LayoutDialogFragment.cs" />
     <Compile Include="Assets\Views\PopUps\StringMessageDialogFragment.cs" />
     <Compile Include="Assets\Views\FileViewActivity.cs" />
@@ -145,6 +146,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Assets\Views\PopUps\menu.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <None Include="GettingStarted.Xamarin" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
