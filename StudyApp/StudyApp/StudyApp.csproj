@@ -146,7 +146,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Assets\Views\PopUps\menu.axml">
+    <AndroidResource Include="Resources\menu\logout_menu.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <None Include="GettingStarted.Xamarin" />
@@ -186,6 +186,7 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Goal_CardView.axml" />
+    <AndroidResource Include="Resources\menu\bottom_navigation_main.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
