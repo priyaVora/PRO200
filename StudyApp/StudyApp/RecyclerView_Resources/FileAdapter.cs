@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using StudyApp.Assets.Controllers;
 using StudyApp.Assets.Models;
 using StudyApp.Assets.Views.PopUps;
 using StudyApp.Interface;
@@ -20,14 +21,15 @@ namespace StudyApp
     public class FileAdapter : RecyclerView.Adapter, IItemClickListener
     {
         private Context context;
-
+        UserAccount currentUser = null;
         public FileAlbum mFileAlbum;
         ShareFileDialog currentDialog;
         Button cancelBtn;
-        public FileAdapter(FileAlbum file, Context contxt)
+        public FileAdapter(FileAlbum file, Context contxt, UserAccount currentUserAccount)
         {
             mFileAlbum = file;
             context = contxt;
+            currentUser = currentUserAccount;
         }
 
         public override RecyclerView.ViewHolder
@@ -54,16 +56,30 @@ namespace StudyApp
                 if (isLongClick)
                 {
                     Toast.MakeText(context, "Share Options", ToastLength.Short).Show();
-                    //FragmentTransaction transaction = ((Activity)context).FragmentManager.BeginTransaction();
-                    FragmentTransaction transaction = ((Activity)context).FragmentManager.BeginTransaction();
+                   
+                    Android.Widget.PopupMenu menu = new Android.Widget.PopupMenu((Activity)context, itemView);
+                    menu.MenuInflater.Inflate(Resource.Menu.longPress_FileMenu, menu.Menu);
 
-                    currentDialog = new ShareFileDialog(context);
-                    currentDialog.Show(transaction,"dialog fragment");
-                    //LayoutInflater inflater = currengetActivity().getLayoutInflater();
-                    //View currentView = currentDialog.OnCreateView()
-                    //Toast.MakeText(context, "--" + currentView, ToastLength.Short).Show();
-                    //cancelBtn = currentView.FindViewById<Button>(Resource.Id.cancelBtn);
-                    //cancelBtn.Click += CancelClick;
+                    menu.MenuItemClick += (s, arg) =>
+                    {
+                       if(arg.Item.ItemId.Equals(Resource.Id.ShareFileItem))
+                        {
+                            FragmentTransaction transaction = ((Activity)context).FragmentManager.BeginTransaction();
+                            
+                           
+                            currentDialog = new ShareFileDialog(context);
+                            currentDialog.Show(transaction, "dialog fragment");
+                        }
+                        else if(arg.Item.ItemId.Equals(Resource.Id.DeleteFileItem))
+                        {
+                            Toast.MakeText(context, "Delete File", ToastLength.Short).Show();
+                            FileController fileController = new FileController();
+                            
+                        } 
+                    };
+
+                    menu.Show();
+
                 }
                 else
                 {

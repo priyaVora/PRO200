@@ -41,7 +41,7 @@ namespace StudyApp.Assets.Views {
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
             ActionBar.Hide();
-
+            
             SetGoalData();
             /*
              * This code is how to replace the placeholder layout that's part of the CommonLayout.
