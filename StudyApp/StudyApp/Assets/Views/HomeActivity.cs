@@ -37,11 +37,11 @@ namespace StudyApp.Assets.Views {
         RecyclerView.LayoutManager mLayoutManagerTimeGoal;
         GoalAdapter mAdapterOneTimeGoal;
         GoalAlbum mGoalAlbumNonRecurringGoal;
-
+        Button usernameBtn;
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
             ActionBar.Hide();
-
+            
             SetGoalData();
             /*
              * This code is how to replace the placeholder layout that's part of the CommonLayout.
@@ -60,12 +60,35 @@ namespace StudyApp.Assets.Views {
             SetLayoutOnRecyclerViews();
             SetAdaptersForRecyclerViews();
             BindAdapterToRecyclerView();
+
+
+
+            usernameBtn = FindViewById<Button>(Resource.Id.usernameBtn);
+            usernameBtn.Click += LogOutClick;
+
             //List<Goal> overdue = goalController.GetOverdueGoals(userController.CurrentUser.UserName);
             //List<NonRecurringGoal> upcomingNonRecurring = goalController.GetUpcomingNonRecurringGoals(userController.CurrentUser.UserName);
             //List<RecurringGoal> upcomingRecurring = goalController.GetUpcomingRecurringGoals(userController.CurrentUser.UserName);
             // TODO: populate view with the previous lists of goals
         }
-        
+
+        public void LogOutClick(object sender, EventArgs args)
+        {
+           
+            Android.Widget.PopupMenu menu = new Android.Widget.PopupMenu(this, usernameBtn);
+            menu.MenuInflater.Inflate(Resource.Menu.logout_menu,menu.Menu);
+
+            menu.MenuItemClick += (s, arg) =>
+            {
+                Toast.MakeText(this, "Logging Out:", ToastLength.Short).Show();
+                StartActivity(typeof(LoginActivity));
+                Finish();
+            };
+
+            menu.Show();
+           
+        }
+
         public void SetGoalData()
         {
             //mGoalOverdueAlbum = new GoalAlbum(goalController.GetOverdueGoals(userController.CurrentUser.UserName));
@@ -86,8 +109,6 @@ namespace StudyApp.Assets.Views {
             mRecyclerViewRecurringGoals = FindViewById<RecyclerView>(Resource.Id.recyclerViewRecurringGoals);
             mRecyclerViewOneTimeGoals = FindViewById<RecyclerView>(Resource.Id.recyclerViewOneTimeGoal);
         }
-
-
 
         public void BindActivityWithLayoutManager()
         {
