@@ -142,6 +142,9 @@
     <Compile Include="RecyclerView_Resources\NoteAdapter.cs" />
     <Compile Include="RecyclerView_Resources\NoteAlbum.cs" />
     <Compile Include="RecyclerView_Resources\NoteViewHolder.cs" />
+    <Compile Include="RecyclerView_Resources\ShareAdapter.cs" />
+    <Compile Include="RecyclerView_Resources\ShareAlbum.cs" />
+    <Compile Include="RecyclerView_Resources\ShareViewHolder.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -187,6 +190,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Goal_CardView.axml" />
     <AndroidResource Include="Resources\menu\bottom_navigation_main.axml" />
+    <AndroidResource Include="Resources\layout\ShareCardView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

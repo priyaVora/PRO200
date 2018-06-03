@@ -22,6 +22,8 @@ namespace StudyApp
         private Context context;
 
         public FileAlbum mFileAlbum;
+        ShareFileDialog currentDialog;
+        Button cancelBtn;
         public FileAdapter(FileAlbum file, Context contxt)
         {
             mFileAlbum = file;
@@ -52,9 +54,16 @@ namespace StudyApp
                 if (isLongClick)
                 {
                     Toast.MakeText(context, "Share Options", ToastLength.Short).Show();
+                    //FragmentTransaction transaction = ((Activity)context).FragmentManager.BeginTransaction();
                     FragmentTransaction transaction = ((Activity)context).FragmentManager.BeginTransaction();
-                    ShareFileDialog currentDialog = new ShareFileDialog();
+
+                    currentDialog = new ShareFileDialog(context);
                     currentDialog.Show(transaction,"dialog fragment");
+                    //LayoutInflater inflater = currengetActivity().getLayoutInflater();
+                    //View currentView = currentDialog.OnCreateView()
+                    //Toast.MakeText(context, "--" + currentView, ToastLength.Short).Show();
+                    //cancelBtn = currentView.FindViewById<Button>(Resource.Id.cancelBtn);
+                    //cancelBtn.Click += CancelClick;
                 }
                 else
                 {
@@ -68,6 +77,20 @@ namespace StudyApp
             }
 
         }
+
+        public void CancelClick(object sender, EventArgs args)
+        {
+
+           
+                Toast.MakeText(context, "Cancel", ToastLength.Short).Show();
+           
+           
+        }
+
+
+
+
+
 
         public override int ItemCount
         {
