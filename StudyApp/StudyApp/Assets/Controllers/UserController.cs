@@ -26,15 +26,12 @@ namespace StudyApp.Assets.Controllers
             {
                 return (CurrentUser = GetUser(username));
             }
-            
-
 
             return null;
         }
 
-        public void LogOut()
-        {
-            throw new NotImplementedException();
+        public void LogOut() {
+            CurrentUser = null;
         }
 
         public UserAccount CreateAccount(string username, string password, string email, string phoneNum = null)
