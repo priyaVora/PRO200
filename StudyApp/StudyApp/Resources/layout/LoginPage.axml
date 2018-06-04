@@ -35,6 +35,7 @@
             android:singleLine="true" />
         <EditText
             android:hint="Enter password here"
+            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:id="@+id/Login_PasswordField"
