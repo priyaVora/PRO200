@@ -65,7 +65,8 @@ namespace StudyApp.Assets.Views {
 
 
             usernameBtn = FindViewById<Button>(Resource.Id.usernameBtn);
-            usernameBtn.Text = this.userController.CurrentUser.UserName;
+            UserAccount currentUser = this.userController.CurrentUser;
+            usernameBtn.Text = currentUser.UserName;
 
             // TODO: populate current points user has.
 
