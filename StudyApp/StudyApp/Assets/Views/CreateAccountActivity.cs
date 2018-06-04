@@ -67,14 +67,9 @@ namespace StudyApp.Assets.Views {
 
                 StringMessageDialogFragment dialog = StringMessageDialogFragment.CreateInstance(errorMessage);
                 dialog.Show(FragmentManager, "Invalid information");
-
-                userNameField.Text = String.Empty;
-                passwordField.Text = String.Empty;
-                emailField.Text = String.Empty;
-                phoneNumberField.Text = String.Empty;
             } else {
                 UserAccount user = userController.CreateAccount(userNameField.Text, passwordField.Text, emailField.Text, phoneNumberField.Text);
-                
+                userController.LogIn(user.UserName, passwordField.Text);
                 Intent intent = new Intent(this, typeof(HomeActivity));
                 intent.PutExtra("UserController", JsonConvert.SerializeObject(userController));
                 StartActivity(intent);

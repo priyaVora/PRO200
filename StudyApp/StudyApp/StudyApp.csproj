@@ -53,6 +53,12 @@
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.FilePicker, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugin.FilePicker.1.1.0\lib\MonoAndroid10\Plugin.FilePicker.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.FilePicker.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugin.FilePicker.1.1.0\lib\MonoAndroid10\Plugin.FilePicker.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
@@ -121,6 +127,7 @@
     <Compile Include="Assets\Views\CommonActivity.cs" />
     <Compile Include="Assets\Views\CreateAccountActivity.cs" />
     <Compile Include="Assets\Views\DailyGoalActivity.cs" />
+    <Compile Include="Assets\Views\PopUps\ShareFileDialog.cs" />
     <Compile Include="Assets\Views\PopUps\LayoutDialogFragment.cs" />
     <Compile Include="Assets\Views\PopUps\StringMessageDialogFragment.cs" />
     <Compile Include="Assets\Views\FileViewActivity.cs" />
@@ -141,10 +148,16 @@
     <Compile Include="RecyclerView_Resources\NoteAdapter.cs" />
     <Compile Include="RecyclerView_Resources\NoteAlbum.cs" />
     <Compile Include="RecyclerView_Resources\NoteViewHolder.cs" />
+    <Compile Include="RecyclerView_Resources\ShareAdapter.cs" />
+    <Compile Include="RecyclerView_Resources\ShareAlbum.cs" />
+    <Compile Include="RecyclerView_Resources\ShareViewHolder.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\menu\logout_menu.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <None Include="GettingStarted.Xamarin" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
@@ -182,6 +195,13 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Goal_CardView.axml" />
+    <AndroidResource Include="Resources\menu\bottom_navigation_main.axml" />
+    <AndroidResource Include="Resources\layout\ShareCardView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\menu\longPress_FileMenu.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
