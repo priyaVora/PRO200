@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Net.Http;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
@@ -16,14 +18,22 @@ using Android.Views;
 using Android.Widget;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+
 using StudyApp.Assets.Models;
 using File = StudyApp.Assets.Models.File;
 
 namespace StudyApp.Assets.Controllers
 {
-    class ServerIOController
+
+    public class ServerIOController
     {
         public static readonly string IP = "104.42.173.109";
+        private HttpClient client;
+
+        public ServerIOController() {
+            ServicePointManager.ServerCertificateValidationCallback = (sender, certificate, chain, errors) => true;
+            client = new HttpClient();
+        }
 
         /*
           _____          _       _____            __         
@@ -106,9 +116,9 @@ namespace StudyApp.Assets.Controllers
         }
         #endregion
 
-        private static void PassToServer(string modelType, string controller, string urlContent="", string json="")
+        private void PassToServer(string modelType, string controller, string urlContent="", string json="")
         {
-            HttpClient client = new HttpClient();
+            
             string url = $"https://{IP}/{modelType}/{controller}{(string.IsNullOrWhiteSpace(urlContent) ? "" : $"?{urlContent}")}";
 
             if (!string.IsNullOrWhiteSpace(json))
@@ -139,7 +149,7 @@ namespace StudyApp.Assets.Controllers
         public bool AuthenticateUser(string username, string password)
         {
             string url = $"https://{IP}/user/AuthenticateUser?username={username}&password={password}";
-            HttpClient client = new HttpClient();
+            
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<bool>(result.Result);
@@ -147,7 +157,7 @@ namespace StudyApp.Assets.Controllers
         public bool DoesUserExist(string username)
         {
             string url = $"https://{IP}/user/doesUserExist?username={username}";
-            HttpClient client = new HttpClient();
+            
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<bool>(result.Result);
@@ -156,7 +166,7 @@ namespace StudyApp.Assets.Controllers
         public UserAccount GetUser(string username)
         {
             string url = $"https://{IP}/user/GetUser?username={username}";
-            HttpClient client = new HttpClient();
+            
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<UserAccount>(result.Result);
@@ -168,7 +178,7 @@ namespace StudyApp.Assets.Controllers
         public Goal GetGoal(string guid, string username)
         {
             string url = $"https://{IP}/user/GetUser?guid={guid}&username={username}";
-            HttpClient client = new HttpClient();
+            
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<Goal>(result.Result);
@@ -179,7 +189,7 @@ namespace StudyApp.Assets.Controllers
         {
 
             string url = $"https://{IP}/goal/GetUpcomingRecurringGoals?username={username}&dateString={DateTime.Now.ToShortDateString()}";
-            HttpClient client = new HttpClient();
+            
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
             List<Goal> goals = JsonConvert.DeserializeObject<List<Goal>>(result.Result);
@@ -194,7 +204,7 @@ namespace StudyApp.Assets.Controllers
         public List<Goal> GetOverdueGoals(string username)
         {
             string url = $"https://{IP}/goal/GetOverdieGoals?username={username}&dateString={DateTime.Now.ToShortDateString()}";
-            HttpClient client = new HttpClient();
+            
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<List<Goal>>(result.Result);
@@ -206,7 +216,7 @@ namespace StudyApp.Assets.Controllers
         public List<FileMini> GetFilePreviews(string username)
         {
             string url = $"https://{IP}/file/GetFilePreviews?username={username}";
-            HttpClient client = new HttpClient();
+            
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<List<FileMini>>(result.Result);
@@ -215,7 +225,7 @@ namespace StudyApp.Assets.Controllers
         public File DownloadFile(string guid)
         {
             string url = $"https://{IP}/file/DownloadFile?guid={guid}";
-            HttpClient client = new HttpClient();
+            
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<File>(result.Result);
@@ -227,7 +237,7 @@ namespace StudyApp.Assets.Controllers
         public Note GetNote(string guid, string username)
         {
             string url = $"https://{IP}/user/GetUser?guid={guid}&username={username}";
-            HttpClient client = new HttpClient();
+            
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<Note>(result.Result);
@@ -236,7 +246,7 @@ namespace StudyApp.Assets.Controllers
         public List<NoteMini> GetNotePreviews(string username)
         {
             string url = $"https://{IP}/note/GetNotePreviews?username={username}";
-            HttpClient client = new HttpClient();
+            
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<List<NoteMini>>(result.Result);
@@ -248,7 +258,7 @@ namespace StudyApp.Assets.Controllers
         public Month GetMonth(string username, int monthOfYear)
         {
             string url = $"https://{IP}/file/DownloadFile?username={username}&monthOfYear={monthOfYear}";
-            HttpClient client = new HttpClient();
+            
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<Month>(result.Result);

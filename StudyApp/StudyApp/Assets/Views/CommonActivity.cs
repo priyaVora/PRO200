@@ -86,6 +86,11 @@ namespace StudyApp.Assets.Views {
             intent.PutExtra("NoteController", JsonConvert.SerializeObject(noteController));
             intent.PutExtra("FileController", JsonConvert.SerializeObject(fileController));
             intent.PutExtra("CalendarController", JsonConvert.SerializeObject(calendarController));
+
+            foreach (KeyValuePair<string, string> pair in extras) {
+                intent.PutExtra(pair.Key, pair.Value);
+            }
+
             StartActivity(intent);
             if (finish) {
                 Finish();

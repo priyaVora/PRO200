@@ -24,7 +24,7 @@ namespace StudyApp.Assets.Controllers
             ServerIOController serverIo = new ServerIOController();
             if (serverIo.AuthenticateUser(username, password))
             {
-                return CurrentUser = GetUser(username);
+                return (CurrentUser = GetUser(username));
             }
             
 

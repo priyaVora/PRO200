@@ -10,7 +10,9 @@ using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using StudyApp.Assets.Controllers;
 using StudyApp.Assets.Models;
+using StudyApp.Assets.Views.PopUps;
 using StudyApp.Interface;
 using StudyApp.RecyclerView_Resources;
 
@@ -19,12 +21,15 @@ namespace StudyApp
     public class FileAdapter : RecyclerView.Adapter, IItemClickListener
     {
         private Context context;
-
+        UserAccount currentUser = null;
         public FileAlbum mFileAlbum;
-        public FileAdapter(FileAlbum file, Context contxt)
+        ShareFileDialog currentDialog;
+        Button cancelBtn;
+        public FileAdapter(FileAlbum file, Context contxt, UserAccount currentUserAccount)
         {
             mFileAlbum = file;
             context = contxt;
+            currentUser = currentUserAccount;
         }
 
         public override RecyclerView.ViewHolder
@@ -50,7 +55,31 @@ namespace StudyApp
             {
                 if (isLongClick)
                 {
-                    Toast.MakeText(context, "Long Click: ", ToastLength.Short).Show();
+                    Toast.MakeText(context, "Share Options", ToastLength.Short).Show();
+                   
+                    Android.Widget.PopupMenu menu = new Android.Widget.PopupMenu((Activity)context, itemView);
+                    menu.MenuInflater.Inflate(Resource.Menu.longPress_FileMenu, menu.Menu);
+
+                    menu.MenuItemClick += (s, arg) =>
+                    {
+                       if(arg.Item.ItemId.Equals(Resource.Id.ShareFileItem))
+                        {
+                            FragmentTransaction transaction = ((Activity)context).FragmentManager.BeginTransaction();
+                            
+                           
+                            currentDialog = new ShareFileDialog(context);
+                            currentDialog.Show(transaction, "dialog fragment");
+                        }
+                        else if(arg.Item.ItemId.Equals(Resource.Id.DeleteFileItem))
+                        {
+                            Toast.MakeText(context, "Delete File", ToastLength.Short).Show();
+                            FileController fileController = new FileController();
+                            
+                        } 
+                    };
+
+                    menu.Show();
+
                 }
                 else
                 {
@@ -64,6 +93,20 @@ namespace StudyApp
             }
 
         }
+
+        public void CancelClick(object sender, EventArgs args)
+        {
+
+           
+                Toast.MakeText(context, "Cancel", ToastLength.Short).Show();
+           
+           
+        }
+
+
+
+
+
 
         public override int ItemCount
         {
