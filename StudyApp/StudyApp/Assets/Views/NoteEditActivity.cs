@@ -31,6 +31,7 @@ namespace StudyApp.Assets.Views {
 
             cancelButton.Click += CancelClick;
             saveButton.Click += SaveClick;
+            note = new Note();
 
             note = JsonConvert.DeserializeObject<Note>(Intent.GetStringExtra("SelectedNote"));
         }

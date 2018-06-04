@@ -39,6 +39,9 @@ namespace StudyApp.Assets.Views {
         GoalAlbum mGoalAlbumNonRecurringGoal;
         Button usernameBtn;
         Button currentPntBtn;
+
+
+
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
             ActionBar.Hide();
@@ -51,6 +54,7 @@ namespace StudyApp.Assets.Views {
             View home = LayoutInflater.Inflate(Resource.Layout.HomePage, null); // Replace the inside of this method call with your desired layout
             frame.AddView(home.FindViewById<LinearLayout>(Resource.Id.Home_Layout));
 
+            
             /*
              * This method needs to be called on the OnCreate method for any activities inheriting from CommonActivity,
              * since this is what initializes the navbar
