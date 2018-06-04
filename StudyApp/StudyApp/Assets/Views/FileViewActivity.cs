@@ -61,15 +61,6 @@ namespace StudyApp.Assets.Views
             mLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.SetLayoutManager(mLayoutManager);
 
-            /*
-             * 
-             * Setting temporary user for testing purposes until login works.
-             * **/
-
-            this.userController.CurrentUser = new Models.UserAccount();
-            this.userController.CurrentUser.UserName = "prvora89";
-
-
             // Plug in my adapter:
             mAdapter = new FileAdapter(mFileAlbum, this, this.userController.CurrentUser);
             mRecyclerView.SetAdapter(mAdapter);

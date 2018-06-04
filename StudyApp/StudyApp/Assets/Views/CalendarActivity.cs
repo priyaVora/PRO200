@@ -22,7 +22,7 @@ namespace StudyApp.Assets.Views {
     [Activity]
     public class CalendarActivity : CommonActivity, IOnDateChangeListener {
 
-        //private LayoutDialogFragment goalCreationPopup = LayoutDialogFragment.CreateInstance(Resource.Layout.GoalCreationPage);
+        private CalendarView calendar;
 
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
