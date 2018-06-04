@@ -17,8 +17,6 @@ namespace StudyApp.Assets.Views {
 
         private EditText taskNameField;
         private EditText taskDescriptionField;
-        private Button datePickButton;
-        private Button timePickButton;
         private SeekBar pointsSlider;
         private Switch typeSwitch;
         private LinearLayout frequencyLayout;
@@ -35,17 +33,26 @@ namespace StudyApp.Assets.Views {
 
             taskNameField = FindViewById<EditText>(Resource.Id.GoalCreation_TaskNameField);
             taskDescriptionField = FindViewById<EditText>(Resource.Id.GoalCreation_DescriptionField);
-            datePickButton = FindViewById<Button>(Resource.Id.GoalCreation_DatePickButton);
-            timePickButton = FindViewById<Button>(Resource.Id.GoalCreation_TimePickButton);
             pointsSlider = FindViewById<SeekBar>(Resource.Id.GoalCreation_PointsSlider);
             typeSwitch = FindViewById<Switch>(Resource.Id.GoalCreation_GoalSwitch);
             frequencyLayout = FindViewById<LinearLayout>(Resource.Id.GoalCreation_FrequencyLayout);
+
+            Button timePickButton = FindViewById<Button>(Resource.Id.GoalCreation_TimePickButton);
+            Button datePickButton = FindViewById<Button>(Resource.Id.GoalCreation_DatePickButton);
             Button cancelButton = FindViewById<Button>(Resource.Id.GoalCreation_CancelButton);
             Button saveButton = FindViewById<Button>(Resource.Id.GoalCreation_SaveButton);
 
             cancelButton.Click += Cancel_Click;
             saveButton.Click += Save_Click;
-            // TODO: register events to previous views
+
+            datePickButton.Click += delegate {
+                DatePickerDialog datePickDialog = new DatePickerDialog(this, Date, DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                datePickDialog.Show();
+            };
+        }
+
+        private void Date(object sender, DatePickerDialog.DateSetEventArgs args) {
+            Toast.MakeText(Application.Context, args.Date.ToShortDateString(), ToastLength.Short);
         }
 
         private void Cancel_Click(object sender, EventArgs args) {
