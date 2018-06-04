@@ -94,10 +94,7 @@ namespace StudyApp.Assets.Controllers
 
         public void UpdateNote(Note note)
         {
-            string json = "";
-            JsonSerializer serializer = JsonSerializer.Create();
-            serializer.Serialize(new StringWriter(new StringBuilder(json)), note);
-
+            string json = JsonConvert.SerializeObject(note);
             PassToServer("note", "UpdateNote", json: json);
         }
 
