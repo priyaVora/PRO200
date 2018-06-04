@@ -38,6 +38,7 @@ namespace StudyApp.Assets.Views {
         GoalAdapter mAdapterOneTimeGoal;
         GoalAlbum mGoalAlbumNonRecurringGoal;
         Button usernameBtn;
+        Button currentPntBtn;
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
             ActionBar.Hide();
@@ -64,6 +65,10 @@ namespace StudyApp.Assets.Views {
 
 
             usernameBtn = FindViewById<Button>(Resource.Id.usernameBtn);
+            usernameBtn.Text = this.userController.CurrentUser.UserName;
+
+            // TODO: populate current points user has.
+
             usernameBtn.Click += LogOutClick;
 
             //List<Goal> overdue = goalController.GetOverdueGoals(userController.CurrentUser.UserName);
