@@ -15,7 +15,7 @@ using Android.Views;
 using Android.Widget;
 using StudyApp.Assets.Controllers;
 using StudyApp.RecyclerView_Resources;
-
+using StudyApp.Assets.Models;
 namespace StudyApp.Assets.Views
 {
 
@@ -47,7 +47,9 @@ namespace StudyApp.Assets.Views
             Button AddFileBtn = FindViewById<Button>(Resource.Id.FilePage_AddFileButton);
             AddFileBtn.Click += UploadClick;
 
+            StudyApp.Assets.Models.File fileOne = new StudyApp.Assets.Models.File();
 
+           
             /*
              * This method needs to be called on the OnCreate method for any activities inheriting from CommonActivity,
              * since this is what initializes the navbar
@@ -177,9 +179,21 @@ namespace StudyApp.Assets.Views
                     //intent variable has a Field named Data which is the complete URI for the file. 
                     Android.Net.Uri uris = Android.Net.Uri.FromParts(intent.Data.Scheme, intent.Data.SchemeSpecificPart, intent.Data.Fragment);
                     System.IO.Stream input = ContentResolver.OpenInputStream(intent.Data);
+                    FileStream fileStream = input as FileStream;
+
+                    if (fileStream != null)
+                    {
+                        //It was really a file stream, get your information here
+                        Toast.MakeText(this, "Stream is still null", ToastLength.Short).Show();
+                    }
+                    else
+                    {
+                        //The stream was not a file stream, do whatever is required in that case
+                        Toast.MakeText(this, "Stream is not a filestream", ToastLength.Short).Show();
+                    }
 
 
-                    if(GetRealPathFromURI(uris)== null)
+                    if (GetRealPathFromURI(uris) == null)
                     {
 
                         Toast.MakeText(this, "Path is still null", ToastLength.Short).Show();
