@@ -10,6 +10,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using static Android.Widget.CalendarView;
 
 using Newtonsoft.Json;
 
@@ -19,7 +20,7 @@ using StudyApp.Assets.Controllers;
 namespace StudyApp.Assets.Views {
 
     [Activity]
-    public class CalendarActivity : CommonActivity {
+    public class CalendarActivity : CommonActivity, IOnDateChangeListener {
 
         //private LayoutDialogFragment goalCreationPopup = LayoutDialogFragment.CreateInstance(Resource.Layout.GoalCreationPage);
 
@@ -37,7 +38,7 @@ namespace StudyApp.Assets.Views {
             SetUpNavBar();
 
             CalendarView calendar = FindViewById<CalendarView>(Resource.Id.calendarView1);
-            calendar.Click += ShowGoals;
+            calendar.SetOnDateChangeListener(this);
 
             Button createGoalButton = FindViewById<Button>(Resource.Id.AddGoalButton);
             createGoalButton.Click += Add;
@@ -47,7 +48,7 @@ namespace StudyApp.Assets.Views {
             GoToActivity(typeof(GoalCreationActivity), false);
         }
 
-        private void ShowGoals(object sender, EventArgs args) {
+        public void OnSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
             GoToActivity(typeof(DailyGoalActivity), false);
         }
     }
