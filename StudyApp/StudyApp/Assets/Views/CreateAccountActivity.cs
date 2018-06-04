@@ -74,7 +74,7 @@ namespace StudyApp.Assets.Views {
                 phoneNumberField.Text = String.Empty;
             } else {
                 UserAccount user = userController.CreateAccount(userNameField.Text, passwordField.Text, emailField.Text, phoneNumberField.Text);
-                
+                userController.LogIn(user.UserName, passwordField.Text);
                 Intent intent = new Intent(this, typeof(HomeActivity));
                 intent.PutExtra("UserController", JsonConvert.SerializeObject(userController));
                 StartActivity(intent);
