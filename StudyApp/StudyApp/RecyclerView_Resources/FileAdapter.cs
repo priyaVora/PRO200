@@ -24,12 +24,13 @@ namespace StudyApp
         UserAccount currentUser = null;
         public FileAlbum mFileAlbum;
         ShareFileDialog currentDialog;
-        Button cancelBtn;
+        
         public FileAdapter(FileAlbum file, Context contxt, UserAccount currentUserAccount)
         {
             mFileAlbum = file;
             context = contxt;
             currentUser = currentUserAccount;
+       
         }
 
         public override RecyclerView.ViewHolder
@@ -45,7 +46,8 @@ namespace StudyApp
         {
             RecyclerView_Resources.FileViewHolder vh = holder as RecyclerView_Resources.FileViewHolder;
             vh.FileName.Text = mFileAlbum[position].Name;
-            vh.FileSize.Text = "81mb";
+
+            vh.FileSize.Text = $"{mFileAlbum[position].Size} MB";
             vh.SetItemClickListener(this);
         }
 
@@ -96,18 +98,8 @@ namespace StudyApp
 
         public void CancelClick(object sender, EventArgs args)
         {
-
-           
-                Toast.MakeText(context, "Cancel", ToastLength.Short).Show();
-           
-           
+            Toast.MakeText(context, "Cancel", ToastLength.Short).Show();
         }
-
-
-
-
-
-
         public override int ItemCount
         {
             get { return mFileAlbum.NumFiles; }

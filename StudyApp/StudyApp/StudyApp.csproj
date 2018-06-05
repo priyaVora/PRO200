@@ -204,6 +204,9 @@
     <AndroidResource Include="Resources\menu\longPress_GoalMenu.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\menu\notes_Options.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\Views\CompoundViews\" />

@@ -14,5 +14,7 @@
         public string Title { get; set; }
         public string Content { get; set; }
         public string GUID { get; set; }
+
+        public static implicit operator NoteMini(Note n) => new NoteMini { GUID = n.GUID, Title=n.Title };
     }
 }
