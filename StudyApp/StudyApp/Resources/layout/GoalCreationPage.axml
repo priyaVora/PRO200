@@ -108,7 +108,7 @@
             android:id="@+id/GoalCreation_DatePickButton"
             android:layout_marginRight="15dp"
             android:textSize="16dp"
-            android:hint="Date"
+            android:hint="Set Date"
             android:layout_marginLeft="20dp" />
         <Button
             android:layout_width="100.0dp"
@@ -116,7 +116,7 @@
             android:id="@+id/GoalCreation_TimePickButton"
             android:layout_marginRight="0.0dp"
             android:textSize="16dp"
-            android:hint="Time" />
+            android:hint="Set Time" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -143,7 +143,6 @@
             android:layout_marginLeft="31dp"
             android:layout_marginRight="31dp" />
         <TextView
-            android:text="15"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/GoalCreation_PointsTextView"
@@ -161,26 +160,27 @@
         android:layout_marginRight="35dp"
         android:layout_marginTop="20dp">
         <TextView
+            android:text="One Time"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:id="@+id/scoreLabel"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_marginRight="25dp" />
+        <Switch
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:checked="false"
+            android:id="@+id/GoalCreation_GoalSwitch"
+            android:layout_marginRight="33.0dp" />
+        <TextView
             android:text="Recurring"
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:id="@+id/descriptionLabel"
             android:gravity="center"
-            android:layout_marginRight="25dp"
-            android:textSize="16dp" />
-        <Switch
-            android:layout_width="50dp"
-            android:layout_height="40dp"
-            android:checked="true"
-            android:id="@+id/GoalCreation_GoalSwitch"
-            android:layout_marginRight="33.0dp" />
-        <TextView
-            android:text="One Time Label"
-            android:layout_width="120dp"
-            android:layout_height="40dp"
-            android:id="@+id/scoreLabel"
-            android:gravity="center"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:layout_marginRight="40dp" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -201,12 +201,12 @@
             android:layout_width="wrap_content"
             android:layout_marginRight="80.0dp"
             android:textSize="16dp"
-            android:text="@string/frequency_prompt" />
+            android:text="Frequency" />
         <Spinner
             android:layout_width="80dp"
             android:layout_height="30dp"
             android:id="@+id/GoalCreation_FrequencySpinner"
             android:layout_marginRight="65dp"
-            android:prompt="@string/frequency_prompt" />
+            android:spinnerMode="dialog"/>
     </LinearLayout>
 </LinearLayout>

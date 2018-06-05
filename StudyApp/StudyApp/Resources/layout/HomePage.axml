@@ -43,9 +43,10 @@
         android:background="@drawable/customborder"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="115dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" />
+        android:layout_marginRight="20dp"
+        android:padding="10dp"
+        android:layout_height="115dp" />
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
@@ -68,7 +69,8 @@
         android:layout_width="match_parent"
         android:layout_height="115dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" />
+        android:layout_marginRight="20dp"
+        android:padding="10dp" />
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
@@ -91,5 +93,6 @@
         android:layout_width="match_parent"
         android:layout_height="115dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" />
+        android:layout_marginRight="20dp"
+        android:padding="10dp" />
 </LinearLayout>
