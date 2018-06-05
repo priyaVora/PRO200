@@ -101,11 +101,6 @@ namespace StudyApp.Assets.Views {
         }
 
         private void Save_Click(object sender, EventArgs args) {
-            ParseInput();
-            GoBack();
-        }
-
-        private void ParseInput() {
             if (!IsNameValid() || !IsDescriptionValid() || !IsFrequencyValid() || !IsDateValid()) {
                 string errorMessage = "Invalid input for one or more fields.";
                 StringMessageDialogFragment dialog = StringMessageDialogFragment.CreateInstance(errorMessage);
@@ -149,6 +144,7 @@ namespace StudyApp.Assets.Views {
                         Frequency = frequency,
                         Points = points
                     };
+                    goalController.CreateRecurringGoal(userController.CurrentUser.UserName, (RecurringGoal) goal);
                 } else {
                     goal = new NonRecurringGoal {
                         TaskName = name,
@@ -156,9 +152,11 @@ namespace StudyApp.Assets.Views {
                         Description = description,
                         Points = points
                     };
+
+                    goalController.CreateNonRecurringGoal(userController.CurrentUser.UserName, (NonRecurringGoal) goal);
                 }
 
-                goalController.CreateGoal(userController.CurrentUser.UserName, goal);
+                GoBack();
             }
         }
 

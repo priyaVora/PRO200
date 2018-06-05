@@ -92,10 +92,18 @@ namespace StudyApp.Assets.Controllers
         #endregion
 
         #region Goal
-        public void CreateGoal(Goal goal, string username)
-        {
-            string json = JsonConvert.SerializeObject(goal);
-            PassToServer("goal", "CreateGoal", $"username={username}", json);
+        //public void CreateGoal(Goal goal, string username)
+        //{
+        //    string json = JsonConvert.SerializeObject(goal);
+        //    PassToServer("goal", "CreateGoal", $"username={username}", json);
+        //}
+
+        public void CreateNonRecurringGoal(NonRecurringGoal goal, string username) {
+            PassToServer("goal", "CreateNonRecurringGoal", $"username={username}", JsonConvert.SerializeObject(goal));
+        }
+
+        public void CreateRecurringGoal(RecurringGoal goal, string username) {
+            PassToServer("goal", "CreateRecurringGoal", $"username={username}", JsonConvert.SerializeObject(goal));
         }
 
         public void MarkGoalAsCompleted(string guid, string username)
@@ -147,7 +155,12 @@ namespace StudyApp.Assets.Controllers
             
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<UserAccount>(result.Result);
+
+            JsonSerializerSettings settings = new JsonSerializerSettings {
+                TypeNameHandling = TypeNameHandling.Objects
+            };
+
+            return JsonConvert.DeserializeObject<UserAccount>(result.Result, settings);
 
         }
         #endregion
