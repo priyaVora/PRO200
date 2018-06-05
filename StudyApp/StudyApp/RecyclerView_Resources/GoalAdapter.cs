@@ -10,7 +10,10 @@ using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using StudyApp.Assets.Controllers;
 using StudyApp.Assets.Models;
+using StudyApp.Assets.Views;
+using StudyApp.Assets.Views.PopUps;
 using StudyApp.RecyclerView_Resources;
 
 namespace StudyApp
@@ -18,9 +21,16 @@ namespace StudyApp
     public class GoalAdapter : RecyclerView.Adapter
     {
         public GoalAlbum mGoalAlbum;
-        public GoalAdapter(GoalAlbum Goal)
+        private Context _context;
+        private UserAccount _currentAccount;
+        public GoalAdapter(GoalAlbum Goal, Context context)
         {
             mGoalAlbum = Goal;
+            _context = context;
+            if (_context is CommonActivity activity)
+            {
+                _currentAccount = activity.userController.CurrentUser;
+            }
         }
 
         public override RecyclerView.ViewHolder
@@ -38,6 +48,48 @@ namespace StudyApp
             vh.GoalTaskName.Text = mGoalAlbum[position].TaskName;
             vh.GoalDescription.Text = "This is a placeholder for the description.";
             vh.GoalPoints.Text = "100";
+        }
+        public void OnClick(View itemView, int position, bool isLongClick)
+        {
+            try
+            {
+                if (isLongClick)
+                {
+                    Toast.MakeText(_context, "Goal Options", ToastLength.Short).Show();
+
+                    Android.Widget.PopupMenu menu = new Android.Widget.PopupMenu((Activity)_context, itemView);
+                    menu.MenuInflater.Inflate(Resource.Menu.longPress_GoalMenu, menu.Menu);
+
+                    menu.MenuItemClick += (s, arg) =>
+                    {
+                        if (_context is CommonActivity activity)
+                        {   
+                            if (arg.Item.ItemId.Equals(Resource.Id.CompleteGoal))
+                            {
+                                activity.goalController.CompleteGoal(mGoalAlbum[position].GUID, _currentAccount.UserName);
+                                new ServerIOController().AddPoints(_currentAccount.UserName, mGoalAlbum[position].Points);
+                            }
+                            else if (arg.Item.ItemId.Equals(Resource.Id.DeleteGoal))
+                            {
+                                activity.goalController.CompleteGoal(mGoalAlbum[position].GUID, _currentAccount.UserName);
+                            }
+                        }
+                    };
+
+                    menu.Show();
+
+                }
+                //else
+                //{
+                //    Toast.MakeText(_context, "Downloaded File ", ToastLength.Short).Show();
+                //}
+            }
+            catch (Exception e)
+            {
+                Toast.MakeText(_context, e.ToString(), ToastLength.Short).Show();
+
+            }
+
         }
 
 

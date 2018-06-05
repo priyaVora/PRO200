@@ -34,16 +34,7 @@ namespace StudyApp.Assets.Controllers
             ServicePointManager.ServerCertificateValidationCallback = (sender, certificate, chain, errors) => true;
             client = new HttpClient();
         }
-
-        /*
-          _____          _       _____            __         
-         / ____|        | |     |_   _|          / _|        
-        | |  __    ___  | |_      | |    _ __   | |_    ___  
-        | | |_ |  / _ \ | __|     | |   | '_ \  |  _|  / _ \ 
-        | |__| | |  __/ | |_     _| |_  | | | | | |   | (_) |
-         \_____|  \___|  \__|   |_____| |_| |_| |_|    \___/
-        Does not expect returns
-        */
+        
 
         #region Send
 
@@ -129,17 +120,7 @@ namespace StudyApp.Assets.Controllers
             }
         }
         #endregion
-
-        /*
-         _____                  _       _____            __         
-        |  __ \                | |     |_   _|          / _|        
-        | |__) |   ___    ___  | |_      | |    _ __   | |_    ___  
-        |  ___/   / _ \  / __| | __|     | |   | '_ \  |  _|  / _ \ 
-        | |      | (_) | \__ \ | |_     _| |_  | | | | | |   | (_) |
-        |_|       \___/  |___/  \__|   |_____| |_| |_| |_|    \___/
-        Expects returns
-        */
-
+        
         #region Receive
 
         #region User

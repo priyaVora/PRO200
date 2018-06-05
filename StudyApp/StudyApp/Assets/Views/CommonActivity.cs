@@ -20,11 +20,11 @@ namespace StudyApp.Assets.Views {
     [Activity]
     public class CommonActivity : Activity {
 
-        protected UserController userController;
-        protected NoteController noteController;
-        protected FileController fileController;
-        protected GoalController goalController;
-        protected CalendarController calendarController;
+        internal UserController userController;
+        internal NoteController noteController;
+        internal FileController fileController;
+        internal GoalController goalController;
+        internal CalendarController calendarController;
 
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
