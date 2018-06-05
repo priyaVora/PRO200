@@ -10,6 +10,8 @@ using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using StudyApp.Assets.Controllers;
+using StudyApp.Assets.Models;
 using StudyApp.Interface;
 
 namespace StudyApp.RecyclerView_Resources
@@ -17,12 +19,14 @@ namespace StudyApp.RecyclerView_Resources
     public class NoteAdapter : RecyclerView.Adapter, IItemClickListener
     {
         private Context currentContext;
+        private UserAccount currentUser;
         public NoteAlbum mNoteAlbum;
 
-        public NoteAdapter(NoteAlbum notes, Context context)
+        public NoteAdapter(NoteAlbum notes, Context context, UserAccount currentUser)
         {
             mNoteAlbum = notes;
             currentContext = context;
+            this.currentUser = currentUser;
         }
 
 
@@ -39,6 +43,7 @@ namespace StudyApp.RecyclerView_Resources
         {
             RecyclerView_Resources.NoteViewHolder vh = holder as RecyclerView_Resources.NoteViewHolder;
             vh.NoteTitle.Text = mNoteAlbum[position].Title;
+            vh.SetItemClickListener(this);
         }
 
         public void OnClick(View itemView, int position, bool isLongClick)
@@ -57,13 +62,26 @@ namespace StudyApp.RecyclerView_Resources
 
                         if(arg.Item.ItemId.Equals(Resource.Id.deleteFile))
                         {
-                            Toast.MakeText(currentContext, "Delete Notes", ToastLength.Short).Show();
-                        }
-                        
-                        //    Toast.MakeText(context, "Delete File", ToastLength.Short).Show();
-                        //    FileController fileController = new FileController();
+                            Toast.MakeText(currentContext, "Edit " + itemView.FindViewById<TextView>(Resource.Id.textView).Text , ToastLength.Short).Show();
+                            NoteController controller = new NoteController();
+                            TextView NoteTitle = itemView.FindViewById<TextView>(Resource.Id.textView);
+                            Toast.MakeText(currentContext, NoteTitle.Text.Trim(), ToastLength.Short).Show();
 
-                        
+                            List<NoteMini> listOfNoteMini = controller.GetNotePreviews(currentUser.UserName);
+                            string title = NoteTitle.Text;
+                            string currentNoteId = null;
+                            foreach(NoteMini eachMini in listOfNoteMini)
+                            {
+                                if(eachMini.Title.Equals(title))
+                                {
+                                    currentNoteId = eachMini.GUID;
+                                    break;
+                                }
+                            }
+
+                            //Note getStoredNote = controller.GetNote(currentNoteId, currentUser.UserName);
+                          
+                        }       
                     };
 
                     menu.Show();

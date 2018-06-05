@@ -26,6 +26,9 @@ namespace StudyApp.RecyclerView_Resources
             Color textColor = Color.White;
             NoteTitle = itemView.FindViewById<TextView>(Resource.Id.textView);
             NoteTitle.SetTextColor(textColor);
+
+            itemView.SetOnClickListener(this);
+            itemView.SetOnLongClickListener(this);
         }
 
         public void SetItemClickListener(Interface.IItemClickListener itemClickListener)

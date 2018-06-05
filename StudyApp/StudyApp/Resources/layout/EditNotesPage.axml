@@ -3,38 +3,43 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
-        android:orientation="horizontal"
+  <LinearLayout
+      android:orientation="horizontal"
+      android:layout_width="match_parent"
+      android:layout_height="82.0dp"
+      android:id="@+id/linearLayout1"
+      android:gravity="center">
+    <Button
+        android:text="Cancel"
+        android:layout_width="170.0dp"
+        android:layout_height="60dp"
+        android:id="@+id/ClNotesButton" />
+    <Button
+        android:text="Save"
+        android:layout_width="170.0dp"
+        android:layout_height="60dp"
+        android:id="@+id/SaveNotesButton"
+        android:layout_marginLeft="15dp" />
+  </LinearLayout>
+  <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="300.0dp"
+      android:layout_margin="20.0dp">
+
+    <EditText
+        android:hint="Title: "
         android:layout_width="match_parent"
-        android:layout_height="82.0dp"
-        android:id="@+id/linearLayout1"
-        android:gravity="center">
-        <Button
-            android:text="Cancel"
-            android:layout_width="170.0dp"
-            android:layout_height="60dp"
-            android:id="@+id/CancelNotesButton" />
-        <Button
-            android:text="Save"
-            android:layout_width="170.0dp"
-            android:layout_height="60dp"
-            android:id="@+id/SaveNotesButton"
-            android:layout_marginLeft="15dp" />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:id="@+id/NoteTitle"
+        android:background="@android:color/transparent"
+        android:layout_marginBottom="20.0dp" />
+    <EditText
+        android:hint="Enter Your Notes "
         android:layout_width="match_parent"
-        android:layout_height="300.0dp"
-        android:layout_margin="20.0dp">
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/NoteTitle"
-            android:layout_marginBottom="20.0dp" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:id="@+id/NoteContent" />
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:id="@+id/NoteContent"
+        android:layout_marginBottom="20.0dp" />
+          
+  </LinearLayout>
 </LinearLayout>
