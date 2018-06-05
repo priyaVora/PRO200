@@ -49,7 +49,7 @@
             android:textSize="16dp"
             android:singleLine="true" />
         <EditText
-            android:hint="Phone Number"
+            android:hint="Phone Number (Optional)"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/EditTextStyle"
@@ -60,17 +60,12 @@
             android:padding="10dp"
             android:textSize="16dp"
             android:singleLine="true" />
-        <TextView
-            android:text="Required Fields"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:layout_height="wrap_content"
-            android:id="@+id/RequiredFieldsLabel" />
         <Button
             android:text="Create Account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/CreateButton"
-            android:layout_marginTop="40.0dp" />
+            android:layout_marginTop="40.0dp"
+            android:textSize="16dp" />
     </LinearLayout>
 </LinearLayout>

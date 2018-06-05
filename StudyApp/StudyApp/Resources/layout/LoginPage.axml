@@ -34,24 +34,25 @@
             android:textSize="16dp"
             android:singleLine="true" />
         <EditText
-            android:hint="Enter password here"
-            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:id="@+id/Login_PasswordField"
-            android:textColorHint="@android:color/darker_gray"
             android:textColor="@android:color/darker_gray"
             android:background="@drawable/EditTextStyle"
             android:layout_marginTop="15.0dp"
             android:padding="10dp"
             android:textSize="16dp"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textColorHint="@android:color/darker_gray"
+            android:hint="Enter Password Here"
+            android:inputType="textPassword" />
         <Button
             android:text="Login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/LoginButton"
-            android:layout_marginTop="15.0dp" />
+            android:layout_marginTop="15.0dp"
+            android:textSize="16dp" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -71,6 +72,7 @@
             android:text="Create Account "
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/Login_CreateAccountButton" />
+            android:id="@+id/Login_CreateAccountButton"
+            android:textSize="16dp" />
     </LinearLayout>
 </LinearLayout>
