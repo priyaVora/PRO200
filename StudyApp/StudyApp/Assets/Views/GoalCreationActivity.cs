@@ -11,6 +11,9 @@ using Android.Views;
 using Android.Widget;
 using static Android.Widget.SeekBar;
 
+using StudyApp.Assets.Views.PopUps;
+using StudyApp.Assets.Models;
+
 namespace StudyApp.Assets.Views {
 
     [Activity(Label = "GoalCreationActivity")]
@@ -22,12 +25,14 @@ namespace StudyApp.Assets.Views {
         private TextView pointsLabel;
         private Switch typeSwitch;
         private LinearLayout frequencyLayout;
-        private Spinner frequencySpinner;
-        private DateTime deadlineDate;
-        private DateTime deadlineTime;
+        private Button frequencyButton;
         private Button timePickButton;
         private Button datePickButton;
         private int points;
+        private DateTime deadlineDate;
+        private DateTime deadlineTime;
+
+        public bool IsRecurring => typeSwitch.Selected;
 
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
@@ -45,17 +50,25 @@ namespace StudyApp.Assets.Views {
             pointsLabel = FindViewById<TextView>(Resource.Id.GoalCreation_PointsTextView);
             typeSwitch = FindViewById<Switch>(Resource.Id.GoalCreation_GoalSwitch);
             frequencyLayout = FindViewById<LinearLayout>(Resource.Id.GoalCreation_FrequencyLayout);
-            frequencySpinner = FindViewById<Spinner>(Resource.Id.GoalCreation_FrequencySpinner);
+            frequencyButton = FindViewById<Button>(Resource.Id.GoalCreation_FrequencyButton);
             timePickButton = FindViewById<Button>(Resource.Id.GoalCreation_TimePickButton);
             datePickButton = FindViewById<Button>(Resource.Id.GoalCreation_DatePickButton);
 
             Button cancelButton = FindViewById<Button>(Resource.Id.GoalCreation_CancelButton);
             Button saveButton = FindViewById<Button>(Resource.Id.GoalCreation_SaveButton);
 
-
             cancelButton.Click += Cancel_Click;
             saveButton.Click += Save_Click;
 
+            frequencyButton.Click += delegate {
+                PopupMenu menu = new PopupMenu(this, frequencyButton);
+                menu.MenuInflater.Inflate(Resource.Menu.frequency_menu, menu.Menu);
+
+                menu.MenuItemClick += (s, arg) => { frequencyButton.Text = arg.Item.TitleFormatted.ToString(); };
+
+                menu.Show();
+
+            };
             datePickButton.Click += delegate {
                 DatePickerDialog datePickDialog = new DatePickerDialog(this);
                 datePickDialog.SetOnDateSetListener(this);
@@ -77,15 +90,6 @@ namespace StudyApp.Assets.Views {
             pointsSlider.SetOnSeekBarChangeListener(this);
             pointsSlider.Max = 19;
             pointsLabel.Text = (pointsSlider.Progress + 1).ToString();
-
-            
-            List<string> frequencyItems = new List<string>() { "Daily", "Weekly", "Monthly", "Yearly" };
-            ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem, frequencyItems);
-            frequencySpinner.Prompt = "Select a frequency";
-
-            
-            frequencySpinner.Adapter = adapter;
-            //frequencySpinner.SetSelection(adapter.GetPosition("Daily"));
         }
 
         private void Cancel_Click(object sender, EventArgs args) {
@@ -93,8 +97,7 @@ namespace StudyApp.Assets.Views {
         }
 
         private void GoBack() {
-            OnBackPressed();
-            Finish();
+            GoToActivity(typeof(CalendarActivity), true);
         }
 
         private void Save_Click(object sender, EventArgs args) {
@@ -103,7 +106,87 @@ namespace StudyApp.Assets.Views {
         }
 
         private void ParseInput() {
+            if (!IsNameValid() || !IsDescriptionValid() || !IsFrequencyValid() || !IsDateValid()) {
+                string errorMessage = "Invalid input for one or more fields.";
+                StringMessageDialogFragment dialog = StringMessageDialogFragment.CreateInstance(errorMessage);
+                dialog.Show(FragmentManager, "Invalid information");
+            } else {
+                Goal goal;
+
+                string name = taskNameField.Text;
+                string description = taskDescriptionField.Text;
+                DateTime deadline = new DateTime(deadlineDate.Year, deadlineDate.Month, deadlineDate.Day, deadlineTime.Hour, deadlineTime.Minute, deadlineTime.Second);
+
+                if (IsRecurring) {
+                    TimeSpan frequency;
+                    switch (frequencyButton.Text) {
+                        case "Daily":
+                            frequency = new TimeSpan(1, 0, 0, 0);
+                            break;
+
+                        case "Weekly":
+                            frequency = new TimeSpan(7, 0, 0, 0);
+                            break;
+
+                        case "Monthly":
+                            // I CAN'T DEAL WITH MONTHS HERE
+                            frequency = new TimeSpan(30, 0, 0, 0);
+                            break;
+
+                        case "Yearly":
+                            frequency = new TimeSpan(365, 0, 0, 0);
+                            break;
+
+                        default:
+                            frequency = default(TimeSpan);
+                            break;
+                    }
+
+                    goal = new RecurringGoal {
+                        TaskName = name,
+                        Deadline = deadline,
+                        Description = description,
+                        Frequency = frequency,
+                        Points = points
+                    };
+                } else {
+                    goal = new NonRecurringGoal {
+                        TaskName = name,
+                        Deadline = deadline,
+                        Description = description,
+                        Points = points
+                    };
+                }
+
+                goalController.CreateGoal(userController.CurrentUser.UserName, goal);
+            }
         }
+
+        #region Input Validation
+        private bool IsNameValid() {
+            return !String.IsNullOrWhiteSpace(taskNameField.Text);
+        }
+
+        private bool IsDescriptionValid() {
+            return !String.IsNullOrWhiteSpace(taskDescriptionField.Text);
+        }
+
+        private bool IsFrequencyValid() {
+            if (typeSwitch.Selected) {
+                return !String.IsNullOrWhiteSpace(frequencyButton.Text);
+            }
+
+            return true;
+        }
+
+        private bool IsDateValid() {
+            return !String.IsNullOrWhiteSpace(datePickButton.Text);
+        }
+
+        private bool IsTimeValid() {
+            return !String.IsNullOrWhiteSpace(timePickButton.Text);
+        }
+        #endregion
 
         public void OnDateSet(DatePicker view, int year, int month, int dayOfMonth) {
             deadlineDate = new DateTime(year, month, dayOfMonth);
@@ -120,6 +203,7 @@ namespace StudyApp.Assets.Views {
             pointsLabel.Text = points.ToString();
         }
 
+        #region Unnecessary interface methods
         public void OnStartTrackingTouch(SeekBar seekBar) {
             //needed for interface but no code is needed
         }
@@ -127,5 +211,6 @@ namespace StudyApp.Assets.Views {
         public void OnStopTrackingTouch(SeekBar seekBar) {
             //needed for interface but no code is needed
         }
+        #endregion
     }
 }
