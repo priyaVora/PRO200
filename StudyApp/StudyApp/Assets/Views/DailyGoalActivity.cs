@@ -32,7 +32,7 @@ namespace StudyApp.Assets.Views {
             mLayoutManagerRecycler = new LinearLayoutManager(this);
             mRecyclerView.SetLayoutManager(mLayoutManagerRecycler);
             SetGoalData();
-            mAdapter = new GoalAdapter(mGoalAlbum, this, userController.CurrentUser);
+            mAdapter = new GoalAdapter(mGoalAlbum, this);
             mRecyclerView.SetAdapter(mAdapter);
 
         }
