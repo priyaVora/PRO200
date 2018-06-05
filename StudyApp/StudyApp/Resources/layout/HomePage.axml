@@ -5,94 +5,96 @@
     android:id="@+id/Home_Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="75.0dp"
-        android:id="@+id/linearLayout1"
-        android:gravity="center">
-        <Button
-            android:text="Current Points"
-            android:layout_width="160.0dp"
-            android:layout_height="50dp"
-            android:id="@+id/currentPointBtn" />
-        <Button
-            android:text="Username"
-            android:layout_width="160.0dp"
-            android:layout_height="50dp"
-            android:id="@+id/usernameBtn"
-            android:layout_marginLeft="15dp" />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0.0dp"
-        android:layout_margin="0.0dp">
-        <TextView
-            android:text="Overdue Goals"
-            android:layout_width="150dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="125dp"
-            android:id="@+id/overdueGoalLabel"
-            android:gravity="center_horizontal"
-            android:textSize="16dp" />
-    </LinearLayout>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerViewOverDueGoals"
-        android:background="@drawable/customborder"
-        android:scrollbars="vertical"
-        android:layout_width="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:padding="10dp"
-        android:layout_height="115dp" />
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0.0dp"
-        android:layout_margin="0.0dp">
-        <TextView
-            android:text="Recurring Goals"
-            android:layout_width="150dp"
-            android:layout_height="30dp"
-            android:id="@+id/recurringGoalLabel"
-            android:layout_marginLeft="125dp"
-            android:gravity="center"
-            android:textSize="16dp" />
-    </LinearLayout>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerViewRecurringGoals"
-        android:background="@drawable/customborder"
-        android:scrollbars="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="115dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:padding="10dp" />
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0.0dp"
-        android:layout_margin="0.0dp">
-        <TextView
-            android:text="One-Time Goals"
-            android:layout_width="150dp"
-            android:layout_height="30dp"
-            android:id="@+id/nonRecurringGoalLabel"
-            android:gravity="center"
-            android:layout_marginLeft="125dp"
-            android:textSize="16dp" />
-    </LinearLayout>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerViewOneTimeGoal"
-        android:background="@drawable/customborder"
-        android:scrollbars="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="115dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:padding="10dp" />
+  <LinearLayout
+      android:orientation="horizontal"
+      android:layout_width="match_parent"
+      android:layout_height="75.0dp"
+      android:id="@+id/linearLayout1"
+      android:gravity="center">
+    <Button
+        android:text="Current Points"
+        android:layout_width="160.0dp"
+        android:layout_height="50dp"
+        android:id="@+id/currentPointBtn" />
+    <Button
+        android:text="Username"
+        android:layout_width="160.0dp"
+        android:layout_height="50dp"
+        android:id="@+id/usernameBtn"
+        android:layout_marginLeft="15dp" />
+  </LinearLayout>
+
+  <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="0.0dp"
+      android:layout_margin="0.0dp">
+    <TextView
+        android:text="Overdue Goals"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="125dp"
+        android:id="@+id/overdueGoalLabel"
+        android:gravity="center_horizontal"
+        android:textSize="16dp" />
+  </LinearLayout>
+  <android.support.v7.widget.RecyclerView
+      android:id="@+id/recyclerViewOverDueGoals"
+      android:background="@drawable/customborder"
+      android:scrollbars="vertical"
+      android:layout_width="match_parent"
+      android:layout_marginLeft="20dp"
+      android:layout_marginRight="20dp"
+      android:padding="10dp"
+      android:layout_height="215dp" />
+  <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="0.0dp"
+      android:layout_margin="0.0dp">
+    <TextView
+        android:text="Recurring Goals"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:id="@+id/recurringGoalLabel"
+        android:layout_marginLeft="125dp"
+        android:gravity="center"
+        android:textSize="16dp" />
+  </LinearLayout>
+  <android.support.v7.widget.RecyclerView
+      android:id="@+id/recyclerViewRecurringGoals"
+      android:background="@drawable/customborder"
+      android:scrollbars="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="215dp"
+      android:layout_marginLeft="20dp"
+      android:layout_marginRight="20dp"
+      android:padding="10dp" />
+  <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="0.0dp"
+      android:layout_margin="0.0dp">
+    <TextView
+        android:text="One-Time Goals"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:id="@+id/nonRecurringGoalLabel"
+        android:gravity="center"
+        android:layout_marginLeft="125dp"
+        android:textSize="16dp" />
+  </LinearLayout>
+  <android.support.v7.widget.RecyclerView
+      android:id="@+id/recyclerViewOneTimeGoal"
+      android:background="@drawable/customborder"
+      android:scrollbars="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="215dp"
+      android:layout_marginLeft="20dp"
+      android:layout_marginRight="20dp"
+      android:padding="10dp" />
+
 </LinearLayout>
