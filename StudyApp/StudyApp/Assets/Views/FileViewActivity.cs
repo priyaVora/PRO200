@@ -37,8 +37,22 @@ namespace StudyApp.Assets.Views
             base.OnCreate(savedInstanceState);
             ActionBar.Hide();
             mFileAlbum = new FileAlbum();
-
+            
             SetFileData();
+            Dictionary<string, Permission> users = new Dictionary<string, Permission>();
+            users.Add(this.userController.CurrentUser.UserName, Permission.Owner);
+
+            byte[] content = new byte[10];
+            File testFile = new File();
+            testFile.Users = users;
+            testFile.GUID = "675_2";
+            testFile.Content = content;
+            testFile.Extension = ".txt";
+            testFile.Name = "fileTwo";
+
+            FileController controller = new FileController();
+            controller.UploadFile(testFile);
+
             // mCommonAlbum = new CommonAlbum();
             /*
              * This code is how to replace the placeholder layout that's part of the CommonLayout.
@@ -73,19 +87,10 @@ namespace StudyApp.Assets.Views
 
         private void SetFileData()
         {
-            List<File> files = this.userController.CurrentUser.ListOfFiles;
-           //  mFileAlbum = new FileAlbum();
-           // mGoalOverdueAlbum = new GoalAlbum(goalController.GetOverdueGoals(userController.CurrentUser.UserName));
-           //Temp because cant implicitly place child into parameter with type of parent (RecurringGoal -/> Goal)
-            List<Goal> temp = new List<Goal>();
-            //goalController.GetUpcomingRecurringGoals(userController.CurrentUser.UserName).ForEach(temp.Add);
-            //mGoalAlbumRecurringGoal = new GoalAlbum(temp);
-            //temp.Clear();
-            //goalController.GetUpcomingNonRecurringGoals(userController.CurrentUser.UserName).ForEach(temp.Add);
-            //mGoalAlbumNonRecurringGoal = new GoalAlbum(temp);
-            //mGoalOverdueAlbum = new GoalAlbum();
-            //mGoalAlbumRecurringGoal = new Goa.lAlbum();
-            //mGoalAlbumNonRecurringGoal = new GoalAlbum();
+            List<File> files = this.userController.GetUser(userController.CurrentUser.UserName).ListOfFiles;
+
+            mFileAlbum = new FileAlbum(files.Select(f => (FileMini) f).ToList());
+           
         }
 
         Intent intent;
@@ -125,13 +130,13 @@ namespace StudyApp.Assets.Views
         //    cursor.MoveToFirst();
         //    return cursor.GetString(column_index);
         //}
-        public String getRealPathFromURI(Android.Net.Uri uri)
-        {
-            ICursor cursor = ManagedQuery(uri, null, null, null, null);
-            cursor.MoveToFirst();
-            int idx = cursor.GetColumnIndex(MediaStore.Images.ImageColumns.Data);
-            return cursor.GetString(idx);
-        }
+        //public String getRealPathFromURI(Android.Net.Uri uri)
+        //{
+        //    ICursor cursor = ManagedQuery(uri, null, null, null, null);
+        //    cursor.MoveToFirst();
+        //    int idx = cursor.GetColumnIndex(MediaStore.Images.ImageColumns.Data);
+        //    return cursor.GetString(idx);
+        //}
         public void UploadClick(object sender, EventArgs args)
         {
             Toast.MakeText(this, "Add File", ToastLength.Short).Show();

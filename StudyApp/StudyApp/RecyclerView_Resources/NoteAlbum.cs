@@ -39,10 +39,13 @@ namespace StudyApp.RecyclerView_Resources
 
         // Array of Notes that make up the album:
         private NoteMini[] mNotes;
-
         public NoteAlbum()
         {
             mNotes = mBuiltInNotes;
+        }
+        public NoteAlbum(List<NoteMini> list)
+        {
+            mNotes = list.ToArray();
         }
 
         // Return the number of notes in the notes collection:
