@@ -15,10 +15,20 @@ namespace StudyApp.Assets.Controllers
 {
     public class GoalController
     {
-        public void CreateGoal(string username, Goal goal)
-        {
+        //public void CreateGoal(string username, Goal goal)
+        //{
+        //    ServerIOController serverIo = new ServerIOController();
+        //    serverIo.CreateGoal(goal, username);
+        //}
+
+        public void CreateNonRecurringGoal(string username, NonRecurringGoal goal) {
             ServerIOController serverIo = new ServerIOController();
-            serverIo.CreateGoal(goal, username);
+            serverIo.CreateNonRecurringGoal(goal, username);
+        }
+
+        public void CreateRecurringGoal(string username, RecurringGoal goal) {
+            ServerIOController serverIo = new ServerIOController();
+            serverIo.CreateRecurringGoal(goal, username);
         }
 
         public void CompleteGoal(string goalGuid, string username)
