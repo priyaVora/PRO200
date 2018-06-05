@@ -138,9 +138,9 @@ namespace StudyApp.Assets.Views {
         }
         public void SetAdaptersForRecyclerViews()
         {
-            mAdapterOverDueGoals = new GoalAdapter(mGoalOverdueAlbum, this, userController.CurrentUser);
-            mAdapterRecurringGoal = new GoalAdapter(mGoalAlbumRecurringGoal, this, userController.CurrentUser);
-            mAdapterOneTimeGoal = new GoalAdapter(mGoalAlbumNonRecurringGoal, this, userController.CurrentUser);
+            mAdapterOverDueGoals = new GoalAdapter(mGoalOverdueAlbum, this);
+            mAdapterRecurringGoal = new GoalAdapter(mGoalAlbumRecurringGoal, this);
+            mAdapterOneTimeGoal = new GoalAdapter(mGoalAlbumNonRecurringGoal, this);
         }
 
         public void BindAdapterToRecyclerView()
