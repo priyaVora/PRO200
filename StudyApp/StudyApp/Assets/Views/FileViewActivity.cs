@@ -13,9 +13,12 @@ using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+
 using StudyApp.Assets.Controllers;
 using StudyApp.RecyclerView_Resources;
 using StudyApp.Assets.Models;
+using File = StudyApp.Assets.Models.File;
+
 namespace StudyApp.Assets.Views
 {
 
@@ -25,7 +28,7 @@ namespace StudyApp.Assets.Views
         RecyclerView mRecyclerView;
         RecyclerView.LayoutManager mLayoutManager;
         FileAdapter mAdapter;
-        FileAlbum mFileAlbum;
+         FileAlbum mFileAlbum;
 
 
 
@@ -34,6 +37,8 @@ namespace StudyApp.Assets.Views
             base.OnCreate(savedInstanceState);
             ActionBar.Hide();
             mFileAlbum = new FileAlbum();
+
+            SetFileData();
             // mCommonAlbum = new CommonAlbum();
             /*
              * This code is how to replace the placeholder layout that's part of the CommonLayout.
@@ -64,21 +69,25 @@ namespace StudyApp.Assets.Views
             // Plug in my adapter:
             mAdapter = new FileAdapter(mFileAlbum, this, this.userController.CurrentUser);
             mRecyclerView.SetAdapter(mAdapter);
-
-
-
-
         }
 
-        private async void Button_Clicked(object sender, EventArgs e)
+        private void SetFileData()
         {
-            //var file = await CrossFilePicker.Current.PickFile();
-
-            //if (file != null)
-            //{
-            //    lbl.Text = file.FileName;
-            //}
+            List<File> files = this.userController.CurrentUser.ListOfFiles;
+           //  mFileAlbum = new FileAlbum();
+           // mGoalOverdueAlbum = new GoalAlbum(goalController.GetOverdueGoals(userController.CurrentUser.UserName));
+           //Temp because cant implicitly place child into parameter with type of parent (RecurringGoal -/> Goal)
+            List<Goal> temp = new List<Goal>();
+            //goalController.GetUpcomingRecurringGoals(userController.CurrentUser.UserName).ForEach(temp.Add);
+            //mGoalAlbumRecurringGoal = new GoalAlbum(temp);
+            //temp.Clear();
+            //goalController.GetUpcomingNonRecurringGoals(userController.CurrentUser.UserName).ForEach(temp.Add);
+            //mGoalAlbumNonRecurringGoal = new GoalAlbum(temp);
+            //mGoalOverdueAlbum = new GoalAlbum();
+            //mGoalAlbumRecurringGoal = new Goa.lAlbum();
+            //mGoalAlbumNonRecurringGoal = new GoalAlbum();
         }
+
         Intent intent;
 
         private void PickFile(string folder, string extension)

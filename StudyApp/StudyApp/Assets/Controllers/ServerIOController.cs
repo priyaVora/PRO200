@@ -34,16 +34,7 @@ namespace StudyApp.Assets.Controllers
             ServicePointManager.ServerCertificateValidationCallback = (sender, certificate, chain, errors) => true;
             client = new HttpClient();
         }
-
-        /*
-          _____          _       _____            __         
-         / ____|        | |     |_   _|          / _|        
-        | |  __    ___  | |_      | |    _ __   | |_    ___  
-        | | |_ |  / _ \ | __|     | |   | '_ \  |  _|  / _ \ 
-        | |__| | |  __/ | |_     _| |_  | | | | | |   | (_) |
-         \_____|  \___|  \__|   |_____| |_| |_| |_|    \___/
-        Does not expect returns
-        */
+        
 
         #region Send
 
@@ -129,17 +120,7 @@ namespace StudyApp.Assets.Controllers
             }
         }
         #endregion
-
-        /*
-         _____                  _       _____            __         
-        |  __ \                | |     |_   _|          / _|        
-        | |__) |   ___    ___  | |_      | |    _ __   | |_    ___  
-        |  ___/   / _ \  / __| | __|     | |   | '_ \  |  _|  / _ \ 
-        | |      | (_) | \__ \ | |_     _| |_  | | | | | |   | (_) |
-        |_|       \___/  |___/  \__|   |_____| |_| |_| |_|    \___/
-        Expects returns
-        */
-
+        
         #region Receive
 
         #region User
@@ -189,18 +170,27 @@ namespace StudyApp.Assets.Controllers
             
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
-            List<Goal> goals = JsonConvert.DeserializeObject<List<Goal>>(result.Result);
-            
-            url = $"https://{IP}/goal/GetUpcomingNonRecurringGoals?username={username}&dateString={DateTime.Now.ToShortDateString()}";
-            response = client.GetAsync(url).Result;
-            result = response.Content.ReadAsStringAsync();
-            goals.AddRange(JsonConvert.DeserializeObject<List<Goal>>(result.Result));
-            
-            return goals;
+            try
+            {
+
+
+                List<Goal> goals = JsonConvert.DeserializeObject<List<Goal>>(result.Result);
+
+                url = $"https://{IP}/goal/GetUpcomingNonRecurringGoals?username={username}&dateString={DateTime.Now.ToShortDateString()}";
+                response = client.GetAsync(url).Result;
+                result = response.Content.ReadAsStringAsync();
+                goals.AddRange(JsonConvert.DeserializeObject<List<Goal>>(result.Result));
+                return goals;
+            } 
+            catch
+            {
+
+            }
+            return new List<Goal>();
         }
         public List<Goal> GetOverdueGoals(string username)
         {
-            string url = $"https://{IP}/goal/GetOverdieGoals?username={username}&dateString={DateTime.Now.ToShortDateString()}";
+            string url = $"https://{IP}/goal/GetOverdueGoals?username={username}&dateString={DateTime.Now.ToShortDateString()}";
             
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();

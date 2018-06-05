@@ -21,24 +21,24 @@ namespace StudyApp.Assets.Views {
     [Activity(Label = "HomeActivity")]
     public class HomeActivity : CommonActivity {
 
-        RecyclerView mRecyclerViewOverDueGoals;
-        RecyclerView.LayoutManager mLayoutManager;
-        GoalAdapter mAdapterOverDueGoals;
-        GoalAlbum mGoalOverdueAlbum;
+        private RecyclerView mRecyclerViewOverDueGoals;
+        private RecyclerView.LayoutManager mLayoutManager;
+        private GoalAdapter mAdapterOverDueGoals;
+        private GoalAlbum mGoalOverdueAlbum;
 
 
-        RecyclerView mRecyclerViewRecurringGoals;
-        RecyclerView.LayoutManager mLayoutManagerRecurringGoal;
-        GoalAdapter mAdapterRecurringGoal;
-        GoalAlbum mGoalAlbumRecurringGoal;
+        private RecyclerView mRecyclerViewRecurringGoals;
+        private RecyclerView.LayoutManager mLayoutManagerRecurringGoal;
+        private GoalAdapter mAdapterRecurringGoal;
+        private GoalAlbum mGoalAlbumRecurringGoal;
 
 
-        RecyclerView mRecyclerViewOneTimeGoals;
-        RecyclerView.LayoutManager mLayoutManagerTimeGoal;
-        GoalAdapter mAdapterOneTimeGoal;
-        GoalAlbum mGoalAlbumNonRecurringGoal;
-        Button usernameBtn;
-        Button currentPntBtn;
+        private RecyclerView mRecyclerViewOneTimeGoals;
+        private RecyclerView.LayoutManager mLayoutManagerTimeGoal;
+        private GoalAdapter mAdapterOneTimeGoal;
+        private GoalAlbum mGoalAlbumNonRecurringGoal;
+        private Button usernameBtn;
+        private Button currentPntBtn;
 
 
 
@@ -73,6 +73,8 @@ namespace StudyApp.Assets.Views {
             usernameBtn.Text = currentUser.UserName;
 
             // TODO: populate current points user has.
+            currentPntBtn = FindViewById<Button>(Resource.Id.currentPointBtn);
+            currentPntBtn.Text = currentUser.Points;
 
             usernameBtn.Click += LogOutClick;
 
@@ -101,16 +103,17 @@ namespace StudyApp.Assets.Views {
 
         public void SetGoalData()
         {
-            //mGoalOverdueAlbum = new GoalAlbum(goalController.GetOverdueGoals(userController.CurrentUser.UserName));
-            //List<Goal> temp = new List<Goal>();
-            //goalController.GetUpcomingRecurringGoals(userController.CurrentUser.UserName).ForEach(temp.Add);
-            //mGoalAlbumRecurringGoal = new GoalAlbum(temp);
-            //temp.Clear();
-            //goalController.GetUpcomingNonRecurringGoals(userController.CurrentUser.UserName).ForEach(temp.Add);
-            //mGoalAlbumNonRecurringGoal = new GoalAlbum(temp);
-            mGoalOverdueAlbum = new GoalAlbum();
-            mGoalAlbumRecurringGoal = new GoalAlbum();
-            mGoalAlbumNonRecurringGoal = new GoalAlbum();
+            mGoalOverdueAlbum = new GoalAlbum(goalController.GetOverdueGoals(userController.CurrentUser.UserName));
+            //Temp because cant implicitly place child into parameter with type of parent (RecurringGoal -/> Goal)
+            List<Goal> temp = new List<Goal>();
+            goalController.GetUpcomingRecurringGoals(userController.CurrentUser.UserName).ForEach(temp.Add);
+            mGoalAlbumRecurringGoal = new GoalAlbum(temp);
+            temp.Clear();
+            goalController.GetUpcomingNonRecurringGoals(userController.CurrentUser.UserName).ForEach(temp.Add);
+            mGoalAlbumNonRecurringGoal = new GoalAlbum(temp);
+            //mGoalOverdueAlbum = new GoalAlbum();
+            //mGoalAlbumRecurringGoal = new GoalAlbum();
+            //mGoalAlbumNonRecurringGoal = new GoalAlbum();
         }
 
         public void BindRecyclerViews()
@@ -135,9 +138,9 @@ namespace StudyApp.Assets.Views {
         }
         public void SetAdaptersForRecyclerViews()
         {
-            mAdapterOverDueGoals = new GoalAdapter(mGoalOverdueAlbum);
-            mAdapterRecurringGoal = new GoalAdapter(mGoalAlbumRecurringGoal);
-            mAdapterOneTimeGoal = new GoalAdapter(mGoalAlbumNonRecurringGoal);
+            mAdapterOverDueGoals = new GoalAdapter(mGoalOverdueAlbum, this);
+            mAdapterRecurringGoal = new GoalAdapter(mGoalAlbumRecurringGoal, this);
+            mAdapterOneTimeGoal = new GoalAdapter(mGoalAlbumNonRecurringGoal, this);
         }
 
         public void BindAdapterToRecyclerView()

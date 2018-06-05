@@ -75,6 +75,12 @@ namespace StudyApp.RecyclerView_Resources
     
         }
 
+        public FileAlbum(List<FileMini> fileMinis)
+        {
+            mFiles = fileMinis.ToArray();
+
+        }
+
         // Return the number of file in the file collection:
         public int NumFiles
         {
