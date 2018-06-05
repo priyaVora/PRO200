@@ -39,19 +39,19 @@ namespace StudyApp.Assets.Views
             mFileAlbum = new FileAlbum();
             
             SetFileData();
-            Dictionary<string, Permission> users = new Dictionary<string, Permission>();
-            users.Add(this.userController.CurrentUser.UserName, Permission.Owner);
+            //Dictionary<string, Permission> users = new Dictionary<string, Permission>();
+            //users.Add(this.userController.CurrentUser.UserName, Permission.Owner);
 
-            byte[] content = new byte[10];
-            File testFile = new File();
-            testFile.Users = users;
-            testFile.GUID = "675_2";
-            testFile.Content = content;
-            testFile.Extension = ".txt";
-            testFile.Name = "fileTwo";
+            //byte[] content = new byte[10];
+            //File testFile = new File();
+            //testFile.Users = users;
+            //testFile.GUID = "675_2;";
+            //testFile.Content = content;
+            //testFile.Extension = ".txt";
+            //testFile.Name = "fileTwo";
 
-            FileController controller = new FileController();
-            controller.UploadFile(testFile);
+            //FileController controller = new FileController();
+            //controller.UploadFile(testFile);
 
             // mCommonAlbum = new CommonAlbum();
             /*
