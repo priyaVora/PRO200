@@ -8,9 +8,10 @@
     android:minHeight="25px">
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
+        android:background="@drawable/customborder"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="310dp"
+        android:layout_height="375dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="60dp" />

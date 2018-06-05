@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#333333"
-                android:text="0MB"
+                android:text="--"
                 android:id="@+id/fileSize"
                 android:textSize="12dp"
                 android:layout_gravity="right"
