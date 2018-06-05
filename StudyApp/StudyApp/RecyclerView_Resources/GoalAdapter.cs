@@ -87,7 +87,6 @@ namespace StudyApp
             catch (Exception e)
             {
                 Toast.MakeText(_context, e.ToString(), ToastLength.Short).Show();
-
             }
 
         }
