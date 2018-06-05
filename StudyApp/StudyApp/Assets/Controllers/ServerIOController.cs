@@ -6,6 +6,7 @@ using System.Net;
 using System.Text;
 using System.Net.Http;
 using System.Net.Security;
+using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Android.App;
@@ -16,14 +17,34 @@ using Android.Text;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 
 using StudyApp.Assets.Models;
 using File = StudyApp.Assets.Models.File;
 
 namespace StudyApp.Assets.Controllers
 {
+
+    internal class SerializationBinderHelper : ISerializationBinder {
+
+        public IList<Type> KnownTypes { get; set; }
+
+        public SerializationBinderHelper() : base() {
+            KnownTypes = Assembly.GetExecutingAssembly().GetTypes();
+        }
+
+        public Type BindToType(string assemblyName, string typeName) {
+            return KnownTypes.First(t => t.Name == typeName);
+        }
+
+        public void BindToName(Type serializedType, out string assemblyName, out string typeName) {
+            assemblyName = null;
+            typeName = serializedType.Name;
+        }
+    }
 
     public class ServerIOController
     {
@@ -157,11 +178,11 @@ namespace StudyApp.Assets.Controllers
             Task<string> result = response.Content.ReadAsStringAsync();
 
             JsonSerializerSettings settings = new JsonSerializerSettings {
-                TypeNameHandling = TypeNameHandling.Objects
+                Formatting = Formatting.Indented,
+                SerializationBinder = new SerializationBinderHelper()
             };
 
             return JsonConvert.DeserializeObject<UserAccount>(result.Result, settings);
-
         }
         #endregion
 

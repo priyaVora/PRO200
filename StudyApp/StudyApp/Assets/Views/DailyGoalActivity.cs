@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+
 using StudyApp.Assets.Models;
 using StudyApp.RecyclerView_Resources;
 
