@@ -190,7 +190,6 @@
     <AndroidResource Include="Resources\layout\DailyGoals.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\EditNotesPage.axml" />
     <AndroidResource Include="Resources\layout\Note_CardView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>

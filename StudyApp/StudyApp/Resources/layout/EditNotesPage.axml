@@ -25,16 +25,22 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="300.0dp"
-        android:layout_margin="20.0dp">
+        android:layout_margin="20.0dp"
+        android:padding="10dp">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/NoteTitle"
-            android:layout_marginBottom="20.0dp" />
+            android:layout_marginBottom="20.0dp"
+            android:hint="Title"
+            android:textSize="22dp"
+            android:paddingBottom="12dp" />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:id="@+id/NoteContent" />
+            android:id="@+id/NoteContent"
+            android:hint="Notes"
+            android:padding="5dp" />
     </LinearLayout>
 </LinearLayout>
