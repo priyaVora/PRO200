@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:id="@+id/editFile"
+      android:title="Edit File" />
   <item android:id="@+id/deleteFile"
         android:title="Delete File" />
 </menu>

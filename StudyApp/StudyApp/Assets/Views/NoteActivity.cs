@@ -11,6 +11,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using Newtonsoft.Json;
+using StudyApp.Assets.Controllers;
 using StudyApp.Assets.Models;
 using StudyApp.RecyclerView_Resources;
 
@@ -24,6 +25,9 @@ namespace StudyApp.Assets.Views
         RecyclerView.LayoutManager mLayoutManager;
         NoteAdapter mAdapter;
         NoteAlbum mNoteAlbum;
+
+        Note currentNote = null;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -36,6 +40,18 @@ namespace StudyApp.Assets.Views
             frame.AddView(note.FindViewById<LinearLayout>(Resource.Id.Note_Layout));
             SetUpNavBar();
 
+            //Note testNote = new Note();
+            ////owner title content guid
+            //testNote.Owner = this.userController.CurrentUser.UserName;
+            //testNote.GUID = "1";
+            //testNote.Title = "Note One";
+            //testNote.Content = "Hey Priya!";
+
+
+            //NoteController noteController = new NoteController();
+            //noteController.CreateNote(testNote, this.userController.CurrentUser.UserName);
+
+            
             mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recyclerView);
 
             //Plug in the linear layout manager:
@@ -44,26 +60,26 @@ namespace StudyApp.Assets.Views
 
 
             // Plug in my adapter:
-            mAdapter = new NoteAdapter(mNoteAlbum, this);
+            mAdapter = new NoteAdapter(mNoteAlbum, this, this.userController.CurrentUser);
             mRecyclerView.SetAdapter(mAdapter);
 
             Button addNoteButton = FindViewById<Button>(Resource.Id.NotePage_AddNoteButton);
             addNoteButton.Click += AddNoteClick;
+
+
+
         }
-   
+
         private void SetNoteData()
         {
             List<Note> notes = this.userController.GetUser(userController.CurrentUser.UserName).ListOfNotes;//CurrentUser.ListOfNotes;
+         
             mNoteAlbum = new NoteAlbum(notes.Select(f => (NoteMini)f).ToList());
 
         }
         //Todo: send "SelectedNote" to NoteEditActivity.cs --Empty note if new note.
         //Note note = new Note("owner");
-
-        public void LongPress(object sender, EventArgs args)
-        {
-
-        }
+        
 
         public void AddNoteClick(object sender, EventArgs args)
         {
