@@ -184,7 +184,7 @@ namespace StudyApp.Assets.Views
                     //intent variable has a Field named Data which is the complete URI for the file. 
                     //Android.Net.Uri uris = Android.Net.Uri.FromParts(intent.Data.Scheme, intent.Data.SchemeSpecificPart, intent.Data.Fragment);
                     //System.IO.Stream input = ContentResolver.OpenInputStream(intent.Data);
-                    
+
                     //FileStream fileStream = input as FileStream;
 
                     //if (fileStream != null)
@@ -198,10 +198,8 @@ namespace StudyApp.Assets.Views
                     //    Toast.MakeText(this, "Stream is not a filestream", ToastLength.Short).Show();
                     //}
 
-
                     if (GetRealPathFromURI(uri) == null)
                     {
-
                         Toast.MakeText(this, "Path is still null", ToastLength.Short).Show();
                     }
                     Toast.MakeText(this, GetRealPathFromURI(uri), ToastLength.Short).Show();
