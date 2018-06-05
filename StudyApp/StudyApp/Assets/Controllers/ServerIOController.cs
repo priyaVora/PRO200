@@ -189,18 +189,27 @@ namespace StudyApp.Assets.Controllers
             
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
-            List<Goal> goals = JsonConvert.DeserializeObject<List<Goal>>(result.Result);
-            
-            url = $"https://{IP}/goal/GetUpcomingNonRecurringGoals?username={username}&dateString={DateTime.Now.ToShortDateString()}";
-            response = client.GetAsync(url).Result;
-            result = response.Content.ReadAsStringAsync();
-            goals.AddRange(JsonConvert.DeserializeObject<List<Goal>>(result.Result));
-            
-            return goals;
+            try
+            {
+
+
+                List<Goal> goals = JsonConvert.DeserializeObject<List<Goal>>(result.Result);
+
+                url = $"https://{IP}/goal/GetUpcomingNonRecurringGoals?username={username}&dateString={DateTime.Now.ToShortDateString()}";
+                response = client.GetAsync(url).Result;
+                result = response.Content.ReadAsStringAsync();
+                goals.AddRange(JsonConvert.DeserializeObject<List<Goal>>(result.Result));
+                return goals;
+            } 
+            catch
+            {
+
+            }
+            return new List<Goal>();
         }
         public List<Goal> GetOverdueGoals(string username)
         {
-            string url = $"https://{IP}/goal/GetOverdieGoals?username={username}&dateString={DateTime.Now.ToShortDateString()}";
+            string url = $"https://{IP}/goal/GetOverdueGoals?username={username}&dateString={DateTime.Now.ToShortDateString()}";
             
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();

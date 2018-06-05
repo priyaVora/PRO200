@@ -73,6 +73,8 @@ namespace StudyApp.Assets.Views {
             usernameBtn.Text = currentUser.UserName;
 
             // TODO: populate current points user has.
+            currentPntBtn = FindViewById<Button>(Resource.Id.currentPointBtn);
+            currentPntBtn.Text = currentUser.Points;
 
             usernameBtn.Click += LogOutClick;
 
