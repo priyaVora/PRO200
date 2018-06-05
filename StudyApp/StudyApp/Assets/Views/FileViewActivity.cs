@@ -204,7 +204,7 @@ namespace StudyApp.Assets.Views
 
                         Toast.MakeText(this, "Path is still null", ToastLength.Short).Show();
                     }
-                    Toast.MakeText(this, GetRealPathFromURI(uris), ToastLength.Short).Show();
+                    Toast.MakeText(this, GetRealPathFromURI(uri), ToastLength.Short).Show();
                 }
             }
         }
