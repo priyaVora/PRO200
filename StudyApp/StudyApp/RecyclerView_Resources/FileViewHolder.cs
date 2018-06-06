@@ -20,7 +20,8 @@ namespace StudyApp.RecyclerView_Resources
 
         public TextView FileName { get; private set; }
         public TextView FileSize { get; private set; }
-        
+        public TextView FileId { get; private set; }
+
         private IItemClickListener itemClickListener;
 
 
@@ -33,6 +34,8 @@ namespace StudyApp.RecyclerView_Resources
             FileSize = itemView.FindViewById<TextView>(Resource.Id.fileSize);
             FileSize.SetTextColor(textColor);
             
+            FileId = itemView.FindViewById<TextView>(Resource.Id.hiddenFileId);
+
             itemView.SetOnClickListener(this);
             itemView.SetOnLongClickListener(this);
 

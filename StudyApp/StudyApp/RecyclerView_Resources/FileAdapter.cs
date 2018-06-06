@@ -48,6 +48,7 @@ namespace StudyApp
             vh.FileName.Text = mFileAlbum[position].Name;
 
             vh.FileSize.Text = $"{mFileAlbum[position].Size} MB";
+            vh.FileId.Text = mFileAlbum[position].GUID;
             vh.SetItemClickListener(this);
         }
 
@@ -76,10 +77,18 @@ namespace StudyApp
                         {
                             Toast.MakeText(context, "Delete File", ToastLength.Short).Show();
                             FileController fileController = new FileController();
-                            // fileController.DeleteFile();
-                            itemView.FindViewById(Resource.Id.textView);
 
-                        } 
+                            UserController controller = new UserController();
+                            UserController userController = new UserController();
+                            UserAccount fileUser = userController.GetUser(this.currentUser.UserName);
+
+                         
+                            TextView hiddenId = itemView.FindViewById<TextView>(Resource.Id.hiddenFileId);
+
+                            Toast.MakeText(context, hiddenId.Text, ToastLength.Short).Show();
+
+                            fileController.DeleteFile(hiddenId.Text);
+                        }
                     };
 
                     menu.Show();
