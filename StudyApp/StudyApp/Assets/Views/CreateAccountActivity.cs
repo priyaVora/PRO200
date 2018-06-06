@@ -16,6 +16,7 @@ using Newtonsoft.Json;
 using StudyApp.Assets.Controllers;
 using StudyApp.Assets.Views.PopUps;
 using StudyApp.Assets.Models;
+using Android.Graphics;
 
 namespace StudyApp.Assets.Views {
 
@@ -30,6 +31,8 @@ namespace StudyApp.Assets.Views {
 
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
+            View Create = LayoutInflater.Inflate(Resource.Layout.CreateAccount, null);
+           
             SetContentView(Resource.Layout.CreateAccount);
             userController = JsonConvert.DeserializeObject<UserController>(Intent.GetStringExtra("UserController"));
 

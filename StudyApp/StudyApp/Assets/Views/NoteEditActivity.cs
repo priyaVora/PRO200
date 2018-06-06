@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -21,6 +22,8 @@ namespace StudyApp.Assets.Views {
         private EditText contentText;
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
+            View edit = LayoutInflater.Inflate(Resource.Layout.EditNotesPage, null);
+           
             SetContentView(Resource.Layout.EditNotesPage);
             Button cancelButton = FindViewById<Button>(Resource.Id.ClNotesButton);
             Button saveButton = FindViewById<Button>(Resource.Id.SaveNotesButton);

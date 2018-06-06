@@ -7,6 +7,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -27,7 +28,13 @@ namespace StudyApp.Assets.Views {
 
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.LoginPage);
+            View login = LayoutInflater.Inflate(Resource.Layout.LoginPage, null);
+           
+            //View v = FindViewById(Resource.Layout.LoginPage);
+            SetContentView(login);
+          //  ImageView logoImg = FindViewById<ImageView>(Resource.Id.LogoImg);
+         //   logoImg.SetImageDrawable(Resource.Drawable.StudyAppLogo);
+          //  
             ActionBar.Hide();
 
             Button createAccountBtn = FindViewById<Button>(Resource.Id.Login_CreateAccountButton);

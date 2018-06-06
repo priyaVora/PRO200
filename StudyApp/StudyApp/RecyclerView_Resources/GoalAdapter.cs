@@ -57,7 +57,7 @@ namespace StudyApp
             {
                 if (isLongClick)
                 {
-                    Toast.MakeText(_context, "Goal Options", ToastLength.Short).Show();
+                    
 
                     Android.Widget.PopupMenu menu = new Android.Widget.PopupMenu((Activity)_context, itemView);
                     menu.MenuInflater.Inflate(Resource.Menu.longPress_GoalMenu, menu.Menu);
@@ -82,10 +82,7 @@ namespace StudyApp
                     menu.Show();
 
                 }
-                //else
-                //{
-                //    Toast.MakeText(_context, "Downloaded File ", ToastLength.Short).Show();
-                //}
+              
             }
             catch (Exception e)
             {

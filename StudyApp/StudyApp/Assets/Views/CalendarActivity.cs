@@ -16,6 +16,7 @@ using Newtonsoft.Json;
 
 using StudyApp.Assets.Views.PopUps;
 using StudyApp.Assets.Controllers;
+using Android.Graphics;
 
 namespace StudyApp.Assets.Views {
 
@@ -33,7 +34,8 @@ namespace StudyApp.Assets.Views {
         private void PageSetup() {
             SetUpPage();
             FrameLayout frame = FindViewById<FrameLayout>(Resource.Id.Common_FrameLayout);
-            View calendarPage = LayoutInflater.Inflate(Resource.Layout.CalendarPage, null); 
+            View calendarPage = LayoutInflater.Inflate(Resource.Layout.CalendarPage, null);
+            
             frame.AddView(calendarPage.FindViewById<LinearLayout>(Resource.Id.Calendar_Layout));
             SetUpNavBar();
 

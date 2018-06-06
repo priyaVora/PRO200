@@ -58,7 +58,7 @@ namespace StudyApp
             {
                 if (isLongClick)
                 {
-                    Toast.MakeText(context, "Share Options", ToastLength.Short).Show();
+                    
                    
                     Android.Widget.PopupMenu menu = new Android.Widget.PopupMenu((Activity)context, itemView);
                     menu.MenuInflater.Inflate(Resource.Menu.longPress_FileMenu, menu.Menu);
@@ -75,7 +75,7 @@ namespace StudyApp
                         }
                         else if(arg.Item.ItemId.Equals(Resource.Id.DeleteFileItem))
                         {
-                            Toast.MakeText(context, "Delete File", ToastLength.Short).Show();
+                     
                             FileController fileController = new FileController();
 
                             UserController controller = new UserController();
@@ -84,10 +84,9 @@ namespace StudyApp
 
                          
                             TextView hiddenId = itemView.FindViewById<TextView>(Resource.Id.hiddenFileId);
-
-                            Toast.MakeText(context, hiddenId.Text, ToastLength.Short).Show();
-
+                            
                             fileController.DeleteFile(hiddenId.Text);
+                            Toast.MakeText(context, "Delete File", ToastLength.Short).Show();
                         }
                     };
 
@@ -109,7 +108,7 @@ namespace StudyApp
 
         public void CancelClick(object sender, EventArgs args)
         {
-            Toast.MakeText(context, "Cancel", ToastLength.Short).Show();
+  
         }
         public override int ItemCount
         {

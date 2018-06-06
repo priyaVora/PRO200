@@ -18,6 +18,7 @@ using StudyApp.Assets.Controllers;
 using StudyApp.RecyclerView_Resources;
 using StudyApp.Assets.Models;
 using File = StudyApp.Assets.Models.File;
+using Android.Graphics;
 
 namespace StudyApp.Assets.Views
 {
@@ -59,6 +60,7 @@ namespace StudyApp.Assets.Views
              */
             FrameLayout frame = FindViewById<FrameLayout>(Resource.Id.Common_FrameLayout);
             View file = LayoutInflater.Inflate(Resource.Layout.FilePage, null); // Replace the inside of this method call with your desired layout
+           
             frame.AddView(file.FindViewById<LinearLayout>(Resource.Id.File_Layout));
             SetUpNavBar();
 

@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Util;
@@ -27,6 +28,7 @@ namespace StudyApp.Assets.Views.PopUps {
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View v = inflater.Inflate(LayoutID, container, false);
+     
             return v;
         }
     }

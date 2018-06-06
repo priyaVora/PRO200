@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V7.Widget;
@@ -38,6 +39,7 @@ namespace StudyApp.Assets.Views
 
             FrameLayout frame = FindViewById<FrameLayout>(Resource.Id.Common_FrameLayout);
             View note = LayoutInflater.Inflate(Resource.Layout.NotesPage, null); // Replace the inside of this method call with your desired layout
+
             frame.AddView(note.FindViewById<LinearLayout>(Resource.Id.Note_Layout));
             SetUpNavBar();
             

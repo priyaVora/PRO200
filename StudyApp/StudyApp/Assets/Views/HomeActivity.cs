@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V7.Widget;
@@ -52,6 +53,7 @@ namespace StudyApp.Assets.Views {
              */
             FrameLayout frame = FindViewById<FrameLayout>(Resource.Id.Common_FrameLayout);
             View home = LayoutInflater.Inflate(Resource.Layout.HomePage, null); // Replace the inside of this method call with your desired layout
+            
             frame.AddView(home.FindViewById<LinearLayout>(Resource.Id.Home_Layout));
 
             

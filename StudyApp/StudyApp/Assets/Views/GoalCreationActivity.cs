@@ -13,6 +13,7 @@ using static Android.Widget.SeekBar;
 
 using StudyApp.Assets.Views.PopUps;
 using StudyApp.Assets.Models;
+using Android.Graphics;
 
 namespace StudyApp.Assets.Views {
 
@@ -39,6 +40,7 @@ namespace StudyApp.Assets.Views {
 
             FrameLayout frame = FindViewById<FrameLayout>(Resource.Id.Common_FrameLayout);
             View calendarPage = LayoutInflater.Inflate(Resource.Layout.GoalCreationPage, null);
+           
             frame.AddView(calendarPage.FindViewById<LinearLayout>(Resource.Id.GoalCreation_Layout));
 
             LinearLayout navLayout = FindViewById<LinearLayout>(Resource.Id.Common_NavLayout);
