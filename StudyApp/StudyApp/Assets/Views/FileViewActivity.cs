@@ -104,7 +104,7 @@ namespace StudyApp.Assets.Views
             extension = ".txt";
             // intent.SetType(folder + "/" + extension);
             intent.SetType("image/*");
-            intent.AddCategory(Intent.CategoryOpenable);
+           // intent.AddCategory(Intent.CategoryOpenable);
 
             //intent.SetType("file/*");
 
@@ -119,7 +119,7 @@ namespace StudyApp.Assets.Views
             {
                 System.Diagnostics.Debug.Write(exAct);
             }
-            StartActivityForResult(intent, 0);
+          //  StartActivityForResult(intent, 0);
         }
 
    
@@ -195,8 +195,9 @@ namespace StudyApp.Assets.Views
                         Toast.MakeText(this, GetRealPathFromURI(uri), ToastLength.Short).Show();
                         byte[] file = System.IO.File.ReadAllBytes(GetRealPathFromURI(uri));
                         File uploadFile = new File();
-                        uploadFile.GUID = "_" + uploadFile;
-                        uploadFile.Name = "_NewFile";
+                        uploadFile.GUID = Guid.NewGuid().ToString();
+                        string filename = System.IO.Path.GetFileName(GetRealPathFromURI(uri));
+                        uploadFile.Name = filename;
                         uploadFile.Users = users;
                         uploadFile.Extension = "jpg";
                         uploadFile.Content = file;
