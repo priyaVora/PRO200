@@ -62,7 +62,7 @@ namespace StudyApp.RecyclerView_Resources
                     menu.MenuItemClick += (s, arg) =>
                     {
 
-                        if(arg.Item.ItemId.Equals(Resource.Id.editFile))
+                        if(arg.Item.ItemId.Equals(Resource.Id.editNote))
                         {
                             NoteController controller = new NoteController();
                             TextView NoteTitle = itemView.FindViewById<TextView>(Resource.Id.textView);
@@ -89,11 +89,38 @@ namespace StudyApp.RecyclerView_Resources
 
                             //currentDialog = new ShareFileDialog(currentContext);
                             //currentDialog.Show(transaction, "dialog fragment");
-                        }       
+                        } else if(arg.Item.ItemId.Equals(Resource.Id.deleteNote))
+
+                        {
+                            Toast.MakeText(currentContext, "Delete" + itemView.FindViewById<TextView>(Resource.Id.textView).Text, ToastLength.Short).Show();
+                        }    
                     };
 
                     menu.Show();
 
+                }
+                else
+                {
+                    Toast.MakeText(currentContext, "Download Notes", ToastLength.Short).Show();
+                    NoteController controller = new NoteController();
+                    TextView NoteTitle = itemView.FindViewById<TextView>(Resource.Id.textView);
+                    Toast.MakeText(currentContext, NoteTitle.Text.Trim(), ToastLength.Short).Show();
+
+                    List<NoteMini> listOfNoteMini = controller.GetNotePreviews(currentUser.UserName);
+                    string title = NoteTitle.Text;
+                    string currentNoteId = null;
+                    foreach (NoteMini eachMini in listOfNoteMini)
+                    {
+                        if (eachMini.Title.Equals(title))
+                        {
+                            currentNoteId = eachMini.GUID;
+                            break;
+                        }
+                    }
+
+                    Note deletingNote = controller.GetNote(currentNoteId, currentUser.UserName);
+                    NoteController noteController = new NoteController();
+                    //noteController.deleteNote();
                 }
             }
             catch (Exception e)
