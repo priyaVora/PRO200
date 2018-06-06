@@ -14,11 +14,12 @@ using StudyApp.Assets.Controllers;
 using StudyApp.Assets.Models;
 using StudyApp.Assets.Views;
 using StudyApp.Assets.Views.PopUps;
+using StudyApp.Interface;
 using StudyApp.RecyclerView_Resources;
 
 namespace StudyApp
 {
-    public class GoalAdapter : RecyclerView.Adapter
+    public class GoalAdapter : RecyclerView.Adapter, IItemClickListener
     {
         public GoalAlbum mGoalAlbum;
         private Context _context;
@@ -46,8 +47,9 @@ namespace StudyApp
         {
             RecyclerView_Resources.GoalViewHolder vh = holder as RecyclerView_Resources.GoalViewHolder;
             vh.GoalTaskName.Text = mGoalAlbum[position].TaskName;
-            vh.GoalDescription.Text = "This is a placeholder for the description.";
-            vh.GoalPoints.Text = "100";
+            vh.GoalDescription.Text = mGoalAlbum[position].Description;
+            vh.GoalPoints.Text = "" + mGoalAlbum[position].Points;
+            vh.SetItemClickListener(this);
         }
         public void OnClick(View itemView, int position, bool isLongClick)
         {
@@ -73,6 +75,7 @@ namespace StudyApp
                             {
                                 activity.goalController.CompleteGoal(mGoalAlbum[position].GUID, _currentAccount.UserName);
                             }
+
                         }
                     };
 
