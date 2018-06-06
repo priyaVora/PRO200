@@ -44,7 +44,7 @@ namespace StudyApp.Assets.Views {
         public void SaveClick(object sender, EventArgs args)
         {
             Toast.MakeText(this, "Save notes", ToastLength.Short).Show();
-            note.GUID = "_" + titleText.Text;
+            note.GUID = Guid.NewGuid().ToString();
             note.Title = titleText.Text;
             note.Content = contentText.Text;
             NoteController noteController = new NoteController();
