@@ -124,9 +124,6 @@ namespace StudyApp.Assets.Views
         public void UploadClick(object sender, EventArgs args)
         {
             Toast.MakeText(this, "Add File", ToastLength.Short).Show();
-            FileController fileController = new FileController();
-
-            //fileController.UploadFile(new File());
 
             PickFile(null, null);
         }
@@ -197,16 +194,12 @@ namespace StudyApp.Assets.Views
                         byte[] file = System.IO.File.ReadAllBytes(GetRealPathFromURI(uri));
                         File uploadFile = new File();
                         uploadFile.GUID = "_" + uploadFile;
-                        Toast.MakeText(this, "Adding GUID", ToastLength.Short).Show();
                         uploadFile.Name = "_NewFile";
                         uploadFile.Users = users;
                         uploadFile.Extension = "jpg";
                         uploadFile.Content = file;
-
-                        Toast.MakeText(this, "Set File", ToastLength.Short).Show();
-                        FileController controller = new FileController();
-                        Toast.MakeText(this, "Before Upload", ToastLength.Short).Show();
-                        controller.UploadFile(uploadFile);
+                        
+                        fileController.UploadFile(uploadFile);
                     }
                 }
             } catch(Exception e)

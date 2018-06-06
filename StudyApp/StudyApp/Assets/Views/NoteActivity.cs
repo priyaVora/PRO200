@@ -11,6 +11,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using Newtonsoft.Json;
+
 using StudyApp.Assets.Controllers;
 using StudyApp.Assets.Models;
 using StudyApp.RecyclerView_Resources;
@@ -69,8 +70,7 @@ namespace StudyApp.Assets.Views
                 Content = "",
                 Title = ""
             };
-            noteController.CreateNote(note, userController.CurrentUser.UserName);
-            GoToActivity(typeof(NoteEditActivity), true, new KeyValuePair<string, string>("SelectedNote", JsonConvert.SerializeObject(note)));
+            GoToActivity(typeof(NoteEditActivity), true, new KeyValuePair<string, string>("SelectedNote", JsonConvert.SerializeObject(note)), new KeyValuePair<string, string>("ShouldCreate", JsonConvert.SerializeObject(true)));
         }
     }
 }
