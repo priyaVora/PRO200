@@ -32,7 +32,7 @@ namespace StudyApp.Assets.Views {
         private DateTime deadlineDate;
         private DateTime deadlineTime;
 
-        public bool IsRecurring => typeSwitch.Selected;
+        private bool isRecurring;
 
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
@@ -80,7 +80,7 @@ namespace StudyApp.Assets.Views {
             };
 
             typeSwitch.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e) {
-                if (e.IsChecked) {
+                if (isRecurring = e.IsChecked) {
                     frequencyLayout.Visibility = ViewStates.Visible;
                 } else {
                     frequencyLayout.Visibility = ViewStates.Invisible;
@@ -112,7 +112,7 @@ namespace StudyApp.Assets.Views {
                 string description = taskDescriptionField.Text;
                 DateTime deadline = new DateTime(deadlineDate.Year, deadlineDate.Month, deadlineDate.Day, deadlineTime.Hour, deadlineTime.Minute, deadlineTime.Second);
 
-                if (IsRecurring) {
+                if (isRecurring) {
                     TimeSpan frequency;
                     switch (frequencyButton.Text) {
                         case "Daily":
@@ -142,7 +142,8 @@ namespace StudyApp.Assets.Views {
                         Deadline = deadline,
                         Description = description,
                         Frequency = frequency,
-                        Points = points
+                        Points = points,
+                        GUID = Guid.NewGuid().ToString()
                     };
                     goalController.CreateRecurringGoal(userController.CurrentUser.UserName, (RecurringGoal) goal);
                 } else {
@@ -150,7 +151,8 @@ namespace StudyApp.Assets.Views {
                         TaskName = name,
                         Deadline = deadline,
                         Description = description,
-                        Points = points
+                        Points = points,
+                        GUID = Guid.NewGuid().ToString()
                     };
 
                     goalController.CreateNonRecurringGoal(userController.CurrentUser.UserName, (NonRecurringGoal) goal);
@@ -187,7 +189,7 @@ namespace StudyApp.Assets.Views {
         #endregion
 
         public void OnDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            deadlineDate = new DateTime(year, month, dayOfMonth);
+            deadlineDate = new DateTime(year, month + 1, dayOfMonth);
             datePickButton.Text = deadlineDate.ToShortDateString();
         }
 

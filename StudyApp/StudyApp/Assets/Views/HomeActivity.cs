@@ -106,7 +106,10 @@ namespace StudyApp.Assets.Views {
             mGoalOverdueAlbum = new GoalAlbum(goalController.GetOverdueGoals(userController.CurrentUser.UserName));
             //Temp because cant implicitly place child into parameter with type of parent (RecurringGoal -/> Goal)
             List<Goal> temp = new List<Goal>();
-            goalController.GetUpcomingRecurringGoals(userController.CurrentUser.UserName).ForEach(temp.Add);
+            foreach (RecurringGoal upcomingRecurringGoal in goalController.GetUpcomingRecurringGoals(userController.CurrentUser.UserName)) {
+                temp.Add(upcomingRecurringGoal);
+            }
+            //goalController.GetUpcomingRecurringGoals(userController.CurrentUser.UserName).ForEach(temp.Add);
             mGoalAlbumRecurringGoal = new GoalAlbum(temp);
             temp.Clear();
             goalController.GetUpcomingNonRecurringGoals(userController.CurrentUser.UserName).ForEach(temp.Add);
