@@ -76,7 +76,9 @@ namespace StudyApp
                         {
                             Toast.MakeText(context, "Delete File", ToastLength.Short).Show();
                             FileController fileController = new FileController();
-                            
+                            // fileController.DeleteFile();
+                            itemView.FindViewById(Resource.Id.textView);
+
                         } 
                     };
 

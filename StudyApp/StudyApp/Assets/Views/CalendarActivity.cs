@@ -37,7 +37,7 @@ namespace StudyApp.Assets.Views {
             frame.AddView(calendarPage.FindViewById<LinearLayout>(Resource.Id.Calendar_Layout));
             SetUpNavBar();
 
-            CalendarView calendar = FindViewById<CalendarView>(Resource.Id.calendarView1);
+            calendar = FindViewById<CalendarView>(Resource.Id.calendarView1);
             calendar.SetOnDateChangeListener(this);
 
             Button createGoalButton = FindViewById<Button>(Resource.Id.AddGoalButton);
@@ -49,7 +49,7 @@ namespace StudyApp.Assets.Views {
         }
 
         public void OnSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-            GoToActivity(typeof(DailyGoalActivity), false);
+            GoToActivity(typeof(DailyGoalActivity), false, new KeyValuePair<string, string>("Date", JsonConvert.SerializeObject(new DateTime(view.Date))));
         }
     }
 }

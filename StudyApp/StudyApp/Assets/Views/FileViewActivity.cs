@@ -120,29 +120,14 @@ namespace StudyApp.Assets.Views
             StartActivityForResult(intent, 0);
         }
 
-        //public String GetRealPathFromURI(Android.Net.Uri uri)
-        //{
-        //    String[] projection = { MediaStore.Images.Media.Data};
-
-        //    ICursor cursor = ManagedQuery(uri, projection, null, null, null);
-        //    int column_index = cursor
-        //            .GetColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        //    cursor.MoveToFirst();
-        //    return cursor.GetString(column_index);
-        //}
-        //public String getRealPathFromURI(Android.Net.Uri uri)
-        //{
-        //    ICursor cursor = ManagedQuery(uri, null, null, null, null);
-        //    cursor.MoveToFirst();
-        //    int idx = cursor.GetColumnIndex(MediaStore.Images.ImageColumns.Data);
-        //    return cursor.GetString(idx);
-        //}
+   
         public void UploadClick(object sender, EventArgs args)
         {
             Toast.MakeText(this, "Add File", ToastLength.Short).Show();
             FileController fileController = new FileController();
 
             //fileController.UploadFile(new File());
+
             PickFile(null, null);
         }
 
@@ -175,37 +160,68 @@ namespace StudyApp.Assets.Views
         }
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent intent)
         {
-            base.OnActivityResult(requestCode, resultCode, intent);
-            if (requestCode == 0)
+            try
             {
-                if (resultCode == Result.Ok)
+                base.OnActivityResult(requestCode, resultCode, intent);
+                if (requestCode == 0)
                 {
-                    Android.Net.Uri uri = intent.Data;
-                    //intent variable has a Field named Data which is the complete URI for the file. 
-                    //Android.Net.Uri uris = Android.Net.Uri.FromParts(intent.Data.Scheme, intent.Data.SchemeSpecificPart, intent.Data.Fragment);
-                    //System.IO.Stream input = ContentResolver.OpenInputStream(intent.Data);
-                    
-                    //FileStream fileStream = input as FileStream;
-
-                    //if (fileStream != null)
-                    //{
-                    //    //It was really a file stream, get your information here
-                    //    Toast.MakeText(this, "Stream is still null", ToastLength.Short).Show();
-                    //}
-                    //else
-                    //{
-                    //    //The stream was not a file stream, do whatever is required in that case
-                    //    Toast.MakeText(this, "Stream is not a filestream", ToastLength.Short).Show();
-                    //}
-
-
-                    if (GetRealPathFromURI(uri) == null)
+                    if (resultCode == Result.Ok)
                     {
+                        Android.Net.Uri uri = intent.Data;
+                        //intent variable has a Field named Data which is the complete URI for the file. 
+                        //Android.Net.Uri uris = Android.Net.Uri.FromParts(intent.Data.Scheme, intent.Data.SchemeSpecificPart, intent.Data.Fragment);
+                        //System.IO.Stream input = ContentResolver.OpenInputStream(intent.Data);
 
-                        Toast.MakeText(this, "Path is still null", ToastLength.Short).Show();
+                        //FileStream fileStream = input as FileStream;
+
+                        //if (fileStream != null)
+                        //{
+                        //    //It was really a file stream, get your information here
+                        //    Toast.MakeText(this, "Stream is still null", ToastLength.Short).Show();
+                        //}
+                        //else
+                        //{
+                        //    //The stream was not a file stream, do whatever is required in that case
+                        //    Toast.MakeText(this, "Stream is not a filestream", ToastLength.Short).Show();
+                        //}
+
+
+                        if (GetRealPathFromURI(uri) == null)
+                        {
+
+                            Toast.MakeText(this, "Path is still null", ToastLength.Short).Show();
+                        }
+                        Dictionary<string, Permission> users = new Dictionary<string, Permission>();
+                        users.Add(this.userController.CurrentUser.UserName, Permission.Owner);
+                        Toast.MakeText(this, GetRealPathFromURI(uri), ToastLength.Short).Show();
+                        byte[] file = System.IO.File.ReadAllBytes(GetRealPathFromURI(uri));
+                        File uploadFile = new File();
+                        uploadFile.GUID = "_" + uploadFile;
+                        Toast.MakeText(this, "Adding GUID", ToastLength.Short).Show();
+                        uploadFile.Name = "_NewFile";
+                        uploadFile.Users = users;
+                        uploadFile.Extension = "jpg";
+                        uploadFile.Content = file;
+
+                        Toast.MakeText(this, "Set File", ToastLength.Short).Show();
+                        FileController controller = new FileController();
+                        Toast.MakeText(this, "Before Upload", ToastLength.Short).Show();
+                        controller.UploadFile(uploadFile);
                     }
-                    Toast.MakeText(this, GetRealPathFromURI(uris), ToastLength.Short).Show();
                 }
+            } catch(Exception e)
+            {
+                Toast.MakeText(this, e.ToString(), ToastLength.Long).Show();
+                string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
+                Note testNote = new Note();
+                //owner title content guid
+                testNote.Owner = this.userController.CurrentUser.UserName;
+                testNote.GUID = "5";
+                testNote.Title = "Error Note";
+                testNote.Content = e.ToString();
+                System.IO.File.WriteAllText(path, e.ToString());
+                NoteController controller = new NoteController();
+                controller.CreateNote(testNote, this.userController.CurrentUser.UserName);
             }
         }
 

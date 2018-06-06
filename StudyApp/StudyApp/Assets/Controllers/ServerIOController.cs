@@ -6,6 +6,7 @@ using System.Net;
 using System.Text;
 using System.Net.Http;
 using System.Net.Security;
+using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Android.App;
@@ -16,8 +17,10 @@ using Android.Text;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 
 using StudyApp.Assets.Models;
 using File = StudyApp.Assets.Models.File;
@@ -156,12 +159,7 @@ namespace StudyApp.Assets.Controllers
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
 
-            JsonSerializerSettings settings = new JsonSerializerSettings {
-                TypeNameHandling = TypeNameHandling.Objects
-            };
-
-            return JsonConvert.DeserializeObject<UserAccount>(result.Result, settings);
-
+            return JsonConvert.DeserializeObject<UserAccount>(result.Result, SerializationBinderHelper.Settings);
         }
         #endregion
 
@@ -172,7 +170,7 @@ namespace StudyApp.Assets.Controllers
             
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<Goal>(result.Result);
+            return JsonConvert.DeserializeObject<Goal>(result.Result, SerializationBinderHelper.Settings);
 
         }
 
@@ -192,7 +190,7 @@ namespace StudyApp.Assets.Controllers
                 url = $"https://{IP}/goal/GetUpcomingNonRecurringGoals?username={username}&dateString={DateTime.Now.ToShortDateString()}";
                 response = client.GetAsync(url).Result;
                 result = response.Content.ReadAsStringAsync();
-                goals.AddRange(JsonConvert.DeserializeObject<List<Goal>>(result.Result));
+                goals.AddRange(JsonConvert.DeserializeObject<List<Goal>>(result.Result, SerializationBinderHelper.Settings));
                 return goals;
             } 
             catch
@@ -207,7 +205,7 @@ namespace StudyApp.Assets.Controllers
             
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<List<Goal>>(result.Result);
+            return JsonConvert.DeserializeObject<List<Goal>>(result.Result, SerializationBinderHelper.Settings);
 
         }
         #endregion
@@ -236,7 +234,7 @@ namespace StudyApp.Assets.Controllers
         #region Note
         public Note GetNote(string guid, string username)
         {
-            string url = $"https://{IP}/user/GetUser?guid={guid}&username={username}";
+            string url = $"https://{IP}/note/GetNote?guid={guid}&username={username}";
             
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
@@ -261,7 +259,7 @@ namespace StudyApp.Assets.Controllers
             
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<Month>(result.Result);
+            return JsonConvert.DeserializeObject<Month>(result.Result, SerializationBinderHelper.Settings);
 
         }
         #endregion

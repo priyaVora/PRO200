@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Newtonsoft.Json;
 using StudyApp.Assets.Models;
 using StudyApp.RecyclerView_Resources;
 
@@ -21,13 +22,21 @@ namespace StudyApp.Assets.Views {
         private RecyclerView.LayoutManager mLayoutManagerRecycler;
         private GoalAdapter mAdapter;
         private GoalAlbum mGoalAlbum;
+        private DateTime date;
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
 
-            // Create your application here
+            FrameLayout frame = FindViewById<FrameLayout>(Resource.Id.Common_FrameLayout);
+            View calendarPage = LayoutInflater.Inflate(Resource.Layout.DailyGoals, null);
+            frame.AddView(calendarPage.FindViewById<LinearLayout>(Resource.Id.DailyGoals_Layout));
+            SetUpNavBar();
 
-            FindViewById<TextView>(Resource.Id.DailyGoals_DayLabel).Text = DateTime.Now.Day.ToString();
-            FindViewById<TextView>(Resource.Id.DailyGoals_DayOfWeekLabel).Text = DateTime.Now.DayOfWeek.ToString();
+            // Create your application here
+            date = JsonConvert.DeserializeObject<DateTime>(Intent.GetStringExtra("Date"));
+            TextView dayLabel = FindViewById<TextView>(Resource.Id.DailyGoals_DayLabel);
+            dayLabel.Text = date.Day.ToString();
+            TextView dayofWeekLabel = FindViewById<TextView>(Resource.Id.DailyGoals_DayOfWeekLabel);
+            dayofWeekLabel.Text = date.DayOfWeek.ToString();
             mRecyclerView = FindViewById<RecyclerView>(Resource.Id.DailyGoals_RecyclerView);
             mLayoutManagerRecycler = new LinearLayoutManager(this);
             mRecyclerView.SetLayoutManager(mLayoutManagerRecycler);
@@ -41,8 +50,8 @@ namespace StudyApp.Assets.Views {
         {
             List<Goal> temp = new List<Goal>();
 
-            goalController.GetUpcomingRecurringGoals(userController.CurrentUser.UserName).Where(g => g.Deadline == DateTime.Today).ToList().ForEach(temp.Add);
-            goalController.GetUpcomingNonRecurringGoals(userController.CurrentUser.UserName).Where(g => g.Deadline == DateTime.Today).ToList().ForEach(temp.Add);
+            goalController.GetUpcomingRecurringGoals(userController.CurrentUser.UserName).Where(g => g.Deadline == date).ToList().ForEach(temp.Add);
+            goalController.GetUpcomingNonRecurringGoals(userController.CurrentUser.UserName).Where(g => g.Deadline == date).ToList().ForEach(temp.Add);
 
             mGoalAlbum = new GoalAlbum(temp);
         }
