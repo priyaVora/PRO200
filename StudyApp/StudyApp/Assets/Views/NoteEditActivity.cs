@@ -46,10 +46,13 @@ namespace StudyApp.Assets.Views {
         public void SaveClick(object sender, EventArgs args)
         {
             Toast.MakeText(this, "Note Saved", ToastLength.Short).Show();
-            note.GUID = Guid.NewGuid().ToString();
+            noteController.DeleteNote(note.GUID);
             note.Title = titleText.Text;
+            note.Owner = this.userController.CurrentUser.UserName;
             note.Content = contentText.Text;
-            noteController.UpdateNote(note);
+            //noteController.UpdateNote(note);
+            noteController.CreateNote(note,note.Owner);
+           
             GoToActivity(typeof(NoteActivity), true);
         }
 

@@ -38,5 +38,11 @@ namespace StudyApp.Assets.Controllers
             ServerIOController serverIo = new ServerIOController();
             serverIo.UpdateNote(note);
         }
+
+        public void DeleteNote(String guid)
+        {
+            ServerIOController serverIo = new ServerIOController();
+            serverIo.DeleteNote(guid);
+        }
     }
 }

@@ -42,7 +42,8 @@ namespace StudyApp.Assets.Views {
              * The UserController shouldn't have to be instantiated here, since that would mean that we would lose
              * the currently logged in user. Thus, it should always be in the intent coming into this activity.
              */
-            userController = JsonConvert.DeserializeObject<UserController>(Intent.GetStringExtra("UserController"), SerializationBinderHelper.Settings);
+            string uc = Intent.GetStringExtra("UserController");
+            userController = JsonConvert.DeserializeObject<UserController>(uc, SerializationBinderHelper.Settings);
 
             try {
                 goalController = JsonConvert.DeserializeObject<GoalController>(Intent.GetStringExtra("GoalController"), SerializationBinderHelper.Settings);
@@ -81,8 +82,8 @@ namespace StudyApp.Assets.Views {
 
         public void GoToActivity(Type activityType, bool finish, params KeyValuePair<string, string>[] extras) {
             Intent intent = new Intent(this, activityType);
-            intent.PutExtra("UserController", JsonConvert.SerializeObject(userController, Formatting.Indented, SerializationBinderHelper.Settings));
-            intent.PutExtra("GoalController", JsonConvert.SerializeObject(goalController, Formatting.Indented, SerializationBinderHelper.Settings));
+            intent.PutExtra("UserController", JsonConvert.SerializeObject(userController, SerializationBinderHelper.Settings));
+            intent.PutExtra("GoalController", JsonConvert.SerializeObject(goalController, SerializationBinderHelper.Settings));
             intent.PutExtra("NoteController", JsonConvert.SerializeObject(noteController));
             intent.PutExtra("FileController", JsonConvert.SerializeObject(fileController));
             intent.PutExtra("CalendarController", JsonConvert.SerializeObject(calendarController));

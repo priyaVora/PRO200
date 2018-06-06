@@ -93,6 +93,23 @@ namespace StudyApp.RecyclerView_Resources
 
                         {
                             Toast.MakeText(currentContext, "Delete" + itemView.FindViewById<TextView>(Resource.Id.textView).Text, ToastLength.Short).Show();
+                            NoteController controller = new NoteController();
+                            TextView NoteTitle = itemView.FindViewById<TextView>(Resource.Id.textView);
+
+                            List<NoteMini> listOfNoteMini = controller.GetNotePreviews(currentUser.UserName);
+                            string title = NoteTitle.Text;
+                            string currentNoteId = null;
+                            foreach (NoteMini eachMini in listOfNoteMini)
+                            {
+                                if (eachMini.Title == title)
+                                {
+                                    currentNoteId = eachMini.GUID;
+                                    break;
+                                }
+                            }
+
+                            Note deletingNote = controller.GetNote(currentNoteId, currentUser.UserName);
+                            controller.DeleteNote(deletingNote.GUID);
                         }    
                     };
 
