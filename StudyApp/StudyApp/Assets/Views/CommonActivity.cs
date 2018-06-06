@@ -79,7 +79,7 @@ namespace StudyApp.Assets.Views {
             notesButton.Click += (sender, args) => GoToActivity(typeof(NoteActivity), false);
         }
 
-        protected void GoToActivity(Type activityType, bool finish, params KeyValuePair<string, string>[] extras) {
+        public void GoToActivity(Type activityType, bool finish, params KeyValuePair<string, string>[] extras) {
             Intent intent = new Intent(this, activityType);
             intent.PutExtra("UserController", JsonConvert.SerializeObject(userController, Formatting.Indented, SerializationBinderHelper.Settings));
             intent.PutExtra("GoalController", JsonConvert.SerializeObject(goalController, Formatting.Indented, SerializationBinderHelper.Settings));

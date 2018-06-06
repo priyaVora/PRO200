@@ -31,12 +31,20 @@ namespace StudyApp.Assets.Controllers {
         }
 
         public Type BindToType(string assemblyName, string typeName) {
+            if (typeName == "Dictionary`2") {
+                return typeof(Dictionary<string, StudyApp.Assets.Models.Permission>);
+            } 
             return KnownTypes.First(t => t.Name == typeName);
         }
 
         public void BindToName(Type serializedType, out string assemblyName, out string typeName) {
             assemblyName = null;
-            typeName = serializedType.Name;
+            if (serializedType.Name == "Dictionary`2")
+            {
+                typeName = typeof(Dictionary<string, StudyApp.Assets.Models.Permission>).Name;
+            } else {
+                typeName = serializedType.Name;
+            }
         }
     }
 }

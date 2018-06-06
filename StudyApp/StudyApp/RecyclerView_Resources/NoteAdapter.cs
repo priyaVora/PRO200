@@ -10,8 +10,11 @@ using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Newtonsoft.Json;
 using StudyApp.Assets.Controllers;
 using StudyApp.Assets.Models;
+using StudyApp.Assets.Views;
+using StudyApp.Assets.Views.PopUps;
 using StudyApp.Interface;
 
 namespace StudyApp.RecyclerView_Resources
@@ -21,6 +24,7 @@ namespace StudyApp.RecyclerView_Resources
         private Context currentContext;
         private UserAccount currentUser;
         public NoteAlbum mNoteAlbum;
+        private ShareFileDialog currentDialog;
 
         public NoteAdapter(NoteAlbum notes, Context context, UserAccount currentUser)
         {
@@ -60,7 +64,7 @@ namespace StudyApp.RecyclerView_Resources
                     menu.MenuItemClick += (s, arg) =>
                     {
 
-                        if(arg.Item.ItemId.Equals(Resource.Id.deleteFile))
+                        if(arg.Item.ItemId.Equals(Resource.Id.editFile))
                         {
                             Toast.MakeText(currentContext, "Edit " + itemView.FindViewById<TextView>(Resource.Id.textView).Text , ToastLength.Short).Show();
                             NoteController controller = new NoteController();
@@ -79,8 +83,16 @@ namespace StudyApp.RecyclerView_Resources
                                 }
                             }
 
-                            //Note getStoredNote = controller.GetNote(currentNoteId, currentUser.UserName);
-                          
+                            Note getStoredNote = controller.GetNote(currentNoteId, currentUser.UserName);
+                            CommonActivity activity = currentContext as CommonActivity;
+
+                            activity.GoToActivity(typeof(NoteEditActivity), false, new KeyValuePair<string, string>("SelectedNote", JsonConvert.SerializeObject(getStoredNote)));
+
+                            //FragmentTransaction transaction = ((Activity)currentContext).FragmentManager.BeginTransaction();
+
+
+                            //currentDialog = new ShareFileDialog(currentContext);
+                            //currentDialog.Show(transaction, "dialog fragment");
                         }       
                     };
 
