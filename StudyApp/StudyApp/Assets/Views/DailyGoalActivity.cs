@@ -25,11 +25,16 @@ namespace StudyApp.Assets.Views {
         private DateTime date;
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
+            FrameLayout frame = FindViewById<FrameLayout>(Resource.Id.Common_FrameLayout);
+            View goalView = LayoutInflater.Inflate(Resource.Layout.DailyGoals, null); // Replace the inside of this method call with your desired layout
+            frame.AddView(goalView.FindViewById<LinearLayout>(Resource.Id.DailyGoals_Layout));
 
             // Create your application here
             date = JsonConvert.DeserializeObject<DateTime>(Intent.GetStringExtra("Date"));
-            FindViewById<TextView>(Resource.Id.DailyGoals_DayLabel).Text = date.Day.ToString();
-            FindViewById<TextView>(Resource.Id.DailyGoals_DayOfWeekLabel).Text = date.DayOfWeek.ToString();
+            TextView dayLabel = FindViewById<TextView>(Resource.Id.DailyGoals_DayLabel);
+            dayLabel.Text = date.Day.ToString();
+            TextView dayofWeekLabel = FindViewById<TextView>(Resource.Id.DailyGoals_DayOfWeekLabel);
+            dayofWeekLabel.Text = date.DayOfWeek.ToString();
             mRecyclerView = FindViewById<RecyclerView>(Resource.Id.DailyGoals_RecyclerView);
             mLayoutManagerRecycler = new LinearLayoutManager(this);
             mRecyclerView.SetLayoutManager(mLayoutManagerRecycler);
