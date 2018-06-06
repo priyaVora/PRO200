@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V7.Widget;
@@ -28,6 +29,7 @@ namespace StudyApp.Assets.Views {
 
             FrameLayout frame = FindViewById<FrameLayout>(Resource.Id.Common_FrameLayout);
             View calendarPage = LayoutInflater.Inflate(Resource.Layout.DailyGoals, null);
+          
             frame.AddView(calendarPage.FindViewById<LinearLayout>(Resource.Id.DailyGoals_Layout));
             SetUpNavBar();
 

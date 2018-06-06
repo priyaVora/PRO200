@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V7.Widget;
@@ -46,7 +47,8 @@ namespace StudyApp.Assets.Views.PopUps
 
             ShareAdapter adapter = new ShareAdapter(mShareAlbum, currentContext);
             mRecyclerView.SetAdapter(adapter);
-           
+
+            
             return view;
         }
 

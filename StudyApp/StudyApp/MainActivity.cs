@@ -5,7 +5,7 @@ using StudyApp.Assets.Views;
 
 namespace StudyApp
 {
-    [Activity(Label = "StudyApp", MainLauncher = true, Icon ="@drawable/Envision")]
+    [Activity(Label = "StudyApp", MainLauncher = true, Icon ="@drawable/StudyAppLogo")]
     public class MainActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)

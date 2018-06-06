@@ -82,17 +82,13 @@ namespace StudyApp.RecyclerView_Resources
                             Note getStoredNote = controller.GetNote(currentNoteId, currentUser.UserName);
                             CommonActivity activity = currentContext as CommonActivity;
 
-                            activity.GoToActivity(typeof(NoteEditActivity), false, new KeyValuePair<string, string>("SelectedNote", JsonConvert.SerializeObject(getStoredNote)));
+                            activity.GoToActivity(typeof(NoteEditActivity), false, new KeyValuePair<string, string>("SelectedNote", JsonConvert.SerializeObject(getStoredNote)), new KeyValuePair<string, string>("ShouldCreate", JsonConvert.SerializeObject(false)));
 
-                            //FragmentTransaction transaction = ((Activity)currentContext).FragmentManager.BeginTransaction();
-
-
-                            //currentDialog = new ShareFileDialog(currentContext);
-                            //currentDialog.Show(transaction, "dialog fragment");
+                           
                         } else if(arg.Item.ItemId.Equals(Resource.Id.deleteNote))
 
                         {
-                            Toast.MakeText(currentContext, "Delete" + itemView.FindViewById<TextView>(Resource.Id.textView).Text, ToastLength.Short).Show();
+                        
                             NoteController controller = new NoteController();
                             TextView NoteTitle = itemView.FindViewById<TextView>(Resource.Id.textView);
 
@@ -110,35 +106,14 @@ namespace StudyApp.RecyclerView_Resources
 
                             Note deletingNote = controller.GetNote(currentNoteId, currentUser.UserName);
                             controller.DeleteNote(deletingNote.GUID);
+                            Toast.MakeText(currentContext, "Deleted Note", ToastLength.Short).Show();
                         }    
                     };
 
                     menu.Show();
 
                 }
-                else
-                {
-                    Toast.MakeText(currentContext, "Download Notes", ToastLength.Short).Show();
-                    NoteController controller = new NoteController();
-                    TextView NoteTitle = itemView.FindViewById<TextView>(Resource.Id.textView);
-                    Toast.MakeText(currentContext, NoteTitle.Text.Trim(), ToastLength.Short).Show();
-
-                    List<NoteMini> listOfNoteMini = controller.GetNotePreviews(currentUser.UserName);
-                    string title = NoteTitle.Text;
-                    string currentNoteId = null;
-                    foreach (NoteMini eachMini in listOfNoteMini)
-                    {
-                        if (eachMini.Title.Equals(title))
-                        {
-                            currentNoteId = eachMini.GUID;
-                            break;
-                        }
-                    }
-
-                    Note deletingNote = controller.GetNote(currentNoteId, currentUser.UserName);
-                    NoteController noteController = new NoteController();
-                    //noteController.deleteNote();
-                }
+              
             }
             catch (Exception e)
             {
