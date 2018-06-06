@@ -101,7 +101,7 @@ namespace StudyApp.Assets.Views {
         }
 
         private void Save_Click(object sender, EventArgs args) {
-            if (!IsNameValid() || !IsDescriptionValid() || !IsFrequencyValid() || !IsDateValid()) {
+            if (!IsNameValid() || !IsDescriptionValid() || !IsFrequencyValid() || !IsDateValid() || !IsTimeValid()) {
                 string errorMessage = "Invalid input for one or more fields.";
                 StringMessageDialogFragment dialog = StringMessageDialogFragment.CreateInstance(errorMessage);
                 dialog.Show(FragmentManager, "Invalid information");
@@ -172,7 +172,7 @@ namespace StudyApp.Assets.Views {
         }
 
         private bool IsFrequencyValid() {
-            if (typeSwitch.Selected) {
+            if (isRecurring) {
                 return !String.IsNullOrWhiteSpace(frequencyButton.Text);
             }
 

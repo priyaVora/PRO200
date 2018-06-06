@@ -15,8 +15,7 @@ using StudyApp.Assets.Models;
 
 namespace StudyApp.Assets.Views {
     [Activity(Label = "NoteEditActivity")]
-    public class NoteEditActivity : CommonActivity
-    {
+    public class NoteEditActivity : CommonActivity {
         private Note note;
         private EditText titleText;
         private EditText contentText;
@@ -43,21 +42,20 @@ namespace StudyApp.Assets.Views {
             GoToActivity(typeof(NoteActivity), true);
         }
 
-        public void SaveClick(object sender, EventArgs args)
-        {
+        public void SaveClick(object sender, EventArgs args) {
             Toast.MakeText(this, "Note Saved", ToastLength.Short).Show();
-            noteController.DeleteNote(note.GUID);
             note.Title = titleText.Text;
-            note.Owner = this.userController.CurrentUser.UserName;
             note.Content = contentText.Text;
-            //noteController.UpdateNote(note);
-            noteController.CreateNote(note,note.Owner);
-           
+            bool shouldCreate = JsonConvert.DeserializeObject<bool>(Intent.GetStringExtra("ShouldCreate"));
+            if (shouldCreate) {
+                noteController.CreateNote(note, userController.CurrentUser.UserName);
+            } else {
+                noteController.UpdateNote(note);
+            }
             GoToActivity(typeof(NoteActivity), true);
         }
 
-        public void UpdateClick(object sender, EventArgs args)
-        {
+        public void UpdateClick(object sender, EventArgs args) {
 
         }
     }
