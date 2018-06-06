@@ -26,14 +26,16 @@ namespace StudyApp.Assets.Views {
             Button cancelButton = FindViewById<Button>(Resource.Id.ClNotesButton);
             Button saveButton = FindViewById<Button>(Resource.Id.SaveNotesButton);
 
+            note = JsonConvert.DeserializeObject<Note>(Intent.GetStringExtra("SelectedNote"));
+
             titleText = FindViewById<EditText>(Resource.Id.NoteTitle);
+            titleText.Text = note.Title;
+
             contentText = FindViewById<EditText>(Resource.Id.NoteContent);
+            contentText.Text = note.Content;
 
             cancelButton.Click += CancelClick;
             saveButton.Click += SaveClick;
-            note = new Note();
-
-            note = JsonConvert.DeserializeObject<Note>(Intent.GetStringExtra("SelectedNote"));
         }
 
         public void CancelClick(object sender, EventArgs args) {
@@ -48,9 +50,13 @@ namespace StudyApp.Assets.Views {
             note.Title = titleText.Text;
             note.Content = contentText.Text;
             NoteController noteController = new NoteController();
-            noteController.CreateNote(note, this.userController.CurrentUser.UserName);
             noteController.UpdateNote(note);
             GoToActivity(typeof(NoteActivity), true);
+        }
+
+        public void UpdateClick(object sender, EventArgs args)
+        {
+
         }
     }
 }

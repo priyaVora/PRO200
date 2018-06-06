@@ -84,6 +84,7 @@ namespace StudyApp.Assets.Views
         public void AddNoteClick(object sender, EventArgs args)
         {
             Note note = new Note(userController.CurrentUser.UserName, "", "");
+            noteController.CreateNote(note, userController.CurrentUser.UserName);
             GoToActivity(typeof(NoteEditActivity), true, new KeyValuePair<string, string>("SelectedNote", JsonConvert.SerializeObject(note)));
         }
 

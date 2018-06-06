@@ -234,7 +234,7 @@ namespace StudyApp.Assets.Controllers
         #region Note
         public Note GetNote(string guid, string username)
         {
-            string url = $"https://{IP}/user/GetUser?guid={guid}&username={username}";
+            string url = $"https://{IP}/note/GetNote?guid={guid}&username={username}";
             
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
