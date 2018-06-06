@@ -12,6 +12,7 @@ using Android.Views;
 using Android.Widget;
 using StudyApp.Assets.Controllers;
 using StudyApp.Assets.Models;
+using StudyApp.Assets.Views;
 using StudyApp.Interface;
 
 namespace StudyApp.RecyclerView_Resources
@@ -60,7 +61,7 @@ namespace StudyApp.RecyclerView_Resources
                     menu.MenuItemClick += (s, arg) =>
                     {
 
-                        if(arg.Item.ItemId.Equals(Resource.Id.deleteFile))
+                        if(arg.Item.ItemId.Equals(Resource.Id.editFile))
                         {
                             Toast.MakeText(currentContext, "Edit " + itemView.FindViewById<TextView>(Resource.Id.textView).Text , ToastLength.Short).Show();
                             NoteController controller = new NoteController();
@@ -79,8 +80,9 @@ namespace StudyApp.RecyclerView_Resources
                                 }
                             }
 
-                            //Note getStoredNote = controller.GetNote(currentNoteId, currentUser.UserName);
-                          
+                            Note getStoredNote = controller.GetNote(currentNoteId, currentUser.UserName);
+                            
+
                         }       
                     };
 
