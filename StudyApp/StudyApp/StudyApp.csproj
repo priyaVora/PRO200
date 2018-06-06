@@ -134,7 +134,6 @@
     <Compile Include="Assets\Views\CommonActivity.cs" />
     <Compile Include="Assets\Views\CreateAccountActivity.cs" />
     <Compile Include="Assets\Views\DailyGoalActivity.cs" />
-    <Compile Include="Assets\Views\PopUps\EditNoteDialog.cs" />
     <Compile Include="Assets\Views\PopUps\ShareFileDialog.cs" />
     <Compile Include="Assets\Views\PopUps\LayoutDialogFragment.cs" />
     <Compile Include="Assets\Views\PopUps\StringMessageDialogFragment.cs" />

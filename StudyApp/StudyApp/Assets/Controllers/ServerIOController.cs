@@ -201,7 +201,7 @@ namespace StudyApp.Assets.Controllers
         }
         public List<Goal> GetOverdueGoals(string username)
         {
-            string url = $"https://{IP}/goal/GetOverdueGoals?username={username}&dateString={DateTime.Now.ToShortDateString()}";
+            string url = $"https://{IP}/goal/GetOverdueGoals?username={username}&dateString={DateTime.Now.ToString("MM/dd/yyyy")}";
             
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
