@@ -20,7 +20,7 @@ using Android.Graphics;
 
 namespace StudyApp.Assets.Views {
 
-    [Activity(Label = "CreateAccountActivity")]
+    [Activity(Label = "Create Account")]
     public class CreateAccountActivity : Activity {
 
         private UserController userController;
@@ -31,6 +31,7 @@ namespace StudyApp.Assets.Views {
 
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
+            ActionBar.Hide();
             View Create = LayoutInflater.Inflate(Resource.Layout.CreateAccount, null);
            
             SetContentView(Resource.Layout.CreateAccount);
