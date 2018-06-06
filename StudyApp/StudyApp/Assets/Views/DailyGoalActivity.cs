@@ -25,9 +25,11 @@ namespace StudyApp.Assets.Views {
         private DateTime date;
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
+
             FrameLayout frame = FindViewById<FrameLayout>(Resource.Id.Common_FrameLayout);
-            View goalView = LayoutInflater.Inflate(Resource.Layout.DailyGoals, null); // Replace the inside of this method call with your desired layout
-            frame.AddView(goalView.FindViewById<LinearLayout>(Resource.Id.DailyGoals_Layout));
+            View calendarPage = LayoutInflater.Inflate(Resource.Layout.DailyGoals, null);
+            frame.AddView(calendarPage.FindViewById<LinearLayout>(Resource.Id.DailyGoals_Layout));
+            SetUpNavBar();
 
             // Create your application here
             date = JsonConvert.DeserializeObject<DateTime>(Intent.GetStringExtra("Date"));
