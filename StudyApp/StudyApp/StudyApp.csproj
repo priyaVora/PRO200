@@ -109,6 +109,7 @@
     <Compile Include="Assets\Controllers\FileController.cs" />
     <Compile Include="Assets\Controllers\GoalController.cs" />
     <Compile Include="Assets\Controllers\NoteController.cs" />
+    <Compile Include="Assets\Controllers\SerializationBinderHelper.cs" />
     <Compile Include="Assets\Controllers\ServerIOController.cs" />
     <Compile Include="Assets\Controllers\UserController.cs" />
     <Compile Include="Assets\Models\Day.cs" />

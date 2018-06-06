@@ -47,7 +47,7 @@ namespace StudyApp.Assets.Views {
                 dialog.Show(FragmentManager, "Login Failed");
             } else {
                 Intent homeIntent = new Intent(this, typeof(HomeActivity));
-                homeIntent.PutExtra("UserController", JsonConvert.SerializeObject(userController));
+                homeIntent.PutExtra("UserController", JsonConvert.SerializeObject(userController, Formatting.Indented, SerializationBinderHelper.Settings));
                 StartActivity(homeIntent);
                 Finish();
             }
@@ -55,7 +55,7 @@ namespace StudyApp.Assets.Views {
 
         public void CreateAccountClick(object sender, EventArgs args) {
             Intent intent = new Intent(this, typeof(CreateAccountActivity));
-            intent.PutExtra("UserController", JsonConvert.SerializeObject(userController));
+            intent.PutExtra("UserController", JsonConvert.SerializeObject(userController, Formatting.Indented, SerializationBinderHelper.Settings));
             StartActivity(intent);
         }
     }

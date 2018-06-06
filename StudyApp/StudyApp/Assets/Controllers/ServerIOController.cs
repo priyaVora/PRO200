@@ -28,24 +28,6 @@ using File = StudyApp.Assets.Models.File;
 namespace StudyApp.Assets.Controllers
 {
 
-    internal class SerializationBinderHelper : ISerializationBinder {
-
-        public IList<Type> KnownTypes { get; set; }
-
-        public SerializationBinderHelper() : base() {
-            KnownTypes = Assembly.GetExecutingAssembly().GetTypes();
-        }
-
-        public Type BindToType(string assemblyName, string typeName) {
-            return KnownTypes.First(t => t.Name == typeName);
-        }
-
-        public void BindToName(Type serializedType, out string assemblyName, out string typeName) {
-            assemblyName = null;
-            typeName = serializedType.Name;
-        }
-    }
-
     public class ServerIOController
     {
         public static readonly string IP = "104.42.173.109";
@@ -177,12 +159,7 @@ namespace StudyApp.Assets.Controllers
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
 
-            JsonSerializerSettings settings = new JsonSerializerSettings {
-                Formatting = Formatting.Indented,
-                SerializationBinder = new SerializationBinderHelper()
-            };
-
-            return JsonConvert.DeserializeObject<UserAccount>(result.Result, settings);
+            return JsonConvert.DeserializeObject<UserAccount>(result.Result, SerializationBinderHelper.Settings);
         }
         #endregion
 
@@ -193,7 +170,7 @@ namespace StudyApp.Assets.Controllers
             
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<Goal>(result.Result);
+            return JsonConvert.DeserializeObject<Goal>(result.Result, SerializationBinderHelper.Settings);
 
         }
 
@@ -213,7 +190,7 @@ namespace StudyApp.Assets.Controllers
                 url = $"https://{IP}/goal/GetUpcomingNonRecurringGoals?username={username}&dateString={DateTime.Now.ToShortDateString()}";
                 response = client.GetAsync(url).Result;
                 result = response.Content.ReadAsStringAsync();
-                goals.AddRange(JsonConvert.DeserializeObject<List<Goal>>(result.Result));
+                goals.AddRange(JsonConvert.DeserializeObject<List<Goal>>(result.Result, SerializationBinderHelper.Settings));
                 return goals;
             } 
             catch
@@ -228,7 +205,7 @@ namespace StudyApp.Assets.Controllers
             
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<List<Goal>>(result.Result);
+            return JsonConvert.DeserializeObject<List<Goal>>(result.Result, SerializationBinderHelper.Settings);
 
         }
         #endregion
@@ -282,7 +259,7 @@ namespace StudyApp.Assets.Controllers
             
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<Month>(result.Result);
+            return JsonConvert.DeserializeObject<Month>(result.Result, SerializationBinderHelper.Settings);
 
         }
         #endregion
