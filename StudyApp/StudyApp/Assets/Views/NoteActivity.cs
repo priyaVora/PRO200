@@ -66,8 +66,8 @@ namespace StudyApp.Assets.Views
             Note note = new Note {
                 GUID = Guid.NewGuid().ToString(),
                 Owner = userController.CurrentUser.UserName,
-                Content ="Default Content",
-                Title = "Default Title"
+                Content = "",
+                Title = ""
             };
             noteController.CreateNote(note, userController.CurrentUser.UserName);
             GoToActivity(typeof(NoteEditActivity), true, new KeyValuePair<string, string>("SelectedNote", JsonConvert.SerializeObject(note)));
