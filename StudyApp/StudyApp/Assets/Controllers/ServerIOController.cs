@@ -102,11 +102,11 @@ namespace StudyApp.Assets.Controllers
         //}
 
         public void CreateNonRecurringGoal(NonRecurringGoal goal, string username) {
-            PassToServer("goal", "CreateNonRecurringGoal", $"username={username}", JsonConvert.SerializeObject(goal));
+            PassToServer("goal", "CreateNonRecurringGoal", $"username={username}", JsonConvert.SerializeObject(goal, SerializationBinderHelper.Settings));
         }
 
         public void CreateRecurringGoal(RecurringGoal goal, string username) {
-            PassToServer("goal", "CreateRecurringGoal", $"username={username}", JsonConvert.SerializeObject(goal));
+            PassToServer("goal", "CreateRecurringGoal", $"username={username}", JsonConvert.SerializeObject(goal, SerializationBinderHelper.Settings));
         }
 
         public void MarkGoalAsCompleted(string guid, string username)
@@ -185,7 +185,7 @@ namespace StudyApp.Assets.Controllers
             {
 
 
-                List<Goal> goals = JsonConvert.DeserializeObject<List<Goal>>(result.Result);
+                List<Goal> goals = JsonConvert.DeserializeObject<List<Goal>>(result.Result, SerializationBinderHelper.Settings);
 
                 url = $"https://{IP}/goal/GetUpcomingNonRecurringGoals?username={username}&dateString={DateTime.Now.ToString("MM/dd/yyyy")}";
                 response = client.GetAsync(url).Result;
