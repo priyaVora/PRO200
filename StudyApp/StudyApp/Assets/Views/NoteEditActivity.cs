@@ -39,17 +39,16 @@ namespace StudyApp.Assets.Views {
         }
 
         public void CancelClick(object sender, EventArgs args) {
-            Toast.MakeText(this, "Cancel notes", ToastLength.Short).Show();
+            Toast.MakeText(this, "Canceled", ToastLength.Short).Show();
             GoToActivity(typeof(NoteActivity), true);
         }
 
         public void SaveClick(object sender, EventArgs args)
         {
-            Toast.MakeText(this, "Save notes", ToastLength.Short).Show();
+            Toast.MakeText(this, "Note Saved", ToastLength.Short).Show();
             note.GUID = Guid.NewGuid().ToString();
             note.Title = titleText.Text;
             note.Content = contentText.Text;
-            NoteController noteController = new NoteController();
             noteController.UpdateNote(note);
             GoToActivity(typeof(NoteActivity), true);
         }

@@ -56,8 +56,6 @@ namespace StudyApp.RecyclerView_Resources
             {
                 if (isLongClick)
                 {
-                    Toast.MakeText(currentContext, "Notes Options", ToastLength.Short).Show();
-
                     Android.Widget.PopupMenu menu = new Android.Widget.PopupMenu((Activity)currentContext, itemView);
                     menu.MenuInflater.Inflate(Resource.Menu.notes_Options, menu.Menu);
 
@@ -74,7 +72,7 @@ namespace StudyApp.RecyclerView_Resources
                             string currentNoteId = null;
                             foreach(NoteMini eachMini in listOfNoteMini)
                             {
-                                if(eachMini.Title.Equals(title))
+                                if(eachMini.Title == title)
                                 {
                                     currentNoteId = eachMini.GUID;
                                     break;
@@ -128,7 +126,6 @@ namespace StudyApp.RecyclerView_Resources
             catch (Exception e)
             {
                 Toast.MakeText(currentContext, e.ToString(), ToastLength.Short).Show();
-
             }
 
         }
