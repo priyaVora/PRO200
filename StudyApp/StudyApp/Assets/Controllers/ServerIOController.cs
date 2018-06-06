@@ -177,7 +177,7 @@ namespace StudyApp.Assets.Controllers
         public List<Goal> GetUpcomingGoals(string username)
         {
 
-            string url = $"https://{IP}/goal/GetUpcomingRecurringGoals?username={username}&dateString={DateTime.Now.ToShortDateString()}";
+            string url = $"https://{IP}/goal/GetUpcomingRecurringGoals?username={username}&dateString={DateTime.Now.ToString("MM/dd/yyyy")}";
             
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();
@@ -187,7 +187,7 @@ namespace StudyApp.Assets.Controllers
 
                 List<Goal> goals = JsonConvert.DeserializeObject<List<Goal>>(result.Result);
 
-                url = $"https://{IP}/goal/GetUpcomingNonRecurringGoals?username={username}&dateString={DateTime.Now.ToShortDateString()}";
+                url = $"https://{IP}/goal/GetUpcomingNonRecurringGoals?username={username}&dateString={DateTime.Now.ToString("MM/dd/yyyy")}";
                 response = client.GetAsync(url).Result;
                 result = response.Content.ReadAsStringAsync();
                 goals.AddRange(JsonConvert.DeserializeObject<List<Goal>>(result.Result, SerializationBinderHelper.Settings));
@@ -201,7 +201,7 @@ namespace StudyApp.Assets.Controllers
         }
         public List<Goal> GetOverdueGoals(string username)
         {
-            string url = $"https://{IP}/goal/GetOverdueGoals?username={username}&dateString={DateTime.Now.ToShortDateString()}";
+            string url = $"https://{IP}/goal/GetOverdueGoals?username={username}&dateString={DateTime.Now.ToString("MM/dd/yyyy")}";
             
             HttpResponseMessage response = client.GetAsync(url).Result;
             Task<string> result = response.Content.ReadAsStringAsync();

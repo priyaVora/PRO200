@@ -66,10 +66,8 @@ namespace StudyApp.RecyclerView_Resources
 
                         if(arg.Item.ItemId.Equals(Resource.Id.editNote))
                         {
-                            Toast.MakeText(currentContext, "Edit " + itemView.FindViewById<TextView>(Resource.Id.textView).Text , ToastLength.Short).Show();
                             NoteController controller = new NoteController();
                             TextView NoteTitle = itemView.FindViewById<TextView>(Resource.Id.textView);
-                            Toast.MakeText(currentContext, NoteTitle.Text.Trim(), ToastLength.Short).Show();
 
                             List<NoteMini> listOfNoteMini = controller.GetNotePreviews(currentUser.UserName);
                             string title = NoteTitle.Text;
